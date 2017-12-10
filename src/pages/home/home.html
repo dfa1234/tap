@@ -1,0 +1,34 @@
+<ion-content padding class="mycontent">
+
+  <h1>Home</h1>
+
+
+  <div class="header" col-12>
+    SELECTED: {{currentTaxi?.name}} <ion-icon name="arrow-dropright-circle" *ngIf="currentStreet"></ion-icon> {{currentStreet}}
+
+    <button ion-button (click)="selectThis(currentTaxi,currentStreet)" *ngIf="currentStreet && currentTaxi">
+      <ion-icon name="arrow-dropright-circle"></ion-icon>
+      &nbsp;Send</button>
+
+  </div>
+
+  <ion-row>
+
+    <div class="taxis" col-6>
+      <button *ngFor="let taxi of taxis" (click)="currentTaxi = taxi">
+        {{taxi.name}}
+        <br>
+        {{taxi.id}}
+      </button>
+    </div>
+
+
+    <div class="streets" col-6>
+      <button *ngFor="let street of streets" (click)="currentStreet = street">
+        {{street}}
+      </button>
+    </div>
+
+  </ion-row>
+
+</ion-content>

@@ -1,0 +1,64 @@
+page-home {
+
+  .mycontent{
+    background: #f8f8f8;
+  }
+
+  .header{
+    width: 100%;
+    line-height: 60px;
+    color: darkblue;
+    font-size: 1.3em;
+    padding: 14px;
+    background: rgba(100, 149, 237, 0.20);
+
+    ion-icon{
+      color: cornflowerblue;
+    }
+
+    button{
+      vertical-align: middle;
+    }
+  }
+
+
+  .taxis{
+
+    width: 49%;
+
+
+    button{
+      width: 70px;
+      height: 70px;
+      padding: 5px;
+      background: gray;
+      color:white;
+      margin:10px;
+    }
+    button:active{
+      background: cornflowerblue;
+    }
+
+  }
+
+
+
+  .streets{
+      display: flex;
+    flex-direction: column;
+
+    button{
+      font-size: 1.3em;
+      height: 70px;
+      padding: 5px;
+      border:1px solid gray;
+    }
+
+    button:active{
+      background: #b4c0ff;
+    }
+
+
+  }
+
+}

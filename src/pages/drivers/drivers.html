@@ -1,0 +1,13 @@
+<ion-content padding>
+
+  <h1>Drivers</h1>
+
+  <div *ngFor="let driver of drivers" class="row">
+    <span>{{driver.firstName}} {{driver.lastName}}</span>
+    <span>{{driver.mobile1}}</span>
+    <span>{{driver.mobile2}}</span>
+    <span>{{driver.email}}</span>
+    <span><ion-icon name="phone"></ion-icon></span>
+  </div>
+
+</ion-content>
