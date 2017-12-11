@@ -6,6 +6,7 @@ sudo apt-get install build-essential g++ python-dev
 yarn global add ionic nodemon pm2
 # add ~/.yarn/bin/ to your PATH (no need to do 'sudo yarn global')
 yarn install
+yarn redirect-port
 ```
 
 You need to configure your db password here:
