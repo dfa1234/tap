@@ -8,5 +8,4 @@ node_modules
 *.lock
 logs/
 src-api/config.ts
-www/
 .sourcemaps/
