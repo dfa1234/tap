@@ -4,7 +4,7 @@
   "description": "complete express server",
   "version": "0.0.1",
   "scripts": {
-    "tsnode" : "nodemon --exec ./node_modules/.bin/ts-node --project ./src-api -- ./src-api/server.ts",
+    "tsnode" : "nodemon -I --exec ./node_modules/.bin/ts-node --project ./src-api -- ./src-api/server.ts",
     "start": "mkdir -p ../logs && pm2 start ./src-api/server.ts -l ../logs/node-out.log",
     "stop": "pm2 stop server",
     "logs": "tail -f -n 100 ../logs/node-out*.log",
