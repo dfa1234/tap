@@ -1,6 +1,10 @@
 After installing yarn :
 ```
+python --version
+#you should have something like 2.7.*
+sudo apt-get install build-essential g++ python-dev
 yarn global add ionic nodemon pm2
+yarn install
 ```
 
 You need to configure your db password here:
