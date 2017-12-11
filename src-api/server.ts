@@ -50,10 +50,7 @@ app.get('/', (req:any, res:any, next:any) => {
 app.get('/api/getdrivers', routes.getDrivers);
 app.get('/api/getrequests', routes.getRequests);
 
-// app.get('/api/populate',  (req:Request, res:Response, next:NextFunction)=>{
-//         routes.populate();
-// });
-
+app.get('/api/populate', routes.populate,routes.getDrivers);
 //socket:
 // io.on('connection', socket => {
 //     console.log('a user connected to socket');

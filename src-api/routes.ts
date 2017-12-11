@@ -16,7 +16,7 @@ export const routes = {
 
 
         TaxiUser.findAll().then(
-            (drivers:any) => res.json(drivers),
+            (drivers:TaxiUser[]) => res.json(drivers),
             (error:any) => console.log(error)
         )
 
@@ -25,61 +25,58 @@ export const routes = {
     getRequests :   (req:Request, res:Response, next:NextFunction) => {
 
         TaxiRequest.findAll().then(
-            (request:any) => res.json(request),
+            (request:TaxiRequest[]) => res.json(request),
             (error:any) => console.log(error)
         )
 
     },
 
-    populate : ()=>{
-        TaxiUser.create({
-            firstName: "David",
-            lastName: "Cohen",
-            tz: 44566546,
-            license: 46654645,
-            phone1: "0578451245",
-            phone2: "0578497852",
-            address: "Kg George st Jerusalem",
-            email: "cohen@gmail.com",
-            username: "dcohen",
-            password: '7c222fb2927d828af22f592134e8932480637c0d',
-            shomerShabat: true,
-            category: 'DRIVER',
-            type: 'TAXI'
-        });
-
-
-        TaxiUser.create({
-            firstName: "Moshe",
-            lastName: "Levy",
-            tz: 44566546,
-            license: 46654645,
-            phone1: "0578451245",
-            phone2: "0578497852",
-            address: "Kg George st Jerusalem",
-            email: "levy@gmail.com",
-            username: "mlevy",
-            password: '7c222fb2927d828af22f592134e8932480637c0d',
-            shomerShabat: true,
-            category: 'DRIVER',
-            type: 'TAXI'
-        });
-
-
-        TaxiUser.create({
-            firstName: "Roni",
-            lastName: "Golan",
-            tz: 44566546,
-            license: 46654645,
-            phone1: "0578451245",
-            phone2: "0578497852",
-            address: "Kg George st Jerusalem",
-            email: "roni@gmail.com",
-            username: "rgolan",
-            password: '7c222fb2927d828af22f592134e8932480637c0d',
-            shomerShabat: true,
-            category: 'SADRAN',
-            type: ''
+    populate : (req:Request, res:Response, next:NextFunction) =>{
+        TaxiUser.bulkCreate([{
+                firstName: "David",
+                lastName: "Cohen",
+                tz: 44566546,
+                license: 46654645,
+                phone1: "0578451245",
+                phone2: "0578497852",
+                address: "Kg George st Jerusalem",
+                email: "cohen@gmail.com",
+                username: "dcohen",
+                password: '7c222fb2927d828af22f592134e8932480637c0d',
+                shomerShabat: true,
+                category: 'DRIVER',
+                type: 'TAXI'
+            },{
+                firstName: "Moshe",
+                lastName: "Levy",
+                tz: 44566546,
+                license: 46654645,
+                phone1: "0578451245",
+                phone2: "0578497852",
+                address: "Kg George st Jerusalem",
+                email: "levy@gmail.com",
+                username: "mlevy",
+                password: '7c222fb2927d828af22f592134e8932480637c0d',
+                shomerShabat: true,
+                category: 'DRIVER',
+                type: 'TAXI'
+            },{
+                firstName: "Roni",
+                lastName: "Golan",
+                tz: 44566546,
+                license: 46654645,
+                phone1: "0578451245",
+                phone2: "0578497852",
+                address: "Kg George st Jerusalem",
+                email: "roni@gmail.com",
+                username: "rgolan",
+                password: '7c222fb2927d828af22f592134e8932480637c0d',
+                shomerShabat: true,
+                category: 'SADRAN',
+                type: ''
+            }
+        ]).then(()=>{
+            next();
         })
     }
 };
