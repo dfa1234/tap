@@ -1,4 +1,4 @@
-module.exports = {
+export const config = {
     database: 'node_db',
     databaseUser: 'node_user',
     databasePassword: 'node_pass',
@@ -6,6 +6,7 @@ module.exports = {
     port: 3000
 };
 
+//DB configuration:
 //CREATE DATABASE node_db;
 //CREATE USER 'node_user'@'localhost' IDENTIFIED BY 'node_pass';
 //GRANT USAGE ON *.* TO 'node_user'@'localhost' IDENTIFIED BY 'node_pass';
