@@ -47,8 +47,8 @@ app.get('/', (req:any, res:any, next:any) => {
 
 
 //API
-app.get('/api/getdrivers', routes.getDrivers);
-app.get('/api/getrequests', routes.getRequests);
+app.get('/api/drivers', routes.getDrivers);
+app.get('/api/requests', routes.getRequests);
 
 app.get('/api/populate', routes.populate,routes.getDrivers);
 //socket:

@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "scripts": {
     "tsnode" : "nodemon -I --exec ./node_modules/.bin/ts-node --project ./src-api -- ./src-api/server.ts",
-    "start": "mkdir -p ../logs && pm2 start ./src-api/server.ts -l ../logs/node-out.log",
+    "start": "mkdir -p ../logs && pm2 start --interpreter ./node_modules/.bin/ts-node --project ./src-api -- ./src-api/server.ts -l ../logs/node-out.log",
     "stop": "pm2 stop server",
     "logs": "tail -f -n 100 ../logs/node-out*.log",
     "restart": "yarn stop && yarn start && yarn logs",
@@ -36,16 +36,15 @@
     "extend": "^3.0.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
-    "mariasql": "^0.2.5",
     "morgan": "~1.6.1",
-    "mysql": "*",
+    "mysql2": "^1.5.1",
+    "reflect-metadata": "^0.1.10",
+    "request": "^2.83.0",
+    "sequelize": "^4.28.6",
+    "sequelize-typescript": "^0.6.2",
     "node-import": "^0.9.2",
     "q": "^1.4.1",
-    "reflect-metadata": "^0.1.10",
-    "request": "^2.67.0",
     "rxjs": "5.5.2",
-    "sequelize": "^3.15.0",
-    "sequelize-typescript": "^0.6.1",
     "socket.io": "^2.0.4",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.18"
@@ -54,13 +53,14 @@
     "@ionic/app-scripts": "3.1.5",
     "@types/express": "^4.0.39",
     "@types/node": "^8.0.57",
+    "@types/request": "^2.0.9",
     "@types/sequelize": "^4.0.79",
-    "ts-node": "^3.3.0",
-    "typescript": "2.4.2"
+    "ts-node": "^4.0.2",
+    "typescript": "^2.6.2"
   },
   "optionalDependencies": {},
   "engines": {
-    "node": "9.2.*"
+    "node": "9.*"
   },
   "license": "UNLICENSED",
   "private": false

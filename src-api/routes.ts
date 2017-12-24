@@ -7,17 +7,15 @@ import {TaxiRequest} from "./models/request";
 
 sequelize.addModels([TaxiRequest,TaxiUser]);
 //GENERATE DB:
-sequelize.sync({ force: true});
-
-
+//sequelize.sync({ force: true});
+sequelize.sync({alter:true});
 
 export const routes = {
     getDrivers  :  (req:Request, res:Response, next:NextFunction) => {
 
-
         TaxiUser.findAll().then(
             (drivers:TaxiUser[]) => res.json(drivers),
-            (error:any) => console.log(error)
+            (error:any) => res.json(error)
         )
 
     },
@@ -26,7 +24,7 @@ export const routes = {
 
         TaxiRequest.findAll().then(
             (request:TaxiRequest[]) => res.json(request),
-            (error:any) => console.log(error)
+            (error:any) => res.json(error)
         )
 
     },
