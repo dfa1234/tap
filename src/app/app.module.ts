@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import {HttpClientModule} from '@angular/common/http';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,38 +13,41 @@ import {CarPage} from "../pages/car/car";
 import {HomePage} from "../pages/home/home";
 import {HistoryPage} from "../pages/history/history";
 import {SettingsPage} from "../pages/settings/settings";
+import { TaxiProvider } from '../../../tap/src/providers/taxi';
 
 
 @NgModule({
-  declarations: [
-    MyApp,
-    TabsPage,
-    AccountPage,
-    CarPage,
-    DriversPage,
-    HistoryPage,
-    HomePage,
-    SettingsPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    TabsPage,
-    AccountPage,
-    CarPage,
-    DriversPage,
-    HistoryPage,
-    HomePage,
-    SettingsPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    declarations: [
+        MyApp,
+        TabsPage,
+        AccountPage,
+        CarPage,
+        DriversPage,
+        HistoryPage,
+        HomePage,
+        SettingsPage
+    ],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(MyApp),
+        HttpClientModule
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        TabsPage,
+        AccountPage,
+        CarPage,
+        DriversPage,
+        HistoryPage,
+        HomePage,
+        SettingsPage
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        TaxiProvider
+    ]
 })
 export class AppModule {}
