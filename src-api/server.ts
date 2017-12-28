@@ -22,11 +22,11 @@ app.use(logger('[:date[clf]] - :remote-addr - :method - :url - :status - :respon
 app.use((req:Request, res:Response, next:NextFunction)=> {
     //res.setHeader('content-type', 'application/json');
     res.header('Access-Control-Allow-Credentials', "true");
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Origin', "http://localhost:8100");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept,Access-Control-Allow-Credentials,Authorization');
-    if ('OPTIONS' === req.method) {
-        res.sendStatus(200);
+    if (req.method === "OPTIONS"){
+         res.sendStatus(200);
     } else {
         next();
     }

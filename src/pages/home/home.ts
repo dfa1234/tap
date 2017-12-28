@@ -8,13 +8,20 @@ import {TaxiProvider} from "../../providers/taxi";
 })
 export class HomePage {
 
+    taxis = [];
+
     constructor(public navCtrl: NavController,
                 public taxiProvider: TaxiProvider,
                 public alertCtrl:AlertController) {
-
     }
 
-    taxis = this.taxiProvider.getDrivers$();
+    ngOnInit(): void {
+        this.taxiProvider.getDrivers$().subscribe(
+            responseGet => this.taxis = responseGet,
+            error => console.error(error)
+        )
+    }
+
 
   streets =[
     "Kiryat Belz 18",
