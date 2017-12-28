@@ -14,5 +14,20 @@ export class TaxiRequest extends Model<TaxiRequest> {
     @Column
     phone: string;
 
+    @Column
+    street: string;
+
+    @Column
+    street_num: number;
+
+    @Column
+    city: string;
+
+    @Column
+    country : string;
+
+    @Column
+    zipcode : number;
+
 }
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
 import {TaxiProvider} from "../../providers/taxi";
+import {RequestProvider} from "../../providers/request";
 
 @Component({
   selector: 'page-home',
@@ -9,9 +10,14 @@ import {TaxiProvider} from "../../providers/taxi";
 export class HomePage {
 
     taxis = [];
+    requests = [];
+    confirmation:number = null;
+
+    Drive = {Taxi:null,Request:null};
 
     constructor(public navCtrl: NavController,
                 public taxiProvider: TaxiProvider,
+                public requestProvider: RequestProvider,
                 public alertCtrl:AlertController) {
     }
 
@@ -19,42 +25,40 @@ export class HomePage {
         this.taxiProvider.getDrivers$().subscribe(
             responseGet => this.taxis = responseGet,
             error => console.error(error)
+        );
+        this.requestProvider.getRequest$().subscribe(
+            responseGet => this.requests = responseGet,
+            error => console.error(error)
         )
     }
 
 
-  streets =[
-    "Kiryat Belz 18",
-    "Kiryat Hayovel 1",
-    "Kiryat Mattersdorf 15",
-    "Kiryat Menachem 52",
-    "Kiryat Moshe 8",
-    "Kiryat Sanz 1",
-    "Kiryat Shmuel 8",
-    "Kiryat Wolfson 18",
-    "Machane Yehuda 1",
-    "Machane Yisrael 8",
-    "Malha 68",
-    "Mamilla 88",
-    "Mazkeret Moshe 45",
-    "Meah Shearim 18",
-    "Mekor Baruch 74",
-  ];
+  selectThis(type,obj){
+
+        if(type==='taxi'){
+            this.Drive.Taxi = obj
+        }else{
+            this.Drive.Request = obj
+        }
+
+        console.log(type,obj);
+
+      if(this.Drive.Taxi && this.Drive.Request){
+          this.taxis.splice(this.taxis.indexOf(this.Drive.Taxi),1);
+          this.requests.splice(this.requests.indexOf(this.Drive.Request),1);
+
+          setTimeout(() => {
+              this.confirmation = 1;
+          }, 300);
 
 
-  selectThis(currentTaxi,currentStreet){
-
-    //this.taxis.splice(this.taxis.indexOf(currentTaxi),1);
-
-    this.streets.splice(this.streets.indexOf(currentStreet),1);
-
-    this.currentTaxi = null;
-    this.currentStreet = null;
-    //this.alertCtrl.create({'Confirmation','Taxi '+currentTaxi.name+' sent'}).present();
+          setTimeout(() => {
+              this.confirmation = null;
+              this.Drive.Taxi = null;
+              this.Drive.Request = null;
+          }, 3000);
+      }
   }
 
-
-  currentTaxi:any;
-  currentStreet:any;
 
 }

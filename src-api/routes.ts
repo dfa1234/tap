@@ -4,8 +4,9 @@ import {NextFunction,Response,Request} from "express";
 import {sequelize} from "./database";
 import {TaxiUser} from "./models/user";
 import {TaxiRequest} from "./models/request";
+import {TaxiHistory} from "./models/history";
 
-sequelize.addModels([TaxiRequest,TaxiUser]);
+sequelize.addModels([TaxiRequest,TaxiUser,TaxiHistory]);
 //GENERATE DB:
 //sequelize.sync({ force: true});
 sequelize.sync({alter:true});
@@ -24,6 +25,15 @@ export const routes = {
 
         TaxiRequest.findAll().then(
             (request:TaxiRequest[]) => res.json(request),
+            (error:any) => res.json(error)
+        )
+
+    },
+
+    getHistory :   (req:Request, res:Response, next:NextFunction) => {
+
+        TaxiHistory.findAll().then(
+            (request:TaxiHistory[]) => res.json(request),
             (error:any) => res.json(error)
         )
 

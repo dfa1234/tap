@@ -4,28 +4,32 @@
 
 
   <div class="header" col-12>
-    SELECTED: {{currentTaxi?.name}} <ion-icon name="arrow-dropright-circle" *ngIf="currentStreet"></ion-icon> {{currentStreet}}
-
-    <button ion-button (click)="selectThis(currentTaxi,currentStreet)" *ngIf="currentStreet && currentTaxi">
-      <ion-icon name="arrow-dropright-circle"></ion-icon>
-      &nbsp;Send</button>
-
+      SELECTED: {{Drive.Taxi?.firstName}} {{Drive.Taxi?.lastName}}
+      <span *ngIf="Drive.Request">
+          <ion-icon name="arrow-dropright-circle"></ion-icon>
+           {{Drive.Request?.firstName}} {{Drive.Request?.lastName}} -
+          {{Drive.Request?.street}} {{Drive.Request?.street_num}}, {{Drive.Request?.city}} {{Drive.Request?.country}}
+      </span>
+      <span [hidden]="!confirmation" style="float: right;">
+          <ion-icon name="share-alt"></ion-icon>
+          <ion-icon name="car"></ion-icon>
+      </span>
   </div>
 
   <ion-row>
 
     <div class="taxis" col-6>
-      <button *ngFor="let taxi of taxis" (click)="currentTaxi = taxi">
-        {{taxi.name}}
+      <button *ngFor="let taxi of taxis" (click)="selectThis('taxi',taxi)">
+        {{taxi.firstName}} {{taxi.lastName}}
         <br>
-        {{taxi.id}}
+        {{taxi.license}}
       </button>
     </div>
 
 
     <div class="streets" col-6>
-      <button *ngFor="let street of streets" (click)="currentStreet = street">
-        {{street}}
+      <button *ngFor="let request of requests" (click)="selectThis('request',request)">
+        {{request.firstName}} {{request.lastName}} - {{request.street}} {{request.street_num}}, {{request.city}} {{request.country}}
       </button>
     </div>
 

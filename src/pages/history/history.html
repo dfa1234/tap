@@ -2,5 +2,18 @@
 
   <h1>History</h1>
 
+  <div class="row">
+    <span> Name: </span>
+    <span> License:</span>
+    <span> Phone: </span>
+    <span> Date: </span>
+  </div>
+
+  <div *ngFor="let h of history" class="row">
+    <span>{{h.driver_name}}</span>
+    <span>{{h.license}}</span>
+    <span>{{h.phone1}}</span>
+    <span>{{h.date}}</span>
+  </div>
 
 </ion-content>

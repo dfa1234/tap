@@ -14,11 +14,17 @@ import {HomePage} from "../pages/home/home";
 import {HistoryPage} from "../pages/history/history";
 import {SettingsPage} from "../pages/settings/settings";
 import { TaxiProvider } from '../../../tap/src/providers/taxi';
+import { LoginProvider } from '../providers/login';
+import {LoginPage} from "../pages/login/login";
+import {BaseUrl} from "./app.url";
+import { RequestProvider } from '../providers/request';
+import { HistoryProvider } from '../providers/history';
 
 
 @NgModule({
     declarations: [
         MyApp,
+        LoginPage,
         TabsPage,
         AccountPage,
         CarPage,
@@ -35,6 +41,7 @@ import { TaxiProvider } from '../../../tap/src/providers/taxi';
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
+        LoginPage,
         TabsPage,
         AccountPage,
         CarPage,
@@ -47,7 +54,11 @@ import { TaxiProvider } from '../../../tap/src/providers/taxi';
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        TaxiProvider
+        TaxiProvider,
+        LoginProvider,
+        BaseUrl,
+        RequestProvider,
+        HistoryProvider
     ]
 })
 export class AppModule {}

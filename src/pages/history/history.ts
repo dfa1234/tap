@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {HistoryProvider} from "../../providers/history";
 
 @Component({
   selector: 'page-history',
@@ -7,8 +8,17 @@ import { NavController } from 'ionic-angular';
 })
 export class HistoryPage {
 
-  constructor(public navCtrl: NavController) {
+    history = [];
+
+  constructor(public navCtrl: NavController,
+              private historyProvider: HistoryProvider) {
 
   }
 
+    ngOnInit(): void {
+        this.historyProvider.getHistory$().subscribe(
+            responseGet => this.history = responseGet,
+            error => console.error(error)
+        );
+    }
 }
