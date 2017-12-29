@@ -132,6 +132,7 @@ var TabsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_taxi__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_request__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_history__ = __webpack_require__(208);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -145,10 +146,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, taxiProvider, requestProvider, alertCtrl) {
+    function HomePage(navCtrl, taxiProvider, historyProvider, requestProvider, alertCtrl) {
         this.navCtrl = navCtrl;
         this.taxiProvider = taxiProvider;
+        this.historyProvider = historyProvider;
         this.requestProvider = requestProvider;
         this.alertCtrl = alertCtrl;
         this.taxis = [];
@@ -173,26 +176,25 @@ var HomePage = /** @class */ (function () {
         if (this.Drive.Taxi && this.Drive.Request) {
             this.taxis.splice(this.taxis.indexOf(this.Drive.Taxi), 1);
             this.requests.splice(this.requests.indexOf(this.Drive.Request), 1);
+            this.historyProvider.setHistory$().subscribe(function (responseGet) { return _this.requests = responseGet; }, function (error) { return console.error(error); });
             setTimeout(function () {
+                _this.Drive.Taxi = null;
+                _this.Drive.Request = null;
                 _this.confirmation = 1;
             }, 300);
             setTimeout(function () {
                 _this.confirmation = null;
-                _this.Drive.Taxi = null;
-                _this.Drive.Request = null;
             }, 3000);
         }
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\home\home.html"*/'<ion-content padding class="mycontent">\n\n\n\n  <h1>Home</h1>\n\n\n\n\n\n  <div class="header" col-12>\n\n      SELECTED: {{Drive.Taxi?.firstName}} {{Drive.Taxi?.lastName}}\n\n      <span *ngIf="Drive.Request">\n\n          <ion-icon name="arrow-dropright-circle"></ion-icon>\n\n           {{Drive.Request?.firstName}} {{Drive.Request?.lastName}} -\n\n          {{Drive.Request?.street}} {{Drive.Request?.street_num}}, {{Drive.Request?.city}} {{Drive.Request?.country}}\n\n      </span>\n\n      <span [hidden]="!confirmation" style="float: right;">\n\n          <ion-icon name="share-alt"></ion-icon>\n\n          <ion-icon name="car"></ion-icon>\n\n      </span>\n\n  </div>\n\n\n\n  <ion-row>\n\n\n\n    <div class="taxis" col-6>\n\n      <button *ngFor="let taxi of taxis" (click)="selectThis(\'taxi\',taxi)">\n\n        {{taxi.firstName}} {{taxi.lastName}}\n\n        <br>\n\n        {{taxi.license}}\n\n      </button>\n\n    </div>\n\n\n\n\n\n    <div class="streets" col-6>\n\n      <button *ngFor="let request of requests" (click)="selectThis(\'request\',request)">\n\n        {{request.firstName}} {{request.lastName}} - {{request.street}} {{request.street_num}}, {{request.city}} {{request.country}}\n\n      </button>\n\n    </div>\n\n\n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\home\home.html"*/'<ion-content padding class="mycontent">\n\n\n\n  <h1>Home</h1>\n\n\n\n\n\n  <div class="header" col-12>\n\n      SELECTED: {{Drive.Taxi?.firstName}} {{Drive.Taxi?.lastName}}\n\n      <span *ngIf="Drive.Request">\n\n          <ion-icon name="arrow-dropright-circle"></ion-icon>\n\n           {{Drive.Request?.firstName}} {{Drive.Request?.lastName}} -\n\n          {{Drive.Request?.street}} {{Drive.Request?.street_num}}, {{Drive.Request?.city}} {{Drive.Request?.country}}\n\n      </span>\n\n      <span [hidden]="!confirmation">\n\n          <ion-icon name="share-alt"></ion-icon>\n\n          <ion-icon name="car"></ion-icon>\n\n      </span>\n\n  </div>\n\n\n\n  <ion-row>\n\n\n\n    <div class="taxis" col-6>\n\n      <button *ngFor="let taxi of taxis" (click)="selectThis(\'taxi\',taxi)">\n\n        {{taxi.firstName}} {{taxi.lastName}}\n\n        <br>\n\n        {{taxi.license}}\n\n      </button>\n\n    </div>\n\n\n\n\n\n    <div class="streets" col-6>\n\n      <button *ngFor="let request of requests" (click)="selectThis(\'request\',request)">\n\n        {{request.firstName}} {{request.lastName}} - {{request.street}} {{request.street_num}}, {{request.city}} {{request.country}}\n\n      </button>\n\n    </div>\n\n\n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_taxi__["a" /* TaxiProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_taxi__["a" /* TaxiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_taxi__["a" /* TaxiProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__providers_history__["a" /* HistoryProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_history__["a" /* HistoryProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=home.js.map

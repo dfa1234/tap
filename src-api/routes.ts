@@ -39,8 +39,15 @@ export const routes = {
 
     },
 
+    setHistory :   (req:Request, res:Response, next:NextFunction) => {
+
+        TaxiHistory.bulkCreate([req])
+
+    },
+
     populate : (req:Request, res:Response, next:NextFunction) =>{
-        TaxiUser.bulkCreate([{
+        TaxiUser.bulkCreate(
+            [{
                 firstName: "David",
                 lastName: "Cohen",
                 tz: 44566546,

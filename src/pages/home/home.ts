@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
 import {TaxiProvider} from "../../providers/taxi";
 import {RequestProvider} from "../../providers/request";
+import {HistoryProvider} from "../../providers/history";
 
 @Component({
   selector: 'page-home',
@@ -17,6 +18,7 @@ export class HomePage {
 
     constructor(public navCtrl: NavController,
                 public taxiProvider: TaxiProvider,
+                public historyProvider: HistoryProvider,
                 public requestProvider: RequestProvider,
                 public alertCtrl:AlertController) {
     }
@@ -47,15 +49,20 @@ export class HomePage {
           this.taxis.splice(this.taxis.indexOf(this.Drive.Taxi),1);
           this.requests.splice(this.requests.indexOf(this.Drive.Request),1);
 
+          this.historyProvider.setHistory$().subscribe(
+              responseGet => this.requests = responseGet,
+              error => console.error(error)
+          )
+
           setTimeout(() => {
+              this.Drive.Taxi = null;
+              this.Drive.Request = null;
               this.confirmation = 1;
           }, 300);
 
 
           setTimeout(() => {
               this.confirmation = null;
-              this.Drive.Taxi = null;
-              this.Drive.Request = null;
           }, 3000);
       }
   }
