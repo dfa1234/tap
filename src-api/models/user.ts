@@ -1,6 +1,6 @@
 
 import {
-    Table, Column, Model, Default, HasOne, ForeignKey
+    Table, Column, Model, Default, HasOne
 } from 'sequelize-typescript';
 import {Driver} from "./driver";
 

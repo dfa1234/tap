@@ -29,7 +29,8 @@ export class Driver extends Model<Driver> {
     type: string;
 
 
-    @BelongsTo(() => User,{foreignKey: 'idUser'})
+    @BelongsTo(() => User, { foreignKey: 'idUser', targetKey: 'id'} )
+
     user: User;
 
 }
