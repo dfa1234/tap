@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {TaxiProvider} from "../../providers/taxi";
+import {NavController, ModalController} from 'ionic-angular';
+import {NewDriverModal} from "../../components/newDriverModal/newDriverModal";
+import {DriverProvider} from "../../providers/driver";
 
 @Component({
   selector: 'page-drivers',
@@ -12,14 +13,21 @@ export class DriversPage {
   drivers = [];
 
   constructor(public navCtrl: NavController,
-              private taxiProvider: TaxiProvider) {
+              private driverProvider: DriverProvider,
+               public modalCtrl: ModalController,
+              ) {
 
   }
 
     ngOnInit(): void {
-        this.taxiProvider.getDrivers$().subscribe(
+        this.driverProvider.getDrivers$().subscribe(
             responseGet => this.drivers = responseGet,
             error => console.error(error)
         );
+    }
+
+    newUserModal(){
+        let myModal = this.modalCtrl.create(NewDriverModal);
+        myModal.present();
     }
 }

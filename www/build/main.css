@@ -25679,6 +25679,48 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+newDriverModal .row {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+newDriverModal .row span {
+  border: 1px solid lightgray;
+  padding: 5px;
+  -webkit-flex-basis: 180px;
+  -ms-flex-preferred-size: 180px;
+  flex-basis: 180px;
+  min-width: 180px;
+  max-width: 220px;
+}
+
+newDriverModal .select-md .select-icon {
+  display: none;
+}
+
+newRequestModal .row {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+newRequestModal .row span {
+  border: 1px solid lightgray;
+  padding: 5px;
+  -webkit-flex-basis: 180px;
+  -ms-flex-preferred-size: 180px;
+  flex-basis: 180px;
+  min-width: 180px;
+  max-width: 220px;
+}
+
+newRequestModal .select-md .select-icon {
+  display: none;
+}
+
 page-drivers .row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -25692,11 +25734,11 @@ page-drivers .row {
 page-drivers .row span {
   border: 1px solid lightgray;
   padding: 5px;
-  -webkit-flex-basis: 180px;
-  -ms-flex-preferred-size: 180px;
-  flex-basis: 180px;
-  min-width: 180px;
-  max-width: 220px;
+  -webkit-flex-basis: 150px;
+  -ms-flex-preferred-size: 150px;
+  flex-basis: 150px;
+  min-width: 150px;
+  max-width: 200px;
 }
 
 page-history .row {
@@ -25736,30 +25778,44 @@ page-home .header ion-icon {
   color: cornflowerblue;
 }
 
-page-home .header .ion-md-share-alt, page-home .header .ion-md-car {
+page-home .header .sent {
   color: #1ece00;
-  font-size: 40px;
-  vertical-align: sub;
+}
+
+page-home .header .canceled {
+  color: #ff0000;
 }
 
 page-home .header button {
   vertical-align: middle;
 }
 
-page-home .taxis {
+page-home .new_request {
+  float: right;
+}
+
+page-home .drivers {
   width: 49%;
 }
 
-page-home .taxis button {
-  width: 70px;
-  height: 70px;
+page-home .drivers button {
+  width: 85px;
+  height: 75px;
   padding: 5px;
   background: gray;
   color: white;
   margin: 10px;
 }
 
-page-home .taxis button:active {
+page-home .drivers button span {
+  max-width: 75px;
+  max-height: 20px;
+  line-height: 2;
+  display: inline-block;
+  overflow: hidden;
+}
+
+page-home .drivers button:active {
   background: cornflowerblue;
 }
 

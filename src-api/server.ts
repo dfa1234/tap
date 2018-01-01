@@ -47,11 +47,21 @@ app.get('/', (req:any, res:any, next:any) => {
 
 
 //API
-app.get('/api/drivers', routes.getDrivers);
-app.get('/api/requests', routes.getRequests);
-app.get('/api/history', routes.getHistory);
 
-app.get('/api/populate', routes.populate,routes.getDrivers);
+app.get('/api/login', routes.getLogin);
+
+app.get('/api/user', routes.getUsers);
+app.post('/api/user', routes.setUsers, routes.getUsers);
+
+app.get('/api/drivers', routes.getDrivers);
+app.post('/api/drivers', routes.setDrivers, routes.getDrivers);
+
+app.get('/api/requests', routes.getRequests);
+app.post('/api/requests', routes.setRequests, routes.getRequests);
+
+app.get('/api/history', routes.getHistory);
+app.post('/api/history', routes.setHistory,routes.getHistory);
+
 //socket:
 // io.on('connection', socket => {
 //     console.log('a user connected to socket');

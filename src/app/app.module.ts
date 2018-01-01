@@ -13,12 +13,15 @@ import {CarPage} from "../pages/car/car";
 import {HomePage} from "../pages/home/home";
 import {HistoryPage} from "../pages/history/history";
 import {SettingsPage} from "../pages/settings/settings";
-import { TaxiProvider } from '../../../tap/src/providers/taxi';
+import {DriverProvider} from '../providers/driver';
 import { LoginProvider } from '../providers/login';
 import {LoginPage} from "../pages/login/login";
 import {BaseUrl} from "./app.url";
 import { RequestProvider } from '../providers/request';
 import { HistoryProvider } from '../providers/history';
+import {NewDriverModal} from "../components/newDriverModal/newDriverModal";
+import {NewRequestModal} from "../components/newRequestModal/newRequestModal";
+import {AppApi} from "./app.api";
 
 
 @NgModule({
@@ -31,7 +34,9 @@ import { HistoryProvider } from '../providers/history';
         DriversPage,
         HistoryPage,
         HomePage,
-        SettingsPage
+        SettingsPage,
+        NewDriverModal,
+        NewRequestModal
     ],
     imports: [
         BrowserModule,
@@ -48,15 +53,18 @@ import { HistoryProvider } from '../providers/history';
         DriversPage,
         HistoryPage,
         HomePage,
-        SettingsPage
+        SettingsPage,
+        NewDriverModal,
+        NewRequestModal
     ],
     providers: [
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        TaxiProvider,
+        DriverProvider,
         LoginProvider,
         BaseUrl,
+        AppApi,
         RequestProvider,
         HistoryProvider
     ]

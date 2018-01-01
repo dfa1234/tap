@@ -3,17 +3,21 @@
   <h1>History</h1>
 
   <div class="row">
-    <span> Name: </span>
-    <span> License:</span>
-    <span> Phone: </span>
+    <span> Driver Name: </span>
+    <span> Client name:</span>
+    <span> Address:</span>
+    <span> Driver Phone: </span>
+    <span> Client Phone: </span>
     <span> Date: </span>
   </div>
 
   <div *ngFor="let h of history" class="row">
     <span>{{h.driver_name}}</span>
-    <span>{{h.license}}</span>
-    <span>{{h.phone1}}</span>
-    <span>{{h.date}}</span>
+    <span>{{h.client_name}}</span>
+    <span>{{h.address}}</span>
+    <span>{{h.driver_phone}}</span>
+    <span>{{h.client_phone}}</span>
+    <span>{{h.date | date:"MM/dd/yyyy 'at' h:mma"}}</span>
   </div>
 
 </ion-content>

@@ -12,6 +12,10 @@ export class RequestProvider {
     getRequest$() {
         return this.http.get<any[]>(this.baseUrl.baseUrl+'/api/requests');
     }
+
+    setRequest$(obj) {
+        return this.http.post<any[]>(this.baseUrl.baseUrl+'/api/requests',obj);
+    }
 }
 
 

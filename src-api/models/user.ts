@@ -1,12 +1,13 @@
 
 import {
-    Table, Column, Model, Default
+    Table, Column, Model, Default, HasOne, ForeignKey
 } from 'sequelize-typescript';
+import {Driver} from "./driver";
 
 @Table({
     timestamps: true
 })
-export class TaxiUser extends Model<TaxiUser> {
+export class User extends Model<User> {
 
     @Column
     firstName: string;
@@ -16,12 +17,6 @@ export class TaxiUser extends Model<TaxiUser> {
 
     @Column
     birthday: string;
-
-    @Column
-    tz:number;
-
-    @Column
-    license:number;
 
     @Column
     phone1: string;
@@ -43,19 +38,11 @@ export class TaxiUser extends Model<TaxiUser> {
     @Column
     password: string;
 
-    @Column
-    shomerShabat: boolean;
-
-
     @Default('DRIVER')
     @Column
     category: string;
 
-    @Default('')
-    @Column
-    type: string;
-
-    //@HasMany(() => Hobby)
-    //hobbies: Hobby[];
+    @HasOne(() => Driver, {foreignKey: 'idUser'})
+    driver: Driver;
 
 }

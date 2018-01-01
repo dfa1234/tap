@@ -1,0 +1,23 @@
+<ion-content padding>
+
+  <div class="row">
+    <div> First Name:</div>
+    <input type="text" [(ngModel)]="request.firstName">
+    <div> Last Name: </div>
+      <input type="text" [(ngModel)]="request.lastName">
+    <div> Phone: </div>
+      <input type="text" [(ngModel)]="request.phone">
+      <div> Street: </div>
+      <input type="text" [(ngModel)]="request.street">
+      <div> Street Number: </div>
+      <input type="text" [(ngModel)]="request.street_num">
+      <div> City: </div>
+      <input type="text" [(ngModel)]="request.city">
+      <div> Country: </div>
+      <input type="text" [(ngModel)]="request.country">
+      <div> Zipcode: </div>
+      <input type="text" [(ngModel)]="request.zipcode">
+      <div><button ion-button (click)="newRequest()">ADD</button> </div>
+  </div>
+
+</ion-content>

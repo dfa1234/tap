@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController} from 'ionic-angular';
-import {TaxiProvider} from "../../providers/taxi";
+import {ModalController} from 'ionic-angular';
+import {DriverProvider} from "../../providers/driver";
 import {RequestProvider} from "../../providers/request";
 import {HistoryProvider} from "../../providers/history";
+import {NewRequestModal} from "../../components/newRequestModal/newRequestModal";
+import {NewDriverModal} from "../../components/newDriverModal/newDriverModal";
 
 @Component({
   selector: 'page-home',
@@ -10,24 +12,40 @@ import {HistoryProvider} from "../../providers/history";
 })
 export class HomePage {
 
-    taxis = [];
+    drivers = [];
     requests = [];
     confirmation:number = null;
+    cancel:number = null;
+    canceled:number = null;
 
-    Drive = {Taxi:null,Request:null};
+    Drive = {Driver:null,Request:null};
 
-    constructor(public navCtrl: NavController,
-                public taxiProvider: TaxiProvider,
+    constructor(public driverProvider: DriverProvider,
                 public historyProvider: HistoryProvider,
                 public requestProvider: RequestProvider,
-                public alertCtrl:AlertController) {
+                public modalCtrl: ModalController) {
     }
 
     ngOnInit(): void {
-        this.taxiProvider.getDrivers$().subscribe(
-            responseGet => this.taxis = responseGet,
+        this.driverProvider.getDrivers$().subscribe(
+            responseGet => {
+                if(responseGet.constructor === Array && responseGet.length >= 1){
+                    console.log(responseGet);
+                    responseGet.forEach( (i) => {
+                        if (i.user){
+                            if (i.license && i.user.category!=='SADRAN'){
+                                this.drivers.push(i)
+                            }
+                        }
+                    })
+                }else{
+                    console.log(responseGet);
+                }
+            },
             error => console.error(error)
         );
+
+
         this.requestProvider.getRequest$().subscribe(
             responseGet => this.requests = responseGet,
             error => console.error(error)
@@ -35,37 +53,106 @@ export class HomePage {
     }
 
 
-  selectThis(type,obj){
+    sendToDriver(){
 
-        if(type==='taxi'){
-            this.Drive.Taxi = obj
+        setTimeout(() => {
+            if(this.Drive.Driver && this.Drive.Request){
+                this.drivers.splice(this.drivers.indexOf(this.Drive.Driver),1);
+                this.requests.splice(this.requests.indexOf(this.Drive.Request),1);
+
+                let address =
+                    this.Drive.Request.street+" "+
+                    this.Drive.Request.street_num+", "+
+                    this.Drive.Request.city+", "+
+                    this.Drive.Request.country+" ("+this.Drive.Request.zipcode+")"
+                ;
+                let historyObj = {
+                    driver_name:this.Drive.Driver.user.firstName+' '+this.Drive.Driver.user.lastName,
+                    client_name:this.Drive.Request.firstName+' '+this.Drive.Request.lastName,
+                    address:address,
+                    driver_phone:this.Drive.Driver.user.phone1,
+                    client_phone:this.Drive.Request.phone,
+                    date:new Date()
+                };
+
+                this.historyProvider.setHistory$(historyObj).subscribe(
+                    responseGet => console.log(responseGet),
+                    error => console.error(error)
+                );
+
+                this.Drive.Driver = null;
+                this.Drive.Request = null;
+                this.confirmation = null;
+                this.cancel = null;
+            }
+        }, 3000);
+
+    }
+
+
+    selectThis(type,obj){
+        if(type==='driver'){
+            this.Drive.Driver = obj
         }else{
             this.Drive.Request = obj
         }
-
         console.log(type,obj);
 
-      if(this.Drive.Taxi && this.Drive.Request){
-          this.taxis.splice(this.taxis.indexOf(this.Drive.Taxi),1);
-          this.requests.splice(this.requests.indexOf(this.Drive.Request),1);
+        if(this.Drive.Driver && this.Drive.Request){
+            this.confirmation = 1;
+            this.cancel = 1;
+            this.sendToDriver();
+        }
+    }
 
-          this.historyProvider.setHistory$().subscribe(
-              responseGet => this.requests = responseGet,
-              error => console.error(error)
-          )
+    cancelThis(){
+        this.Drive.Driver = null;
+        this.Drive.Request = null;
+        this.confirmation = null;
+        this.cancel = null;
+        this.canceled = 1;
 
-          setTimeout(() => {
-              this.Drive.Taxi = null;
-              this.Drive.Request = null;
-              this.confirmation = 1;
-          }, 300);
+        setTimeout(() => {
+            this.canceled = null;
+        }, 3000);
+    }
 
+    requestModal(){
+        let reqModal = this.modalCtrl.create(NewRequestModal);
+        reqModal.onDidDismiss(data => {
+            console.log(data);
+            if(data === null){
 
-          setTimeout(() => {
-              this.confirmation = null;
-          }, 3000);
-      }
-  }
+            }else{
+                this.requests = data;
+            }
+        });
+        reqModal.present();
+    }
+
+    userModal(){
+        let uModal = this.modalCtrl.create(NewDriverModal);
+        uModal.onDidDismiss(data => {
+            if(data === null){
+
+            }else{
+                if(data.constructor === Array && data.length >= 1){
+                    console.log(data);
+                    this.drivers = [];
+                    data.forEach( (u) => {
+                        if (u.user){
+                            if (u.license && u.user.category!=='SADRAN'){
+                                this.drivers.push(u)
+                            }
+                        }
+                    })
+                }else{
+                    console.log(data);
+                }
+            }
+        });
+        uModal.present();
+    }
 
 
 }

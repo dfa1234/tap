@@ -1,6 +1,7 @@
 <ion-content padding>
 
   <h1>Drivers</h1>
+  <button ion-button (click)="newUserModal()">new</button>
 
   <div class="row">
     <span> license:</span>
@@ -9,15 +10,17 @@
     <span> phone2: </span>
     <span> email: </span>
     <span> category: </span>
+    <span> type: </span>
   </div>
 
   <div *ngFor="let driver of drivers" class="row">
     <span>{{driver.license}}</span>
-    <span>{{driver.firstName}} {{driver.lastName}}</span>
-    <span>{{driver.phone1}}</span>
-    <span>{{driver.phone2}}</span>
-    <span>{{driver.email}}</span>
-    <span>{{driver.category}}</span>
+    <span>{{driver.user.firstName}} {{driver.user.lastName}}</span>
+    <span>{{driver.user.phone1}}</span>
+    <span>{{driver.user.phone2}}</span>
+    <span>{{driver.user.email}}</span>
+    <span>{{driver.user.category}}</span>
+    <span>{{driver.type}}</span>
   </div>
 
 </ion-content>

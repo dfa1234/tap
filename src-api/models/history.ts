@@ -9,10 +9,16 @@ export class TaxiHistory extends Model<TaxiHistory> {
     driver_name: string;
 
     @Column
-    license: string;
+    client_name: string;
 
     @Column
-    phone1: number;
+    driver_phone: number;
+
+    @Column
+    client_phone: number;
+
+    @Column
+    address: string;
 
     @Column
     date: string;

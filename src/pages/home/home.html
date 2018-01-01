@@ -4,35 +4,45 @@
 
 
   <div class="header" col-12>
-      SELECTED: {{Drive.Taxi?.firstName}} {{Drive.Taxi?.lastName}}
+      SELECTED: {{Drive.Driver?.user.firstName}} {{Drive.Driver?.user.lastName}}
       <span *ngIf="Drive.Request">
           <ion-icon name="arrow-dropright-circle"></ion-icon>
            {{Drive.Request?.firstName}} {{Drive.Request?.lastName}} -
           {{Drive.Request?.street}} {{Drive.Request?.street_num}}, {{Drive.Request?.city}} {{Drive.Request?.country}}
+          <span class="sent" [hidden]="!confirmation"> sent </span>
       </span>
-      <span [hidden]="!confirmation">
-          <ion-icon name="share-alt"></ion-icon>
-          <ion-icon name="car"></ion-icon>
-      </span>
+      <button (click)="cancelThis()" *ngIf="cancel">
+          Cancel
+      </button>
+      <span class="canceled" [hidden]="!canceled">Canceled </span>
+
   </div>
 
-  <ion-row>
+    <button ion-button (click)="userModal()" class="new_driver">new Driver</button>
+    <button ion-button (click)="requestModal()" class="new_request">new Request</button>
 
-    <div class="taxis" col-6>
-      <button *ngFor="let taxi of taxis" (click)="selectThis('taxi',taxi)">
-        {{taxi.firstName}} {{taxi.lastName}}
-        <br>
-        {{taxi.license}}
+  <ion-row>
+    <div class="drivers" col-6>
+        <button *ngFor="let driver of drivers" (click)="selectThis('driver',driver)">
+            <span>{{driver.user.firstName}} {{driver.user.lastName}}</span>
+            <br>
+            <br>
+        {{driver.license}}
       </button>
     </div>
 
 
     <div class="streets" col-6>
       <button *ngFor="let request of requests" (click)="selectThis('request',request)">
-        {{request.firstName}} {{request.lastName}} - {{request.street}} {{request.street_num}}, {{request.city}} {{request.country}}
+          {{request.firstName}}
+          {{request.lastName}} -
+          {{request.street}}
+          {{request.street_num}},
+          {{request.city}},
+          {{request.country}}
+          ({{request.zipcode}})
       </button>
     </div>
-
   </ion-row>
 
 </ion-content>

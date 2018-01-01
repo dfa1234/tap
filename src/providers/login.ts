@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {BaseUrl} from "../app/app.url";
 
@@ -10,7 +10,7 @@ export class LoginProvider {
 
   }
 
-    login$(u,p) {
-        return this.http.get<any[]>(this.baseUrl.baseUrl+'/api/login/username='+u+'&pass='+p)
+    login$(obj) {
+        return this.http.get<any[]>(this.baseUrl.baseUrl+'/api/login', { params:obj })
     }
 }

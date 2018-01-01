@@ -1,0 +1,33 @@
+<ion-content padding>
+
+  <div class="row">
+    <div> First Name:</div>
+    <input type="text" [(ngModel)]="driver.user.firstName">
+    <div> Last Name: </div>
+      <input type="text" [(ngModel)]="driver.user.lastName">
+    <div> Email: </div>
+      <input type="text" [(ngModel)]="driver.user.email">
+      <div> Password: </div>
+      <input type="text" [(ngModel)]="driver.user.password">
+      <div> License: </div>
+      <input type="text" [(ngModel)]="driver.license">
+
+      <div>Category</div>
+      <ion-item>
+          <ion-select [(ngModel)]="driver.user.category" interface="popover">
+              <ion-option value="SADRAN">Sadran</ion-option>
+              <ion-option value="DRIVER">Driver</ion-option>
+          </ion-select>
+      </ion-item>
+
+      <div>Type</div>
+      <ion-item>
+          <ion-select [(ngModel)]="driver.type" interface="popover">
+              <ion-option value="TAXI">Taxi</ion-option>
+              <ion-option value="DRIVER">Driver</ion-option>
+          </ion-select>
+      </ion-item>
+      <div><button ion-button (click)="newDriver()">ADD</button> </div>
+  </div>
+
+</ion-content>

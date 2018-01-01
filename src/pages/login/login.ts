@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
 import {LoginProvider} from "../../providers/login";
+import {HomePage} from "../home/home";
 
 @Component({
   selector: 'page-login',
@@ -8,18 +9,32 @@ import {LoginProvider} from "../../providers/login";
 })
 export class LoginPage {
 
-    constructor(public navCtrl: NavController,
-                public loginProvider: LoginProvider,
+    constructor(public loginProvider: LoginProvider,
+                public navController: NavController,
                 public alertCtrl:AlertController) {
     }
 
-    username:string;
-    password:string;
-    res;
+    user = {
+        username:null,
+        password:null
+    };
+
 
     login(){
-        this.loginProvider.login$(this.username,this.password).subscribe(
-            responseGet => this.res = responseGet,
+        this.loginProvider.login$(this.user).subscribe(
+            responseGet => {
+                console.log(responseGet)
+                if(responseGet){
+                    this.navController.setRoot(HomePage);
+                }else {
+                    let alert = this.alertCtrl.create({
+                        title: 'Error',
+                        subTitle: 'username or password is incorrect',
+                        buttons: ['OK']
+                    });
+                    alert.present();
+                }
+            },
             error => console.error(error)
         )
     }
