@@ -394,7 +394,7 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_login__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_tabs__ = __webpack_require__(290);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -413,6 +413,7 @@ var LoginPage = /** @class */ (function () {
         this.loginProvider = loginProvider;
         this.navController = navController;
         this.alertCtrl = alertCtrl;
+        this.errorLogin = false;
         this.user = {
             username: null,
             password: null
@@ -423,21 +424,19 @@ var LoginPage = /** @class */ (function () {
         this.loginProvider.login$(this.user).subscribe(function (responseGet) {
             console.log(responseGet);
             if (responseGet) {
-                _this.navController.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+                _this.navController.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_tabs__["a" /* TabsPage */]);
             }
             else {
-                var alert = _this.alertCtrl.create({
-                    title: 'Error',
-                    subTitle: 'username or password is incorrect',
-                    buttons: ['OK']
-                });
-                alert.present();
+                _this.errorLogin = true;
+                setTimeout(function () {
+                    _this.errorLogin = false;
+                }, 3000);
             }
         }, function (error) { return console.error(error); });
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\login\login.html"*/'<ion-content padding class="mycontent">\n\n\n\n  <div class="container">\n\n    <div class="row">\n\n      <div class="col-md-6 col-md-offset-3" style="max-width: 500px">\n\n        <div class="panel panel-login">\n\n          <div class="panel-heading">\n\n            <div class="row">\n\n              <div class="col-xs-6">\n\n                <a href="#" class="active" id="login-form-link">Tap Tel</a>\n\n              </div>\n\n            </div>\n\n            <hr>\n\n          </div>\n\n          <div class="panel-body">\n\n            <div class="row">\n\n              <div class="col-lg-12">\n\n                <form id="login-form" action="#/tabs" method="post" role="form" style="display: block;">\n\n                  <div class="form-group">\n\n                    <input type="text" name="username" [(ngModel)]="user.username" tabindex="1" class="form-control" placeholder="Username" value="">\n\n                  </div>\n\n                  <div class="form-group">\n\n                    <input type="password" name="password" [(ngModel)]="user.password" tabindex="2" class="form-control" placeholder="Password">\n\n                  </div>\n\n                  <div class="form-group">\n\n                    <div class="row">\n\n                      <div class="col-sm-6 col-sm-offset-3">\n\n                        <input type="submit" (click)= "login()" name="login-submit" id="login-submit" tabindex="4" class="btn btn-login" value="Log In">\n\n                      </div>\n\n                    </div>\n\n                  </div>\n\n                  <div class="form-group">\n\n                    <div class="row">\n\n                      <div class="col-lg-12">\n\n                        <div class="text-center">\n\n                          <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>\n\n                        </div>\n\n                      </div>\n\n                    </div>\n\n                  </div>\n\n                </form>\n\n              </div>\n\n            </div>\n\n          </div>\n\n        </div>\n\n      </div>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\login\login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\login\login.html"*/'<ion-content padding class="mycontent">\n\n\n\n  <div class="container">\n\n    <div class="row">\n\n      <div class="col-md-6 col-md-offset-3" style="max-width: 500px">\n\n        <div class="panel panel-login">\n\n          <div class="panel-heading">\n\n            <div class="row">\n\n              <div class="col-xs-6">\n\n                <a href="#" class="active" id="login-form-link">Tap Tel</a>\n\n              </div>\n\n            </div>\n\n            <hr>\n\n          </div>\n\n          <div class="panel-body">\n\n            <div class="row">\n\n              <div class="col-lg-12">\n\n                <form id="login-form" action="#/tabs" method="post" role="form" style="display: block;">\n\n                  <div class="form-group">\n\n                    <input type="text" name="username" [(ngModel)]="user.username" tabindex="1" class="form-control" placeholder="Username" value="">\n\n                  </div>\n\n                  <div class="form-group">\n\n                    <input type="password" name="password" [(ngModel)]="user.password" tabindex="2" class="form-control" placeholder="Password">\n\n                  </div>\n\n                  <div class="form-group">\n\n                    <div class="row">\n\n                      <div class="col-sm-6 col-sm-offset-3">\n\n                        <input type="submit" (click)= "login()" name="login-submit" id="login-submit" tabindex="4" class="btn btn-login" value="Log In">\n\n                      </div>\n\n                    </div>\n\n                  </div>\n\n                  <div class="form-group">\n\n                    <div class="row">\n\n                      <div class="col-lg-12">\n\n                        <div class="text-center">\n\n                          <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>\n\n                        </div>\n\n                      </div>\n\n                    </div>\n\n                  </div>\n\n                    <div class="form-group" *ngIf="errorLogin">\n\n                        <div class="row">\n\n                            <div class="col-lg-12">\n\n                                <div class="text-center">\n\n                                    <span style="color: #ff0000;" tabindex="5" >username or password is incorrect</span>\n\n                                </div>\n\n                            </div>\n\n                        </div>\n\n                    </div>\n\n                </form>\n\n              </div>\n\n            </div>\n\n          </div>\n\n        </div>\n\n      </div>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\login\login.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_login__["a" /* LoginProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_login__["a" /* LoginProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
     ], LoginPage);

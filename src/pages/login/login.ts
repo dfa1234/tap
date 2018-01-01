@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
 import {LoginProvider} from "../../providers/login";
-import {HomePage} from "../home/home";
+import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-login',
@@ -14,6 +14,8 @@ export class LoginPage {
                 public alertCtrl:AlertController) {
     }
 
+    errorLogin = false;
+
     user = {
         username:null,
         password:null
@@ -25,14 +27,12 @@ export class LoginPage {
             responseGet => {
                 console.log(responseGet)
                 if(responseGet){
-                    this.navController.setRoot(HomePage);
+                    this.navController.setRoot(TabsPage);
                 }else {
-                    let alert = this.alertCtrl.create({
-                        title: 'Error',
-                        subTitle: 'username or password is incorrect',
-                        buttons: ['OK']
-                    });
-                    alert.present();
+                    this.errorLogin = true
+                    setTimeout(() => {
+                        this.errorLogin = false;
+                    },3000)
                 }
             },
             error => console.error(error)
