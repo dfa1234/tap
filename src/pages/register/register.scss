@@ -17,10 +17,16 @@ register {
       .form-group {
         margin-bottom: 15px;
 
+        ion-label{
+          width: 100%;
+          max-width: 85px;
+        }
+
         input {
           display: block;
           float: right;
-          width: 340px !important;
+          width: 100%!important;
+          max-width: 340px;
           height: 34px!important;
           padding: 6px 12px;
           font-size: 14px!important;
