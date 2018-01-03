@@ -50,17 +50,21 @@ app.get('/', (req:any, res:any, next:any) => {
 
 app.get('/api/login', routes.getLogin);
 
-app.get('/api/user', routes.getUsers);
-app.post('/api/user', routes.setUsers, routes.getUsers);
+app.get('/api/user', routes.getUser);
+app.get('/api/users', routes.getUsers);
+app.post('/api/user', routes.setUser, routes.getUser);
 
+app.get('/api/driver', routes.getDriver);
 app.get('/api/drivers', routes.getDrivers);
-app.post('/api/drivers', routes.setDrivers, routes.getDrivers);
+app.post('/api/driver', routes.setDriver, routes.getDriver);
 
+app.get('/api/request', routes.getRequest);
 app.get('/api/requests', routes.getRequests);
-app.post('/api/requests', routes.setRequests, routes.getRequests);
+app.post('/api/request', routes.setRequest, routes.getRequest);
 
-app.get('/api/history', routes.getHistory);
-app.post('/api/history', routes.setHistory,routes.getHistory);
+app.get('/api/ride', routes.getRide);
+app.get('/api/rides', routes.getRides);
+app.post('/api/ride', routes.setRide,routes.getRide);
 
 //socket:
 // io.on('connection', socket => {

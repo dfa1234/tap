@@ -1,0 +1,40 @@
+page-ride {
+
+
+  .rides-content{
+    width: 100%;
+    min-width: 768px;
+
+    .row:first-child{
+
+      span{
+        border-bottom:2px solid lightgray;
+        font-size: 16.5px;
+        text-transform: uppercase;
+      }
+    }
+
+    .row{
+      display: flex;
+      width: 100%;
+
+      span{
+        border-bottom:1px solid lightgray;
+        padding: 8px 5px;
+        width: 12.5%;
+        font-size: 15px;
+        color: #696969;
+        font-family: "Roboto", "Helvetica Neue", sans-serif;
+        white-space: nowrap;
+        overflow: auto;
+        text-overflow: ellipsis;
+      }
+
+      span:last-child {
+        width: 7%;
+      }
+    }
+  }
+
+
+}

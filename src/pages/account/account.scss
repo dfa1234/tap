@@ -1,5 +1,72 @@
 page-account {
 
+  .container {
+    max-width: 1170px;
+
+    .well-sm {
+      padding: 9px;
+      border-radius: 3px;
+
+      .col-md-4 {
+        width: 33.33333333333333%;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+
+        .img-rounded {
+          border-radius: 6px;
+          display: block;
+          height: auto;
+          max-width: 100%;
+        }
+      }
+
+      .col-md-8 {
+        width: 66.66666666666666%;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+
+        h4 {
+          margin-top: 10px;
+          margin-bottom: 0;
+          font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+        small {
+          display: block;
+          margin-top: 3px;
+          margin-bottom: 10px;
+          line-height: 1.428571429;
+          color: #999;
+          font-size: 85%;
+        }
+
+        p {
+          margin: 0 0 10px;
+
+          ion-icon {
+            margin-bottom: 10px;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+            display: inline-block;
+            -webkit-font-smoothing: antialiased;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .container:before, .container:after {
+    display: table;
+    content: " ";
+  }
 
 
 }

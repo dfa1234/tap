@@ -4,10 +4,10 @@ import {NextFunction,Response,Request} from "express";
 import {sequelize} from "./database";
 import {Driver} from "./models/driver";
 import {TaxiRequest} from "./models/request";
-import {TaxiHistory} from "./models/history";
+import {Ride} from "./models/ride";
 import {User} from "./models/user";
 
-sequelize.addModels([TaxiRequest,Driver,TaxiHistory,User]);
+sequelize.addModels([TaxiRequest,Driver,Ride,User]);
 //GENERATE DB:
 //sequelize.sync({ force: true});
 sequelize.sync({alter:true});
@@ -27,6 +27,17 @@ export const routes = {
 
     },
 
+    getUser  :  (req:Request, res:Response, next:NextFunction) => {
+
+        User.findOne({
+            where: {id: req.query.id}
+        })
+            .then(
+                user => res.json(user),
+                (error:any) => res.json(error)
+            )
+
+    },
 
     getUsers  :  (req:Request, res:Response, next:NextFunction) => {
 
@@ -37,15 +48,28 @@ export const routes = {
 
     },
 
-    setUsers  :   (req:Request, res:Response, next:NextFunction) => {
+    setUser  :   (req:Request, res:Response, next:NextFunction) => {
 
-        User.bulkCreate([req.body], { individualHooks: true }).then(() => {
-            return User.findAll();
+        User.create( req.body ).then((user) => {
+            return  User.findOne({
+                where: {id: user.id}
+            })
         }).then(
-            (users:User[]) => res.json(users),
+            (user) => res.json(user),
             (error:any) => res.json(error)
         )
+    },
 
+    getDriver  :  (req:Request, res:Response, next:NextFunction) => {
+
+        Driver.findOne({
+            include: [User],
+            where: {idUser: req.query.idUser}
+        })
+            .then(
+                driver => res.json(driver),
+                (error:any) => res.json(error)
+            )
     },
 
     getDrivers  :  (req:Request, res:Response, next:NextFunction) => {
@@ -58,16 +82,30 @@ export const routes = {
 
     },
 
-    setDrivers :   (req:Request, res:Response, next:NextFunction) => {
+    setDriver :   (req:Request, res:Response, next:NextFunction) => {
 
-        Driver.create(req.body, {
+
+        Driver.create( req.body, {
             include: [ User ]
-        }).then(() => {
-            return Driver.findAll({include: [User]});
+        }).then((driver) => {
+            return  Driver.findOne({
+                include: [User],
+                where: {idUser: driver.idUser}
+            })
         }).then(
-            (drivers:Driver[]) => res.json(drivers),
+            (driver) => res.json(driver),
             (error:any) => res.json(error)
         )
+    },
+
+    getRequest :   (req:Request, res:Response, next:NextFunction) => {
+
+        TaxiRequest.findOne({
+            where: {id: req.query.id}
+        }).then(
+                request => res.json(request),
+                (error:any) => res.json(error)
+            )
     },
 
     getRequests :   (req:Request, res:Response, next:NextFunction) => {
@@ -79,32 +117,46 @@ export const routes = {
 
     },
 
-    setRequests :   (req:Request, res:Response, next:NextFunction) => {
+    setRequest :   (req:Request, res:Response, next:NextFunction) => {
 
-        TaxiRequest.bulkCreate([req.body], { individualHooks: true }).then(() => {
-            return TaxiRequest.findAll();
+
+        TaxiRequest.create( req.body ).then((request) => {
+            return  TaxiRequest.findOne({
+                where: {id: request.id}
+            })
         }).then(
-            (request:TaxiRequest[]) => res.json(request),
+            (request) => res.json(request),
+            (error:any) => res.json(error)
+        )
+    },
+
+    getRide :   (req:Request, res:Response, next:NextFunction) => {
+
+        Ride.findOne({
+            where: {id: req.query.id}
+        }).then(
+            ride => res.json(ride),
+            (error:any) => res.json(error)
+        )
+    },
+
+    getRides :   (req:Request, res:Response, next:NextFunction) => {
+
+        Ride.findAll().then(
+            (rides:Ride[]) => res.json(rides),
             (error:any) => res.json(error)
         )
 
     },
 
-    getHistory :   (req:Request, res:Response, next:NextFunction) => {
+    setRide :   (req:Request, res:Response, next:NextFunction) => {
 
-        TaxiHistory.findAll().then(
-            (history:TaxiHistory[]) => res.json(history),
-            (error:any) => res.json(error)
-        )
-
-    },
-
-    setHistory :   (req:Request, res:Response, next:NextFunction) => {
-
-        TaxiHistory.bulkCreate([req.body], { individualHooks: true }).then(() => {
-            return TaxiHistory.findAll();
+        Ride.create( req.body ).then((ride) => {
+            return  Ride.findOne({
+                where: {id: ride.id}
+            })
         }).then(
-            (history:TaxiHistory[]) => res.json(history),
+            (ride) => res.json(ride),
             (error:any) => res.json(error)
         )
     }

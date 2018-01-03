@@ -1,18 +1,33 @@
 page-drivers {
 
-  .row{
-    display: flex;
+  .drivers-content{
     width: 100%;
-   // background: #f8f8f8;
-    font-size: 1em;
-    font-family: "Roboto", "Helvetica Neue", sans-serif;
+    min-width: 768px;
 
-    span{
-      border:1px solid lightgray;
-      padding: 5px;
-      flex-basis: 150px;
-      min-width: 150px;
-      max-width: 200px;
+    .row:first-child{
+
+      span{
+        border-bottom:2px solid lightgray;
+        font-size: 16.5px;
+        text-transform: uppercase;
+      }
+    }
+
+    .row{
+      display: flex;
+      width: 100%;
+
+      span{
+        border-bottom:1px solid lightgray;
+        padding: 8px 5px;
+        width: 12.5%;
+        font-size: 15px;
+        color: #696969;
+        font-family: "Roboto", "Helvetica Neue", sans-serif;
+        white-space: nowrap;
+        overflow: auto;
+        text-overflow: ellipsis;
+      }
     }
   }
 

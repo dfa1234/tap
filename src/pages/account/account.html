@@ -1,6 +1,30 @@
 <ion-content padding>
 
-  <h1>Account</h1>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <img src="http://placehold.it/380x500" class="img-rounded"/>
+                        </div>
+                        <div class="col-sm-6 col-md-8">
+                            <h4>
+                                {{myProfile.user.firstName}} {{myProfile.user.lastName}}</h4>
+                            <small>{{myProfile.user.username}}</small>
+                            <p>
+                                <ion-icon name="mail"></ion-icon>{{myProfile.user.email}} <br />
+                                <ion-icon name="phone-portrait"></ion-icon>{{myProfile.user.phone1}} <br />
+                                <ion-icon name="phone-portrait"></ion-icon>{{myProfile.user.phone2}} <br />
+                                <ion-icon name="calendar"></ion-icon>{{myProfile.user.birthday | date:"dd/MM/yyyy"}} <br />
+                                <ion-icon name="people"></ion-icon>{{myProfile.user.category}} <br />
+                                <ion-icon name="ionitron"></ion-icon>Since {{myProfile.user.createdAt | date:"dd/MM/yyyy"}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </ion-content>

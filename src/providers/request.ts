@@ -9,12 +9,12 @@ export class RequestProvider {
                 private baseUrl: BaseUrl) {
     }
 
-    getRequest$() {
+    getRequests$() {
         return this.http.get<any[]>(this.baseUrl.baseUrl+'/api/requests');
     }
 
     setRequest$(obj) {
-        return this.http.post<any[]>(this.baseUrl.baseUrl+'/api/requests',obj);
+        return this.http.post<any[]>(this.baseUrl.baseUrl+'/api/request',obj);
     }
 }
 

@@ -1,0 +1,27 @@
+<ion-content padding>
+
+  <div class="rides-content">
+    <div class="row">
+      <span> Driver Name: </span>
+      <span> Driver Phone: </span>
+      <span> Client name:</span>
+      <span> Client Phone: </span>
+      <span style="width: 18%"> Address From:</span>
+      <span> Address To:</span>
+      <span> Date: </span>
+      <span style="width: 7%"> Status: </span>
+    </div>
+
+    <div *ngFor="let ride of rides" class="row">
+      <span>{{ride.driver_name}}</span>
+      <span>{{ride.driver_phone}}</span>
+      <span>{{ride.client_name}}</span>
+      <span>{{ride.client_phone}}</span>
+      <span style="width: 18%">{{ride.address_from}}</span>
+      <span>{{ride.address_to}}</span>
+      <span>{{ride.date | date:"MM/dd/yyyy '-' H:mm"}}</span>
+      <span style="width: 7%">{{ride.status}}</span>
+    </div>
+  </div>
+
+</ion-content>

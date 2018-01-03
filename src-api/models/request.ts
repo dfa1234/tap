@@ -29,5 +29,8 @@ export class TaxiRequest extends Model<TaxiRequest> {
     @Column
     zipcode : number;
 
+    @Column
+    status: string;
+
 }
 

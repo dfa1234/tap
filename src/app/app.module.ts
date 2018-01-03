@@ -11,28 +11,30 @@ import {AccountPage} from "../pages/account/account";
 import {DriversPage} from "../pages/drivers/drivers";
 import {CarPage} from "../pages/car/car";
 import {HomePage} from "../pages/home/home";
-import {HistoryPage} from "../pages/history/history";
+import {RidePage} from "../pages/ride/ride";
 import {SettingsPage} from "../pages/settings/settings";
 import {DriverProvider} from '../providers/driver';
-import { LoginProvider } from '../providers/login';
+import {AuthenticationProvider} from '../providers/Authentication';
 import {LoginPage} from "../pages/login/login";
 import {BaseUrl} from "./app.url";
 import { RequestProvider } from '../providers/request';
-import { HistoryProvider } from '../providers/history';
+import { RideProvider } from '../providers/ride';
 import {NewDriverModal} from "../components/newDriverModal/newDriverModal";
 import {NewRequestModal} from "../components/newRequestModal/newRequestModal";
 import {AppApi} from "./app.api";
+import {RegisterPage} from "../pages/register/register";
 
 
 @NgModule({
     declarations: [
         MyApp,
         LoginPage,
+        RegisterPage,
         TabsPage,
         AccountPage,
         CarPage,
         DriversPage,
-        HistoryPage,
+        RidePage,
         HomePage,
         SettingsPage,
         NewDriverModal,
@@ -47,11 +49,12 @@ import {AppApi} from "./app.api";
     entryComponents: [
         MyApp,
         LoginPage,
+        RegisterPage,
         TabsPage,
         AccountPage,
         CarPage,
         DriversPage,
-        HistoryPage,
+        RidePage,
         HomePage,
         SettingsPage,
         NewDriverModal,
@@ -62,11 +65,11 @@ import {AppApi} from "./app.api";
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         DriverProvider,
-        LoginProvider,
+        AuthenticationProvider,
         BaseUrl,
         AppApi,
         RequestProvider,
-        HistoryProvider
+        RideProvider
     ]
 })
 export class AppModule {}

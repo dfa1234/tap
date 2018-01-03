@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import {ModalController} from 'ionic-angular';
 import {DriverProvider} from "../../providers/driver";
 import {RequestProvider} from "../../providers/request";
-import {HistoryProvider} from "../../providers/history";
+import {RideProvider} from "../../providers/ride";
 import {NewRequestModal} from "../../components/newRequestModal/newRequestModal";
 import {NewDriverModal} from "../../components/newDriverModal/newDriverModal";
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
@@ -21,7 +21,7 @@ export class HomePage {
     Drive = {Driver:null,Request:null};
 
     constructor(public driverProvider: DriverProvider,
-                public historyProvider: HistoryProvider,
+                public rideProvider: RideProvider,
                 public requestProvider: RequestProvider,
                 public modalCtrl: ModalController) {
     }
@@ -33,7 +33,7 @@ export class HomePage {
                     console.log(responseGet);
                     responseGet.forEach( (i) => {
                         if (i.user){
-                            if (i.license && i.user.category!=='SADRAN'){
+                            if (i.user.category!=='SADRAN'){
                                 this.drivers.push(i)
                             }
                         }
@@ -46,7 +46,7 @@ export class HomePage {
         );
 
 
-        this.requestProvider.getRequest$().subscribe(
+        this.requestProvider.getRequests$().subscribe(
             responseGet => this.requests = responseGet,
             error => console.error(error)
         )
@@ -64,18 +64,19 @@ export class HomePage {
                     this.Drive.Request.street+" "+
                     this.Drive.Request.street_num+", "+
                     this.Drive.Request.city+", "+
-                    this.Drive.Request.country+" ("+this.Drive.Request.zipcode+")"
+                    //this.Drive.Request.country+
+                    " ("+this.Drive.Request.zipcode+")"
                 ;
-                let historyObj = {
+                let rideObj = {
                     driver_name:this.Drive.Driver.user.firstName+' '+this.Drive.Driver.user.lastName,
                     client_name:this.Drive.Request.firstName+' '+this.Drive.Request.lastName,
-                    address:address,
+                    address_from:address,
                     driver_phone:this.Drive.Driver.user.phone1,
                     client_phone:this.Drive.Request.phone,
                     date:new Date()
                 };
 
-                this.historyProvider.setHistory$(historyObj).subscribe(
+                this.rideProvider.setRide$(rideObj).subscribe(
                     responseGet => console.log(responseGet),
                     error => console.error(error)
                 );
@@ -85,7 +86,7 @@ export class HomePage {
                 this.confirmation = null;
                 this.cancel = null;
             }
-        }, 3000);
+        }, 2000);
 
     }
 
@@ -114,38 +115,29 @@ export class HomePage {
 
         setTimeout(() => {
             this.canceled = null;
-        }, 3000);
+        }, 700);
     }
 
     requestModal(){
         let reqModal = this.modalCtrl.create(NewRequestModal);
-        reqModal.onDidDismiss(data => {
-            console.log(data);
-            if(data === null){
-
-            }else{
-                this.requests = data;
+        reqModal.onDidDismiss(responseGet => {
+            console.log(responseGet);
+            if(responseGet && (Object.keys(responseGet).length !== 0) && responseGet.name !== 'SequelizeDatabaseError'){
+                this.requests.push(responseGet);
             }
         });
         reqModal.present();
     }
 
-    userModal(){
+    driverModal(){
         let uModal = this.modalCtrl.create(NewDriverModal);
         uModal.onDidDismiss(data => {
             if(data === null){
 
             }else{
-                if(data.constructor === Array && data.length >= 1){
+                if(data && (Object.keys(data).length !== 0) && data.name !== 'SequelizeDatabaseError'){
                     console.log(data);
-                    this.drivers = [];
-                    data.forEach( (u) => {
-                        if (u.user){
-                            if (u.license && u.user.category!=='SADRAN'){
-                                this.drivers.push(u)
-                            }
-                        }
-                    })
+                    this.drivers.push(data);
                 }else{
                     console.log(data);
                 }

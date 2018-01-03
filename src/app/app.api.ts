@@ -6,5 +6,8 @@ export class AppApi {
 
    drivers = [];
    requests = [];
+   myProfile ={
+       user:{}
+   };
 
 }

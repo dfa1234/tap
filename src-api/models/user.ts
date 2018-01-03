@@ -1,6 +1,6 @@
 
 import {
-    Table, Column, Model, Default, HasOne
+    Table, Column, Model, Default, HasOne, Unique
 } from 'sequelize-typescript';
 import {Driver} from "./driver";
 
@@ -27,9 +27,11 @@ export class User extends Model<User> {
     @Column
     address: string;
 
+    @Unique
     @Column
     email: string;
 
+    @Unique
     @Column
     username: string;
 
@@ -38,7 +40,7 @@ export class User extends Model<User> {
     @Column
     password: string;
 
-    @Default('DRIVER')
+    @Default('CLIENT')
     @Column
     category: string;
 

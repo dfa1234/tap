@@ -4,7 +4,9 @@ import {CarPage} from "../car/car";
 import {DriversPage} from "../drivers/drivers";
 import {SettingsPage} from "../settings/settings";
 import {AccountPage} from "../account/account";
-import {HistoryPage} from "../history/history";
+import {RidePage} from "../ride/ride";
+import {NavParams} from "ionic-angular";
+import {AppApi} from "../../app/app.api";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -16,9 +18,15 @@ export class TabsPage {
   driversPage = DriversPage;
   settingsPage = SettingsPage;
   accountPage = AccountPage;
-  historyPage = HistoryPage;
+  ridePage = RidePage;
 
-  constructor() {
+    seltabix: number;
 
-  }
+    constructor(np: NavParams,
+                public api: AppApi) {
+        this.seltabix = np.get('opentab');
+    }
+
+    myProfile = this.api.myProfile;
+
 }

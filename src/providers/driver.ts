@@ -10,12 +10,12 @@ export class DriverProvider {
               private baseUrl: BaseUrl) {
   }
 
-  getDrivers$() {
+    getDrivers$() {
       return this.http.get<any[]>(this.baseUrl.baseUrl+'/api/drivers');
-  }
+    }
 
-    setDrivers$(obj) {
-        return this.http.post<any[]>(this.baseUrl.baseUrl+'/api/drivers',obj);
+    setDriver$(obj) {
+        return this.http.post<any[]>(this.baseUrl.baseUrl+'/api/driver',obj);
     }
 
 }

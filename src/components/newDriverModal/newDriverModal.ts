@@ -15,19 +15,18 @@ export class NewDriverModal {
 
     driver = {
         license:null,
-        type:null,
+        type:'TAXI',
         user:{
-            category:null,
+            category:'DRIVER',
             firstName:null,
             lastName:null,
             email:null,
-            password:null,
         }
     };
 
     newDriver(){
         console.log(this.driver);
-        this.driverProvider.setDrivers$(this.driver).subscribe(
+        this.driverProvider.setDriver$(this.driver).subscribe(
             responseGet => this.viewCtrl.dismiss(responseGet),
             error => console.error(error)
         );
