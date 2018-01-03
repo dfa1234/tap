@@ -36,8 +36,7 @@ var LoginPage = /** @class */ (function () {
         this.errorLogin = false;
         this.user = {
             username: null,
-            password: null,
-            category: null
+            password: null
         };
     }
     LoginPage.prototype.login = function () {
@@ -63,12 +62,10 @@ var LoginPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'login',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\login\login.html"*/'<ion-content padding class="mycontent">\n\n\n\n<div class="col-md-6 col-md-offset-3" style="max-width: 500px">\n\n  <div class="panel-login">\n\n    <div class="col-xs-6 logo">\n\n      <a href="#">Tap Tel</a>\n\n    </div>\n\n    <hr>\n\n    <div class="panel-body">\n\n        <div class="col-lg-12">\n\n            <div class="form-group">\n\n              <input type="text" name="username" [(ngModel)]="user.username" placeholder="Username">\n\n            </div>\n\n            <div class="form-group">\n\n              <input type="password" name="password" [(ngModel)]="user.password" placeholder="Password">\n\n            </div>\n\n            <div class="form-group">\n\n              <div class="col-sm-6 col-sm-offset-3">\n\n                  <button ion-button (click)="login()" class="btn-login">Log In</button>\n\n              </div>\n\n            </div>\n\n            <div class="form-group">\n\n              <div class="col-lg-12">\n\n                <a href="#" class="forgot-password">Forgot Password?</a>\n\n              </div>\n\n            </div>\n\n            <div class="form-group">\n\n              <div class="col-lg-12 register">\n\n                  <span>Not registered?</span>\n\n                  <a href="#" (click)= "register()">Create an account</a>\n\n              </div>\n\n            </div>\n\n            <div class="form-group" *ngIf="errorLogin">\n\n              <div class="col-lg-12">\n\n                <span class="error">username or password is incorrect</span>\n\n              </div>\n\n            </div>\n\n        </div>\n\n    </div>\n\n  </div>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\login\login.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_Authentication__["a" /* AuthenticationProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_5__app_app_api__["a" /* AppApi */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_Authentication__["a" /* AuthenticationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_Authentication__["a" /* AuthenticationProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__app_app_api__["a" /* AppApi */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_app_api__["a" /* AppApi */]) === "function" && _d || Object])
     ], LoginPage);
     return LoginPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=login.js.map

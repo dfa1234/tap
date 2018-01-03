@@ -23,8 +23,7 @@ export class LoginPage {
 
     user = {
         username:null,
-        password:null,
-        category:null
+        password:null
     };
 
 
