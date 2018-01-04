@@ -1,8 +1,9 @@
 
 import {
-    Table, Column, Model, Default, BelongsTo, ForeignKey, PrimaryKey
+    Table, Column, Model, Default, BelongsTo, ForeignKey, PrimaryKey, HasMany
 } from 'sequelize-typescript';
 import {User} from "./user";
+import {Car} from "./car";
 
 @Table({
     timestamps: true
@@ -33,7 +34,9 @@ export class Driver extends Model<Driver> {
 
 
     @BelongsTo(() => User, { foreignKey: 'idUser'} )
-
     user: User;
+
+    @HasMany(() => Car, { foreignKey: 'idDriver' })
+    driver: Driver;
 
 }

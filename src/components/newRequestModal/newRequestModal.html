@@ -1,23 +1,25 @@
 <ion-content padding>
-
-  <div class="row">
-    <div> First Name:</div>
-    <input type="text" [(ngModel)]="request.firstName">
-    <div> Last Name: </div>
-      <input type="text" [(ngModel)]="request.lastName">
-    <div> Phone: </div>
-      <input type="text" [(ngModel)]="request.phone">
-      <div> Street: </div>
-      <input type="text" [(ngModel)]="request.street">
-      <div> Street Number: </div>
-      <input type="text" [(ngModel)]="request.street_num">
-      <div> City: </div>
-      <input type="text" [(ngModel)]="request.city">
-      <div> Country: </div>
-      <input type="text" [(ngModel)]="request.country">
-      <div> Zipcode: </div>
-      <input type="text" [(ngModel)]="request.zipcode">
-      <div><button ion-button (click)="newRequest()">ADD</button> </div>
-  </div>
+  <form #f="ngForm" (ngSubmit)="newRequest(f)" #form="ngForm">
+      <div class="row">
+        <div> First Name *</div>
+        <input type="text" name="firstName" [(ngModel)]="request.firstName" required>
+        <div> Last Name *</div>
+          <input type="text" name="lastName" [(ngModel)]="request.lastName" required>
+        <div> Phone *</div>
+          <input type="text" name="phone" [(ngModel)]="request.phone" required>
+          <div> Street *</div>
+          <input type="text" name="street" [(ngModel)]="request.street" required>
+          <div> Street Number *</div>
+          <input type="text" name="street_num" [(ngModel)]="request.street_num" required>
+          <div> City *</div>
+          <input type="text" name="city" [(ngModel)]="request.city" required>
+          <!--div> Country </div>
+          <input type="text" name="country" [(ngModel)]="request.country"-->
+          <div> Zipcode</div>
+          <input type="text" name="zipcode" [(ngModel)]="request.zipcode">
+          <div><button ion-button>ADD</button> </div>
+          <div class="error" [hidden]="!errorRequest">Please fill all the (*) requires fields</div>
+      </div>
+  </form>
 
 </ion-content>

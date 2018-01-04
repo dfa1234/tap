@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {DriverProvider} from "../../providers/driver";
 import { ViewController } from 'ionic-angular';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'newDriverModal',
@@ -13,6 +14,8 @@ export class NewDriverModal {
               private viewCtrl: ViewController) {
   }
 
+    errorAddDriver =false;
+
     driver = {
         license:null,
         type:'TAXI',
@@ -24,12 +27,16 @@ export class NewDriverModal {
         }
     };
 
-    newDriver(){
-        console.log(this.driver);
-        this.driverProvider.setDriver$(this.driver).subscribe(
-            responseGet => this.viewCtrl.dismiss(responseGet),
-            error => console.error(error)
-        );
+    newDriver(f: NgForm){
+        if(f.valid){
+            this.driverProvider.setDriver$(this.driver).subscribe(
+                responseGet => this.viewCtrl.dismiss(responseGet),
+                error => console.error(error)
+            );
+        }else{
+            this.errorAddDriver = true;
+            setTimeout(() => { this.errorAddDriver = false; },3000)
+        }
     }
 
 }

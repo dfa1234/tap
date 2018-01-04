@@ -8,28 +8,28 @@
             <hr>
             <div class="panel-body">
                 <div class="col-lg-12">
-                    <form #form="ngForm" (ngSubmit)="register(form)" novalidate>
+                    <form #f="ngForm" (ngSubmit)="register(f)" #form="ngForm">
                         <div class="form-group">
                             <ion-item>
-                                <ion-label>First Name</ion-label>
+                                <ion-label>First Name *</ion-label>
                                 <ion-input type="text" name="firstName" required [(ngModel)]="user.firstName"></ion-input>
                             </ion-item>
                         </div>
                         <div class="form-group">
                             <ion-item>
-                                <ion-label>Last Name</ion-label>
+                                <ion-label>Last Name *</ion-label>
                                 <ion-input type="text" name="lastName" required [(ngModel)]="user.lastName"></ion-input>
                             </ion-item>
                         </div>
                         <div class="form-group">
                             <ion-item>
-                                <ion-label>Phone</ion-label>
+                                <ion-label>Phone *</ion-label>
                                 <ion-input type="tel" name="phone1" required [(ngModel)]="user.phone1"></ion-input>
                             </ion-item>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-6 col-sm-offset-3">
-                                <button ion-button type="submit" block class="btn-register">Create an account</button>
+                                <button ion-button class="btn-register">Create an account</button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <span class="error">{{errorRegister}}</span>
+                                <span class="error" [hidden]="!errorRegister">Please fill all the (*) requires fields</span>
                             </div>
                         </div>
                     </form>

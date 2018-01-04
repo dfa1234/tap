@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {NgForm} from '@angular/forms';
 import { ViewController } from 'ionic-angular';
 import {RequestProvider} from "../../providers/request";
 
@@ -14,6 +15,8 @@ export class NewRequestModal {
   }
 
 
+    errorRequest = false;
+
     request = {
         firstName:null,
         lastName:null,
@@ -25,12 +28,17 @@ export class NewRequestModal {
         zipcode:null
     };
 
-    newRequest(){
-        console.log(this.request);
-        this.requestProvider.setRequest$(this.request).subscribe(
-            responseGet => this.viewCtrl.dismiss(responseGet),
-            error => console.error(error)
-        );
+    newRequest(form: NgForm){
+
+        if(form.valid){
+            this.requestProvider.setRequest$(this.request).subscribe(
+                responseGet => this.viewCtrl.dismiss(responseGet),
+                error => console.error(error)
+            )
+        }else {
+            this.errorRequest = true;
+            setTimeout(() => { this.errorRequest = false; },3000)
+        }
     }
 
 }

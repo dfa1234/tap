@@ -26,8 +26,20 @@ export class DriversPage {
         );
     }
 
-    newUserModal(){
-        let myModal = this.modalCtrl.create(NewDriverModal);
-        myModal.present();
+    newDriverModal(){
+        let driverModal = this.modalCtrl.create(NewDriverModal);
+        driverModal.onDidDismiss(data => {
+            if(data === null){
+
+            }else{
+                if(data && (Object.keys(data).length !== 0) && data.name !== 'SequelizeDatabaseError'){
+                    console.log(data);
+                    this.drivers.push(data);
+                }else{
+                    console.error(data);
+                }
+            }
+        });
+        driverModal.present();
     }
 }

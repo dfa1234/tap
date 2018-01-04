@@ -124,6 +124,8 @@ export class HomePage {
             console.log(responseGet);
             if(responseGet && (Object.keys(responseGet).length !== 0) && responseGet.name !== 'SequelizeDatabaseError'){
                 this.requests.push(responseGet);
+            }else{
+                console.error(responseGet);
             }
         });
         reqModal.present();
@@ -139,7 +141,7 @@ export class HomePage {
                     console.log(data);
                     this.drivers.push(data);
                 }else{
-                    console.log(data);
+                    console.error(data);
                 }
             }
         });

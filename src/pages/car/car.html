@@ -1,6 +1,26 @@
 <ion-content padding>
 
-  <h1>Cars</h1>
+  <button ion-button (click)="newCarModal()">new</button>
+
+  <div class="cars-content">
+    <div class="row">
+      <span> license plate:</span>
+      <span> brand: </span>
+      <span> place number: </span>
+      <span style="width: 25%"> equipment: </span>
+      <span> hardware_version: </span>
+      <span class="edit"> </span>
+    </div>
+
+    <div *ngFor="let car of cars" class="row">
+      <span>{{car.license_plate}}</span>
+      <span>{{car.brand}}</span>
+      <span>{{car.place_number}}</span>
+      <span style="width: 25%">{{car.equipment}}</span>
+      <span>{{car.hardware_version}}</span>
+      <span class="edit"><button ion-button>Edit</button></span>
+    </div>
+  </div>
 
 
 </ion-content>

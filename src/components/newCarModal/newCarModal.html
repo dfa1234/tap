@@ -1,0 +1,26 @@
+<ion-content padding>
+    <form #f="ngForm" (ngSubmit)="newCar(f)" #form="ngForm">
+      <div class="row">
+        <div> License Plate *</div>
+          <input name="license_plate" type="text" [(ngModel)]="car.license_plate" required>
+        <div>Car Brand</div>
+          <ion-item>
+              <ion-select name="brand" [(ngModel)]="car.brand" interface="popover">
+                  <ion-option value="hyundai">Hyundai</ion-option>
+                  <ion-option value="mercedes">Mercedes</ion-option>
+                  <ion-option value="subaru">Subaru</ion-option>
+              </ion-select>
+          </ion-item>
+        <div> Number of Places *</div>
+          <input name="place_number" type="number" [(ngModel)]="car.place_number" required>
+        <div> Equipment </div>
+          <input name="equipment" type="text" [(ngModel)]="car.equipment">
+
+        <div> Hardware Version </div>
+          <input name="hardware_version" type="text" [(ngModel)]="car.hardware_version">
+          <div><button ion-button>ADD</button> </div>
+          <div class="error" [hidden]="!errorCar">Please fill all the (*) requires fields</div>
+      </div>
+    </form>
+
+</ion-content>

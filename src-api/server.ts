@@ -66,6 +66,11 @@ app.get('/api/ride', routes.getRide);
 app.get('/api/rides', routes.getRides);
 app.post('/api/ride', routes.setRide,routes.getRide);
 
+app.get('/api/car', routes.getCar);
+app.get('/api/cars', routes.getCars);
+app.post('/api/car', routes.setCar,routes.getCar);
+app.post('/api/car_driver', routes.setCarDriver,routes.getCar);
+
 //socket:
 // io.on('connection', socket => {
 //     console.log('a user connected to socket');

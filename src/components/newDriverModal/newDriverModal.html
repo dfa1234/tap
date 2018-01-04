@@ -1,31 +1,35 @@
 <ion-content padding>
 
-  <div class="row">
-    <div> First Name:</div>
-    <input type="text" [(ngModel)]="driver.user.firstName">
-    <div> Last Name: </div>
-      <input type="text" [(ngModel)]="driver.user.lastName">
-    <div> Email: </div>
-      <input type="text" [(ngModel)]="driver.user.email">
-    <div> License: </div>
-      <input type="text" [(ngModel)]="driver.license">
+    <form #f="ngForm" (ngSubmit)="newDriver(f)">
+        <div class="row">
+            <div>First Name *</div>
+            <input name="firstName" [(ngModel)]="driver.user.firstName" required #firstName="ngModel">
+            <div>Last Name *</div>
+            <input name="lastName" [(ngModel)]="driver.user.lastName" required>
+            <div>Email</div>
+            <input type="email" name="email" [(ngModel)]="driver.user.email">
+            <div>License *</div>
+            <input name="license" [(ngModel)]="driver.license" required>
 
-      <div>Category</div>
-      <ion-item>
-          <ion-select [(ngModel)]="driver.user.category" interface="popover">
-              <ion-option value="SADRAN">Sadran</ion-option>
-              <ion-option value="DRIVER">Driver</ion-option>
-          </ion-select>
-      </ion-item>
+            <div>Category *</div>
+            <ion-item>
+                <ion-select name="category" [(ngModel)]="driver.user.category" required interface="popover">
+                    <ion-option value="SADRAN">Sadran</ion-option>
+                    <ion-option value="DRIVER">Driver</ion-option>
+                </ion-select>
+            </ion-item>
 
-      <div>Type</div>
-      <ion-item>
-          <ion-select [(ngModel)]="driver.type" interface="popover">
-              <ion-option value="TAXI">Taxi</ion-option>
-              <ion-option value="DRIVER">Driver</ion-option>
-          </ion-select>
-      </ion-item>
-      <div><button ion-button (click)="newDriver()">ADD</button> </div>
-  </div>
+            <div>Type *</div>
+            <ion-item>
+                <ion-select name="type" [(ngModel)]="driver.type" required interface="popover">
+                    <ion-option value="TAXI">Taxi</ion-option>
+                    <ion-option value="DRIVER">Driver</ion-option>
+                </ion-select>
+            </ion-item>
+            <div><button ion-button>ADD</button> </div>
+            <div class="error_add_driver" [hidden]="!errorAddDriver">Please fill all the (*) requires fields</div>
+        </div>
+    </form>
+
 
 </ion-content>

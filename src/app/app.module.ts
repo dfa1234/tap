@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule} from "@angular/forms";
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -23,6 +24,8 @@ import {NewDriverModal} from "../components/newDriverModal/newDriverModal";
 import {NewRequestModal} from "../components/newRequestModal/newRequestModal";
 import {AppApi} from "./app.api";
 import {RegisterPage} from "../pages/register/register";
+import {CarProvider} from "../providers/car";
+import {NewCarModal} from "../components/newCarModal/newCarModal";
 
 
 @NgModule({
@@ -38,10 +41,12 @@ import {RegisterPage} from "../pages/register/register";
         HomePage,
         SettingsPage,
         NewDriverModal,
-        NewRequestModal
+        NewRequestModal,
+        NewCarModal
     ],
     imports: [
         BrowserModule,
+        FormsModule,
         IonicModule.forRoot(MyApp),
         HttpClientModule
     ],
@@ -58,7 +63,8 @@ import {RegisterPage} from "../pages/register/register";
         HomePage,
         SettingsPage,
         NewDriverModal,
-        NewRequestModal
+        NewRequestModal,
+        NewCarModal
     ],
     providers: [
         StatusBar,
@@ -69,7 +75,8 @@ import {RegisterPage} from "../pages/register/register";
         BaseUrl,
         AppApi,
         RequestProvider,
-        RideProvider
+        RideProvider,
+        CarProvider
     ]
 })
 export class AppModule {}

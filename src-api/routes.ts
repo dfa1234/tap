@@ -6,8 +6,9 @@ import {Driver} from "./models/driver";
 import {TaxiRequest} from "./models/request";
 import {Ride} from "./models/ride";
 import {User} from "./models/user";
+import {Car} from "./models/car";
 
-sequelize.addModels([TaxiRequest,Driver,Ride,User]);
+sequelize.addModels([TaxiRequest,Driver,Ride,User,Car]);
 //GENERATE DB:
 //sequelize.sync({ force: true});
 sequelize.sync({alter:true});
@@ -157,6 +158,62 @@ export const routes = {
             })
         }).then(
             (ride) => res.json(ride),
+            (error:any) => res.json(error)
+        )
+    },
+
+    getCar :   (req:Request, res:Response, next:NextFunction) => {
+
+        Car.findOne({
+            include: [Driver],
+            where: {idDriver: req.query.idDriver}
+        }).then(
+            car => res.json(car),
+            (error:any) => res.json(error)
+        )
+    },
+
+    getCars :   (req:Request, res:Response, next:NextFunction) => {
+
+        Car.findAll({
+            include: [
+                {model: Driver, include: [
+                    {model: User}
+                ]}
+            ]
+         }).then(
+            (cars:Car[]) => res.json(cars),
+            (error:any) => res.json(error)
+        )
+
+    },
+
+    setCar :   (req:Request, res:Response, next:NextFunction) => {
+
+        Car.create( req.body ).then((car) => {
+            return  Car.findOne({
+                //include: [Driver],
+                where: {license_plate: car.license_plate}
+            })
+        }).then(
+            (car) => res.json(car),
+            (error:any) => res.json(error)
+        )
+    },
+
+    setCarDriver :   (req:Request, res:Response, next:NextFunction) => {
+
+        Car.update({
+            idDriver: req.query.driver.idUser,
+        }, {
+            where: {id: req.query.id}
+        }).then(() => {
+            return Car.findOne({
+                include: [Driver],
+                where: {id: req.query.id}
+            })
+        }).then(
+            (car) => res.json(car),
             (error:any) => res.json(error)
         )
     }

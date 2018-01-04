@@ -25687,6 +25687,31 @@ ion-navbar.toolbar {
   display: none;
 }
 
+newCarModal .row {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+newCarModal .row span {
+  border: 1px solid lightgray;
+  padding: 5px;
+  -webkit-flex-basis: 180px;
+  -ms-flex-preferred-size: 180px;
+  flex-basis: 180px;
+  min-width: 180px;
+  max-width: 220px;
+}
+
+newCarModal .row .error {
+  color: #ff0000;
+}
+
+newCarModal .select-md .select-icon {
+  display: none;
+}
+
 newDriverModal .row {
   display: block;
   width: 100%;
@@ -25702,6 +25727,11 @@ newDriverModal .row span {
   flex-basis: 180px;
   min-width: 180px;
   max-width: 220px;
+}
+
+newDriverModal .row .error_add_driver {
+  margin-top: 15px;
+  color: #ff0000;
 }
 
 newDriverModal .select-md .select-icon {
@@ -25723,6 +25753,10 @@ newRequestModal .row span {
   flex-basis: 180px;
   min-width: 180px;
   max-width: 220px;
+}
+
+newRequestModal .row .error {
+  color: #ff0000;
 }
 
 newRequestModal .select-md .select-icon {
@@ -25797,6 +25831,58 @@ page-account .container:before, page-account .container:after {
   content: " ";
 }
 
+page-car .cars-content {
+  width: 100%;
+  min-width: 768px;
+}
+
+page-car .cars-content .row:first-child span {
+  border-bottom: 2px solid lightgray;
+  font-size: 16.5px;
+  text-transform: uppercase;
+}
+
+page-car .cars-content .row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+page-car .cars-content .row span {
+  border-bottom: 1px solid lightgray;
+  padding: 8px 5px;
+  width: 16%;
+  font-size: 15px;
+  color: #696969;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
+
+page-car .cars-content .row .edit {
+  text-align: center;
+  width: 7.5%;
+  padding: 0;
+}
+
+page-car .cars-content .row .edit button {
+  width: 65px;
+  padding: 0;
+  height: 21px;
+  margin-top: 7px;
+}
+
+page-car .cars-content .row .edit button span {
+  width: 100%;
+  border: 0;
+  color: #ffffff;
+  font-size: 13px;
+  height: 10px;
+}
+
 page-drivers .drivers-content {
   width: 100%;
   min-width: 768px;
@@ -25840,16 +25926,22 @@ page-drivers .drivers-content .row .status img {
 page-drivers .drivers-content .row .edit {
   text-align: center;
   width: 7.5%;
+  padding: 0;
 }
 
 page-drivers .drivers-content .row .edit button {
   width: 65px;
+  padding: 0;
+  height: 21px;
+  margin-top: 7px;
 }
 
 page-drivers .drivers-content .row .edit button span {
   width: 100%;
   border: 0;
   color: #ffffff;
+  font-size: 13px;
+  height: 10px;
 }
 
 page-home .mycontent {
@@ -25923,12 +26015,24 @@ page-home .streets {
   flex-direction: column;
 }
 
+@media (max-width: 768px) {
+  page-home .streets {
+    overflow: auto;
+  }
+}
+
 page-home .streets .row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  page-home .streets .row {
+    width: 750px;
+  }
 }
 
 page-home .streets .row span {
@@ -26078,7 +26182,9 @@ register .panel-register .panel-body .form-group {
 
 register .panel-register .panel-body .form-group ion-label {
   width: 100%;
-  max-width: 85px;
+  max-width: 90px;
+  color: #666;
+  font-size: 15px;
 }
 
 register .panel-register .panel-body .form-group input {
