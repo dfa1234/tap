@@ -10,15 +10,6 @@
             <input type="email" name="email" [(ngModel)]="driver.user.email">
             <div>License *</div>
             <input name="license" [(ngModel)]="driver.license" required>
-
-            <div>Category *</div>
-            <ion-item>
-                <ion-select name="category" [(ngModel)]="driver.user.category" required interface="popover">
-                    <ion-option value="SADRAN">Sadran</ion-option>
-                    <ion-option value="DRIVER">Driver</ion-option>
-                </ion-select>
-            </ion-item>
-
             <div>Type *</div>
             <ion-item>
                 <ion-select name="type" [(ngModel)]="driver.type" required interface="popover">

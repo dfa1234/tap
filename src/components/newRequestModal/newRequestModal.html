@@ -1,12 +1,12 @@
 <ion-content padding>
   <form #f="ngForm" (ngSubmit)="newRequest(f)" #form="ngForm">
       <div class="row">
-        <div> First Name *</div>
-        <input type="text" name="firstName" [(ngModel)]="request.firstName" required>
-        <div> Last Name *</div>
-          <input type="text" name="lastName" [(ngModel)]="request.lastName" required>
-        <div> Phone *</div>
-          <input type="text" name="phone" [(ngModel)]="request.phone" required>
+        <div> First Name</div>
+        <input type="text" name="firstName" [(ngModel)]="request.firstName">
+        <div> Last Name</div>
+          <input type="text" name="lastName" [(ngModel)]="request.lastName">
+        <div> Phone </div>
+          <input type="text" name="phone" [(ngModel)]="request.phone">
           <div> Street *</div>
           <input type="text" name="street" [(ngModel)]="request.street" required>
           <div> Street Number *</div>

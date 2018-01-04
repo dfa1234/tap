@@ -22,10 +22,10 @@
       <span>{{driver.user.email}}</span>
       <span>{{driver.user.category}}</span>
       <span>{{driver.type}}</span>
-      <span *ngIf="driver.status" class="status">
+      <span *ngIf="driver.status === '1'" class="status">
         <img src="../../assets/imgs/online_status.png">
       </span>
-      <span *ngIf="!driver.status" class="status">
+      <span *ngIf="!driver.status || driver.status === '0'" class="status">
         <img src="../../assets/imgs/offline_status.png">
       </span>
       <span class="edit"><button ion-button>Edit</button></span>

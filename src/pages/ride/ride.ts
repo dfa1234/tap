@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {RideProvider} from "../../providers/ride";
+import {AppApi} from "../../app/app.api";
 
 @Component({
   selector: 'page-ride',
@@ -8,12 +9,13 @@ import {RideProvider} from "../../providers/ride";
 })
 export class RidePage {
 
-    rides = [];
-
   constructor(public navCtrl: NavController,
-              private rideProvider: RideProvider) {
+              private rideProvider: RideProvider,
+              private api: AppApi) {
 
   }
+
+    rides = this.api.rides;
 
     ngOnInit(): void {
         this.rideProvider.getRides$().subscribe(

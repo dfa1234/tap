@@ -192,7 +192,6 @@ export const routes = {
 
         Car.create( req.body ).then((car) => {
             return  Car.findOne({
-                //include: [Driver],
                 where: {license_plate: car.license_plate}
             })
         }).then(

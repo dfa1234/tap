@@ -10,7 +10,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Authentication__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_tabs__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__register_register__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_app_api__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_app_api__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -130,7 +130,7 @@ var AuthenticationProvider = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__account_account__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ride_ride__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_api__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_api__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -308,12 +308,12 @@ var NewDriverModal = /** @class */ (function () {
     };
     NewDriverModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'newDriverModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\newDriverModal\newDriverModal.html"*/'<ion-content padding>\n\n\n\n    <form #f="ngForm" (ngSubmit)="newDriver(f)">\n\n        <div class="row">\n\n            <div>First Name *</div>\n\n            <input name="firstName" [(ngModel)]="driver.user.firstName" required #firstName="ngModel">\n\n            <div>Last Name *</div>\n\n            <input name="lastName" [(ngModel)]="driver.user.lastName" required>\n\n            <div>Email</div>\n\n            <input type="email" name="email" [(ngModel)]="driver.user.email">\n\n            <div>License *</div>\n\n            <input name="license" [(ngModel)]="driver.license" required>\n\n\n\n            <div>Category *</div>\n\n            <ion-item>\n\n                <ion-select name="category" [(ngModel)]="driver.user.category" required interface="popover">\n\n                    <ion-option value="SADRAN">Sadran</ion-option>\n\n                    <ion-option value="DRIVER">Driver</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n\n\n            <div>Type *</div>\n\n            <ion-item>\n\n                <ion-select name="type" [(ngModel)]="driver.type" required interface="popover">\n\n                    <ion-option value="TAXI">Taxi</ion-option>\n\n                    <ion-option value="DRIVER">Driver</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div><button ion-button>ADD</button> </div>\n\n            <div class="error_add_driver" [hidden]="!errorAddDriver">Please fill all the (*) requires fields</div>\n\n        </div>\n\n    </form>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\newDriverModal\newDriverModal.html"*/
+            selector: 'newDriverModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\newDriverModal\newDriverModal.html"*/'<ion-content padding>\n\n\n\n    <form #f="ngForm" (ngSubmit)="newDriver(f)">\n\n        <div class="row">\n\n            <div>First Name *</div>\n\n            <input name="firstName" [(ngModel)]="driver.user.firstName" required #firstName="ngModel">\n\n            <div>Last Name *</div>\n\n            <input name="lastName" [(ngModel)]="driver.user.lastName" required>\n\n            <div>Email</div>\n\n            <input type="email" name="email" [(ngModel)]="driver.user.email">\n\n            <div>License *</div>\n\n            <input name="license" [(ngModel)]="driver.license" required>\n\n            <div>Type *</div>\n\n            <ion-item>\n\n                <ion-select name="type" [(ngModel)]="driver.type" required interface="popover">\n\n                    <ion-option value="TAXI">Taxi</ion-option>\n\n                    <ion-option value="DRIVER">Driver</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div><button ion-button>ADD</button> </div>\n\n            <div class="error_add_driver" [hidden]="!errorAddDriver">Please fill all the (*) requires fields</div>\n\n        </div>\n\n    </form>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\newDriverModal\newDriverModal.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_driver__["a" /* DriverProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_driver__["a" /* DriverProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ViewController */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_driver__["a" /* DriverProvider */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ViewController */]])
     ], NewDriverModal);
     return NewDriverModal;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=newDriverModal.js.map
@@ -412,6 +412,7 @@ webpackEmptyAsyncContext.id = 164;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_ride__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_newRequestModal_newRequestModal__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_newDriverModal_newDriverModal__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_api__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -428,12 +429,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = /** @class */ (function () {
-    function HomePage(driverProvider, rideProvider, requestProvider, modalCtrl) {
+    function HomePage(driverProvider, rideProvider, requestProvider, modalCtrl, api) {
         this.driverProvider = driverProvider;
         this.rideProvider = rideProvider;
         this.requestProvider = requestProvider;
         this.modalCtrl = modalCtrl;
+        this.api = api;
         this.drivers = [];
         this.requests = [];
         this.confirmation = null;
@@ -479,7 +482,11 @@ var HomePage = /** @class */ (function () {
                     client_phone: _this.Drive.Request.phone,
                     date: new Date()
                 };
-                _this.rideProvider.setRide$(rideObj).subscribe(function (responseGet) { return console.log(responseGet); }, function (error) { return console.error(error); });
+                _this.rideProvider.setRide$(rideObj).subscribe(function (responseGet) {
+                    console.log(responseGet);
+                    _this.api.rides.push(responseGet);
+                    console.log(_this.api.rides);
+                }, function (error) { return console.error(error); });
                 _this.Drive.Driver = null;
                 _this.Drive.Request = null;
                 _this.confirmation = null;
@@ -548,10 +555,10 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\home\home.html"*/'<ion-content padding class="mycontent">\n\n\n\n  <h1>Home</h1>\n\n\n\n\n\n  <div class="header" col-12>\n\n      SELECTED: {{Drive.Driver?.user.firstName}} {{Drive.Driver?.user.lastName}}\n\n      <span *ngIf="Drive.Request">\n\n          <ion-icon name="arrow-dropright-circle"></ion-icon>\n\n           {{Drive.Request?.firstName}} {{Drive.Request?.lastName}} -\n\n          {{Drive.Request?.street}} {{Drive.Request?.street_num}}, {{Drive.Request?.city}}\n\n          <span class="sent" [hidden]="!confirmation"> sent </span>\n\n      </span>\n\n      <button (click)="cancelThis()" *ngIf="cancel">\n\n          Cancel\n\n      </button>\n\n      <span class="canceled" [hidden]="!canceled">Canceled </span>\n\n\n\n  </div>\n\n\n\n    <button ion-button (click)="driverModal()" class="new_driver">new Driver</button>\n\n    <button ion-button (click)="requestModal()" class="new_request">new Request</button>\n\n\n\n  <ion-row>\n\n    <div class="drivers" col-6>\n\n        <button *ngFor="let driver of drivers" (click)="selectThis(\'driver\',driver)">\n\n            <span>{{driver.user.firstName}} {{driver.user.lastName}}</span>\n\n            <br>\n\n            <br>\n\n        {{driver.license}}\n\n      </button>\n\n    </div>\n\n\n\n\n\n    <div class="streets" col-6>\n\n\n\n        <div class="row" *ngFor="let request of requests" (click)="selectThis(\'request\',request)">\n\n            <span style="width: 15%"> {{request.firstName}}</span>\n\n            <span style="width: 15%"> {{request.lastName}} </span>\n\n            <span style="width: 15%"> {{request.street}} </span>\n\n            <span style="width: 5%"> {{request.street_num}} </span>\n\n            <span style="width: 15%"> {{request.city}} </span>\n\n            <span style="width: 20%"> {{request.phone}} </span>\n\n            <!--span> {{request.country}} </span-->\n\n            <span style="width: 15%"> ({{request.zipcode}}) </span>\n\n        </div>\n\n\n\n    </div>\n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\home\home.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_driver__["a" /* DriverProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_driver__["a" /* DriverProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__providers_ride__["a" /* RideProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_ride__["a" /* RideProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_driver__["a" /* DriverProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_driver__["a" /* DriverProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__providers_ride__["a" /* RideProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_ride__["a" /* RideProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__app_app_api__["a" /* AppApi */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__app_app_api__["a" /* AppApi */]) === "function" && _e || Object])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -606,12 +613,12 @@ var NewRequestModal = /** @class */ (function () {
     };
     NewRequestModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'newRequestModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\newRequestModal\newRequestModal.html"*/'<ion-content padding>\n\n  <form #f="ngForm" (ngSubmit)="newRequest(f)" #form="ngForm">\n\n      <div class="row">\n\n        <div> First Name *</div>\n\n        <input type="text" name="firstName" [(ngModel)]="request.firstName" required>\n\n        <div> Last Name *</div>\n\n          <input type="text" name="lastName" [(ngModel)]="request.lastName" required>\n\n        <div> Phone *</div>\n\n          <input type="text" name="phone" [(ngModel)]="request.phone" required>\n\n          <div> Street *</div>\n\n          <input type="text" name="street" [(ngModel)]="request.street" required>\n\n          <div> Street Number *</div>\n\n          <input type="text" name="street_num" [(ngModel)]="request.street_num" required>\n\n          <div> City *</div>\n\n          <input type="text" name="city" [(ngModel)]="request.city" required>\n\n          <!--div> Country </div>\n\n          <input type="text" name="country" [(ngModel)]="request.country"-->\n\n          <div> Zipcode</div>\n\n          <input type="text" name="zipcode" [(ngModel)]="request.zipcode">\n\n          <div><button ion-button>ADD</button> </div>\n\n          <div class="error" [hidden]="!errorRequest">Please fill all the (*) requires fields</div>\n\n      </div>\n\n  </form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\newRequestModal\newRequestModal.html"*/
+            selector: 'newRequestModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\newRequestModal\newRequestModal.html"*/'<ion-content padding>\n\n  <form #f="ngForm" (ngSubmit)="newRequest(f)" #form="ngForm">\n\n      <div class="row">\n\n        <div> First Name</div>\n\n        <input type="text" name="firstName" [(ngModel)]="request.firstName">\n\n        <div> Last Name</div>\n\n          <input type="text" name="lastName" [(ngModel)]="request.lastName">\n\n        <div> Phone </div>\n\n          <input type="text" name="phone" [(ngModel)]="request.phone">\n\n          <div> Street *</div>\n\n          <input type="text" name="street" [(ngModel)]="request.street" required>\n\n          <div> Street Number *</div>\n\n          <input type="text" name="street_num" [(ngModel)]="request.street_num" required>\n\n          <div> City *</div>\n\n          <input type="text" name="city" [(ngModel)]="request.city" required>\n\n          <!--div> Country </div>\n\n          <input type="text" name="country" [(ngModel)]="request.country"-->\n\n          <div> Zipcode</div>\n\n          <input type="text" name="zipcode" [(ngModel)]="request.zipcode">\n\n          <div><button ion-button>ADD</button> </div>\n\n          <div class="error" [hidden]="!errorRequest">Please fill all the (*) requires fields</div>\n\n      </div>\n\n  </form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\newRequestModal\newRequestModal.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_request__["a" /* RequestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_request__["a" /* RequestProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_request__["a" /* RequestProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]])
     ], NewRequestModal);
     return NewRequestModal;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=newRequestModal.js.map
@@ -673,10 +680,11 @@ var CarPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-car',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\car\car.html"*/'<ion-content padding>\n\n\n\n  <button ion-button (click)="newCarModal()">new</button>\n\n\n\n  <div class="cars-content">\n\n    <div class="row">\n\n      <span> license plate:</span>\n\n      <span> brand: </span>\n\n      <span> place number: </span>\n\n      <span style="width: 25%"> equipment: </span>\n\n      <span> hardware_version: </span>\n\n      <span class="edit"> </span>\n\n    </div>\n\n\n\n    <div *ngFor="let car of cars" class="row">\n\n      <span>{{car.license_plate}}</span>\n\n      <span>{{car.brand}}</span>\n\n      <span>{{car.place_number}}</span>\n\n      <span style="width: 25%">{{car.equipment}}</span>\n\n      <span>{{car.hardware_version}}</span>\n\n      <span class="edit"><button ion-button>Edit</button></span>\n\n    </div>\n\n  </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\car\car.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_car__["a" /* CarProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_car__["a" /* CarProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_car__["a" /* CarProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]])
     ], CarPage);
     return CarPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=car.js.map
@@ -730,10 +738,10 @@ var NewCarModal = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'newCarModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\newCarModal\newCarModal.html"*/'<ion-content padding>\n\n    <form #f="ngForm" (ngSubmit)="newCar(f)" #form="ngForm">\n\n      <div class="row">\n\n        <div> License Plate *</div>\n\n          <input name="license_plate" type="text" [(ngModel)]="car.license_plate" required>\n\n        <div>Car Brand</div>\n\n          <ion-item>\n\n              <ion-select name="brand" [(ngModel)]="car.brand" interface="popover">\n\n                  <ion-option value="hyundai">Hyundai</ion-option>\n\n                  <ion-option value="mercedes">Mercedes</ion-option>\n\n                  <ion-option value="subaru">Subaru</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n        <div> Number of Places *</div>\n\n          <input name="place_number" type="number" [(ngModel)]="car.place_number" required>\n\n        <div> Equipment </div>\n\n          <input name="equipment" type="text" [(ngModel)]="car.equipment">\n\n\n\n        <div> Hardware Version </div>\n\n          <input name="hardware_version" type="text" [(ngModel)]="car.hardware_version">\n\n          <div><button ion-button>ADD</button> </div>\n\n          <div class="error" [hidden]="!errorCar">Please fill all the (*) requires fields</div>\n\n      </div>\n\n    </form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\newCarModal\newCarModal.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_car__["a" /* CarProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_car__["a" /* CarProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ViewController */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_car__["a" /* CarProvider */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ViewController */]])
     ], NewCarModal);
     return NewCarModal;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=newCarModal.js.map
@@ -793,12 +801,13 @@ var DriversPage = /** @class */ (function () {
     };
     DriversPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-drivers',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\drivers\drivers.html"*/'<ion-content padding>\n\n\n\n  <button ion-button (click)="newDriverModal()">new</button>\n\n\n\n  <div class="drivers-content">\n\n    <div class="row">\n\n      <span> license:</span>\n\n      <span> Name: </span>\n\n      <span> phone1: </span>\n\n      <span> phone2: </span>\n\n      <span> email: </span>\n\n      <span> category: </span>\n\n      <span> type: </span>\n\n      <span> status: </span>\n\n    </div>\n\n\n\n    <div *ngFor="let driver of drivers" class="row">\n\n      <span>{{driver.license}}</span>\n\n      <span>{{driver.user.firstName}} {{driver.user.lastName}}</span>\n\n      <span>{{driver.user.phone1}}</span>\n\n      <span>{{driver.user.phone2}}</span>\n\n      <span>{{driver.user.email}}</span>\n\n      <span>{{driver.user.category}}</span>\n\n      <span>{{driver.type}}</span>\n\n      <span *ngIf="driver.status" class="status">\n\n        <img src="../../assets/imgs/online_status.png">\n\n      </span>\n\n      <span *ngIf="!driver.status" class="status">\n\n        <img src="../../assets/imgs/offline_status.png">\n\n      </span>\n\n      <span class="edit"><button ion-button>Edit</button></span>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\drivers\drivers.html"*/
+            selector: 'page-drivers',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\drivers\drivers.html"*/'<ion-content padding>\n\n\n\n  <button ion-button (click)="newDriverModal()">new</button>\n\n\n\n  <div class="drivers-content">\n\n    <div class="row">\n\n      <span> license:</span>\n\n      <span> Name: </span>\n\n      <span> phone1: </span>\n\n      <span> phone2: </span>\n\n      <span> email: </span>\n\n      <span> category: </span>\n\n      <span> type: </span>\n\n      <span> status: </span>\n\n    </div>\n\n\n\n    <div *ngFor="let driver of drivers" class="row">\n\n      <span>{{driver.license}}</span>\n\n      <span>{{driver.user.firstName}} {{driver.user.lastName}}</span>\n\n      <span>{{driver.user.phone1}}</span>\n\n      <span>{{driver.user.phone2}}</span>\n\n      <span>{{driver.user.email}}</span>\n\n      <span>{{driver.user.category}}</span>\n\n      <span>{{driver.type}}</span>\n\n      <span *ngIf="driver.status === \'1\'" class="status">\n\n        <img src="../../assets/imgs/online_status.png">\n\n      </span>\n\n      <span *ngIf="!driver.status || driver.status === \'0\'" class="status">\n\n        <img src="../../assets/imgs/offline_status.png">\n\n      </span>\n\n      <span class="edit"><button ion-button>Edit</button></span>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\drivers\drivers.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers_driver__["a" /* DriverProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_driver__["a" /* DriverProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_driver__["a" /* DriverProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]])
     ], DriversPage);
     return DriversPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=drivers.js.map
@@ -847,7 +856,7 @@ var SettingsPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_api__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_api__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -889,6 +898,7 @@ var AccountPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_ride__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_api__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -901,11 +911,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RidePage = /** @class */ (function () {
-    function RidePage(navCtrl, rideProvider) {
+    function RidePage(navCtrl, rideProvider, api) {
         this.navCtrl = navCtrl;
         this.rideProvider = rideProvider;
-        this.rides = [];
+        this.api = api;
+        this.rides = this.api.rides;
     }
     RidePage.prototype.ngOnInit = function () {
         var _this = this;
@@ -923,10 +935,10 @@ var RidePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-ride',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\ride\ride.html"*/'<ion-content padding>\n\n\n\n  <div class="rides-content">\n\n    <div class="row">\n\n      <span> Driver Name: </span>\n\n      <span> Driver Phone: </span>\n\n      <span> Client name:</span>\n\n      <span> Client Phone: </span>\n\n      <span style="width: 18%"> Address From:</span>\n\n      <span> Address To:</span>\n\n      <span> Date: </span>\n\n      <span class="status"> Status: </span>\n\n    </div>\n\n\n\n    <div *ngFor="let ride of rides" class="row">\n\n      <span>{{ride.driver_name}}</span>\n\n      <span>{{ride.driver_phone}}</span>\n\n      <span>{{ride.client_name}}</span>\n\n      <span>{{ride.client_phone}}</span>\n\n      <span style="width: 18%">{{ride.address_from}}</span>\n\n      <span>{{ride.address_to}}</span>\n\n      <span>{{ride.date | date:"MM/dd/yyyy \'-\' H:mm"}}</span>\n\n      <span *ngIf="ride.status" class="status">\n\n        <img src="../../assets/imgs/online_status.png">\n\n      </span>\n\n      <span *ngIf="!ride.status" class="status">\n\n        <img src="../../assets/imgs/offline_status.png">\n\n      </span>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\ride\ride.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_ride__["a" /* RideProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_ride__["a" /* RideProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_ride__["a" /* RideProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__app_app_api__["a" /* AppApi */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_app_api__["a" /* AppApi */]) === "function" && _c || Object])
     ], RidePage);
     return RidePage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=ride.js.map
@@ -943,7 +955,7 @@ var RidePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Authentication__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_tabs__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_app_api__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_app_api__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -997,10 +1009,12 @@ var RegisterPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'register',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\register\register.html"*/'<ion-content padding class="mycontent">\n\n\n\n    <div class="col-md-6 col-md-offset-3" style="max-width: 500px">\n\n        <div class="panel-register">\n\n            <div class="col-xs-6 logo">\n\n                <a href="#">Tap Tel</a>\n\n            </div>\n\n            <hr>\n\n            <div class="panel-body">\n\n                <div class="col-lg-12">\n\n                    <form #f="ngForm" (ngSubmit)="register(f)" #form="ngForm">\n\n                        <div class="form-group">\n\n                            <ion-item>\n\n                                <ion-label>First Name *</ion-label>\n\n                                <ion-input type="text" name="firstName" required [(ngModel)]="user.firstName"></ion-input>\n\n                            </ion-item>\n\n                        </div>\n\n                        <div class="form-group">\n\n                            <ion-item>\n\n                                <ion-label>Last Name *</ion-label>\n\n                                <ion-input type="text" name="lastName" required [(ngModel)]="user.lastName"></ion-input>\n\n                            </ion-item>\n\n                        </div>\n\n                        <div class="form-group">\n\n                            <ion-item>\n\n                                <ion-label>Phone *</ion-label>\n\n                                <ion-input type="tel" name="phone1" required [(ngModel)]="user.phone1"></ion-input>\n\n                            </ion-item>\n\n                        </div>\n\n                        <div class="form-group">\n\n                            <div class="col-sm-6 col-sm-offset-3">\n\n                                <button ion-button class="btn-register">Create an account</button>\n\n                            </div>\n\n                        </div>\n\n                        <div class="form-group">\n\n                            <div class="col-lg-12 login">\n\n                                <span>Already registered?</span>\n\n                                <a href="#" (click)= "login()"> Log In</a>\n\n                            </div>\n\n                        </div>\n\n                        <div class="form-group">\n\n                            <div class="col-lg-12">\n\n                                <span class="error" [hidden]="!errorRegister">Please fill all the (*) requires fields</span>\n\n                            </div>\n\n                        </div>\n\n                    </form>\n\n                </div>\n\n            </div>\n\n        </div>\n\n    </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\register\register.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_Authentication__["a" /* AuthenticationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_Authentication__["a" /* AuthenticationProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__app_app_api__["a" /* AppApi */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_app_api__["a" /* AppApi */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_Authentication__["a" /* AuthenticationProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_5__app_app_api__["a" /* AppApi */]])
     ], RegisterPage);
     return RegisterPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=register.js.map
@@ -1028,7 +1042,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(29);
@@ -1049,7 +1063,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_ride__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_newDriverModal_newDriverModal__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_newRequestModal_newRequestModal__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__app_api__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__app_api__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_register_register__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_car__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_newCarModal_newCarModal__ = __webpack_require__(211);
@@ -1221,7 +1235,7 @@ var BaseUrl = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 43:
+/***/ 34:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1230,6 +1244,7 @@ var AppApi = /** @class */ (function () {
     function AppApi() {
         this.drivers = [];
         this.requests = [];
+        this.rides = [];
         this.myProfile = {
             user: {}
         };

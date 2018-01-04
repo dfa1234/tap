@@ -5,6 +5,7 @@ import {RequestProvider} from "../../providers/request";
 import {RideProvider} from "../../providers/ride";
 import {NewRequestModal} from "../../components/newRequestModal/newRequestModal";
 import {NewDriverModal} from "../../components/newDriverModal/newDriverModal";
+import {AppApi} from "../../app/app.api";
 
 @Component({
   selector: 'page-home',
@@ -23,7 +24,8 @@ export class HomePage {
     constructor(public driverProvider: DriverProvider,
                 public rideProvider: RideProvider,
                 public requestProvider: RequestProvider,
-                public modalCtrl: ModalController) {
+                public modalCtrl: ModalController,
+                private api: AppApi) {
     }
 
     ngOnInit(): void {
@@ -77,7 +79,11 @@ export class HomePage {
                 };
 
                 this.rideProvider.setRide$(rideObj).subscribe(
-                    responseGet => console.log(responseGet),
+                    responseGet => {
+                        console.log(responseGet)
+                        this.api.rides.push(responseGet);
+                        console.log(this.api.rides)
+                    },
                     error => console.error(error)
                 );
 
