@@ -25828,6 +25828,30 @@ page-drivers .drivers-content .row span {
   text-overflow: ellipsis;
 }
 
+page-drivers .drivers-content .row .status {
+  text-align: center;
+  width: 5%;
+}
+
+page-drivers .drivers-content .row .status img {
+  width: 14px;
+}
+
+page-drivers .drivers-content .row .edit {
+  text-align: center;
+  width: 7.5%;
+}
+
+page-drivers .drivers-content .row .edit button {
+  width: 65px;
+}
+
+page-drivers .drivers-content .row .edit button span {
+  width: 100%;
+  border: 0;
+  color: #ffffff;
+}
+
 page-home .mycontent {
   background: #f8f8f8;
 }
@@ -26052,10 +26076,16 @@ register .panel-register .panel-body .form-group {
   margin-bottom: 15px;
 }
 
+register .panel-register .panel-body .form-group ion-label {
+  width: 100%;
+  max-width: 85px;
+}
+
 register .panel-register .panel-body .form-group input {
   display: block;
   float: right;
-  width: 340px !important;
+  width: 100% !important;
+  max-width: 340px;
   height: 34px !important;
   padding: 6px 12px;
   font-size: 14px !important;
@@ -26164,6 +26194,15 @@ page-ride .rides-content .row span {
 
 page-ride .rides-content .row span:last-child {
   width: 7%;
+}
+
+page-ride .rides-content .row .status {
+  text-align: center;
+  width: 5%;
+}
+
+page-ride .rides-content .row .status img {
+  width: 14px;
 }
 
 .tabbar {

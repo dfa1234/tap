@@ -9,7 +9,7 @@
       <span style="width: 18%"> Address From:</span>
       <span> Address To:</span>
       <span> Date: </span>
-      <span style="width: 7%"> Status: </span>
+      <span class="status"> Status: </span>
     </div>
 
     <div *ngFor="let ride of rides" class="row">
@@ -20,7 +20,12 @@
       <span style="width: 18%">{{ride.address_from}}</span>
       <span>{{ride.address_to}}</span>
       <span>{{ride.date | date:"MM/dd/yyyy '-' H:mm"}}</span>
-      <span style="width: 7%">{{ride.status}}</span>
+      <span *ngIf="ride.status" class="status">
+        <img src="../../assets/imgs/online_status.png">
+      </span>
+      <span *ngIf="!ride.status" class="status">
+        <img src="../../assets/imgs/offline_status.png">
+      </span>
     </div>
   </div>
 

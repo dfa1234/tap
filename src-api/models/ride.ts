@@ -12,10 +12,10 @@ export class Ride extends Model<Ride> {
     client_name: string;
 
     @Column
-    driver_phone: number;
+    driver_phone: string;
 
     @Column
-    client_phone: number;
+    client_phone: string;
 
     @Column
     address_from: string;

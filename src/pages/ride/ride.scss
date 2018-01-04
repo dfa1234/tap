@@ -33,6 +33,15 @@ page-ride {
       span:last-child {
         width: 7%;
       }
+
+      .status{
+        text-align: center;
+        width: 5%;
+
+        img{
+          width: 14px;
+        }
+      }
     }
   }
 

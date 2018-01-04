@@ -27,11 +27,11 @@ export class User extends Model<User> {
     @Column
     address: string;
 
-    @Unique
+    //@Unique
     @Column
     email: string;
 
-    @Unique
+    //@Unique
     @Column
     username: string;
 

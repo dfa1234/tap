@@ -15,10 +15,10 @@ export class Driver extends Model<Driver> {
     idUser:number;
 
     @Column
-    tz:number;
+    tz:string;
 
     @Column
-    license:number;
+    license:string;
 
     @Column
     shomerShabat: boolean;
@@ -32,7 +32,7 @@ export class Driver extends Model<Driver> {
     status: string;
 
 
-    @BelongsTo(() => User, { foreignKey: 'idUser', targetKey: 'id'} )
+    @BelongsTo(() => User, { foreignKey: 'idUser'} )
 
     user: User;
 
