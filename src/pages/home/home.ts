@@ -34,10 +34,8 @@ export class HomePage {
                 if(responseGet.constructor === Array && responseGet.length >= 1){
                     console.log(responseGet);
                     responseGet.forEach( (i) => {
-                        if (i.user){
-                            if (i.user.category!=='SADRAN'){
-                                this.drivers.push(i)
-                            }
+                        if (i.license){
+                            this.drivers.push(i)
                         }
                     })
                 }else{

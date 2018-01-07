@@ -25990,17 +25990,24 @@ page-home .drivers button {
   margin: 10px;
 }
 
-page-home .drivers button span {
-  white-space: nowrap;
-  max-width: 75px;
-  max-height: 25px;
-  line-height: 2;
+page-home .drivers button .button-inner {
   display: inline-block;
-  overflow: hidden;
+  margin-top: 12px;
+  text-transform: capitalize;
 }
 
-page-home .drivers button:active {
-  background: cornflowerblue;
+page-home .drivers button .button-inner div {
+  white-space: normal;
+  max-width: 75px;
+  font-size: 13px;
+}
+
+page-home .drivers button .button-inner div:last-child {
+  position: absolute;
+  bottom: 10px;
+  margin: auto;
+  left: 0;
+  right: 0;
 }
 
 page-home .streets {
