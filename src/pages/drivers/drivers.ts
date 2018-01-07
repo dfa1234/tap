@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, ModalController} from 'ionic-angular';
 import {NewDriverModal} from "../../components/newDriverModal/newDriverModal";
-import {DriverProvider} from "../../providers/driver";
+import {AppApi} from "../../app/app.api";
 
 @Component({
   selector: 'page-drivers',
@@ -10,21 +10,15 @@ import {DriverProvider} from "../../providers/driver";
 export class DriversPage {
 
 
-  drivers = [];
-
   constructor(public navCtrl: NavController,
-              private driverProvider: DriverProvider,
+              private api: AppApi,
                public modalCtrl: ModalController,
               ) {
 
   }
 
-    ngOnInit(): void {
-        this.driverProvider.getDrivers$().subscribe(
-            responseGet => this.drivers = responseGet,
-            error => console.error(error)
-        );
-    }
+    drivers:any = this.api.drivers;
+
 
     newDriverModal(){
         let driverModal = this.modalCtrl.create(NewDriverModal);

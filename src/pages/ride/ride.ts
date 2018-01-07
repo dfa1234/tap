@@ -15,17 +15,6 @@ export class RidePage {
 
   }
 
-    rides = this.api.rides;
+    rides:any = this.api.rides;
 
-    ngOnInit(): void {
-        this.rideProvider.getRides$().subscribe(
-            responseGet => {
-                if (responseGet.constructor === Array && responseGet.length >= 1) {
-                    console.log(responseGet);
-                    this.rides = responseGet
-                } else {
-                    console.error(responseGet);
-                }
-            })
-    }
 }

@@ -13,14 +13,6 @@ import {AppApi} from "../../app/app.api";
 })
 export class HomePage {
 
-    drivers = [];
-    requests = [];
-    confirmation:number = null;
-    cancel:number = null;
-    canceled:number = null;
-
-    Drive = {Driver:null,Request:null};
-
     constructor(public driverProvider: DriverProvider,
                 public rideProvider: RideProvider,
                 public requestProvider: RequestProvider,
@@ -28,30 +20,13 @@ export class HomePage {
                 private api: AppApi) {
     }
 
-    ngOnInit(): void {
-        this.driverProvider.getDrivers$().subscribe(
-            responseGet => {
-                if(responseGet.constructor === Array && responseGet.length >= 1){
-                    console.log(responseGet);
-                    responseGet.forEach( (i) => {
-                        if (i.license){
-                            this.drivers.push(i)
-                        }
-                    })
-                }else{
-                    console.log(responseGet);
-                }
-            },
-            error => console.error(error)
-        );
+    drivers:any = this.api.drivers;
+    requests:any = this.api.requests;
+    confirmation:number = null;
+    cancel:number = null;
+    canceled:number = null;
 
-
-        this.requestProvider.getRequests$().subscribe(
-            responseGet => this.requests = responseGet,
-            error => console.error(error)
-        )
-    }
-
+    Drive = {Driver:null,Request:null};
 
     sendToDriver(){
 

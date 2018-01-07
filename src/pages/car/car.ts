@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ModalController, NavController} from 'ionic-angular';
 import {CarProvider} from "../../providers/car";
 import {NewCarModal} from "../../components/newCarModal/newCarModal";
+import {AppApi} from "../../app/app.api";
 
 @Component({
   selector: 'page-car',
@@ -9,21 +10,15 @@ import {NewCarModal} from "../../components/newCarModal/newCarModal";
 })
 export class CarPage {
 
-    cars = [];
 
     constructor(public navCtrl: NavController,
-                private carProvider: CarProvider,
+                private api: AppApi,
                 public modalCtrl: ModalController,
     ) {
 
     }
 
-    ngOnInit(): void {
-        this.carProvider.getCars$().subscribe(
-            responseGet => this.cars = responseGet,
-            error => console.error(error)
-        );
-    }
+    cars:any = this.api.cars;
 
     newCarModal(){
         let carModal = this.modalCtrl.create(NewCarModal);

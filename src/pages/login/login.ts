@@ -34,6 +34,7 @@ export class LoginPage {
                 if(responseGet && (Object.keys(responseGet).length !== 0)){
                     this.myProfile.user = responseGet;
                     this.navController.setRoot(TabsPage, {opentab: 2});
+                    this.api.newProcces();
                 }else {
                     this.errorLogin = true
                     setTimeout(() => {
