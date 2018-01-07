@@ -82,5 +82,5 @@ app.post('/api/car_driver', routes.setCarDriver,routes.getCar);
 
 //SERVER START
 const server = http.createServer(app).listen(config.port);
-console.log(('\n\n\n%s Node server start at http://localhost:%s' as any).green, Date(), server.address().port);
+console.log(server);
 

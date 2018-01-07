@@ -553,10 +553,13 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\home\home.html"*/'<ion-content padding class="mycontent">\n\n\n\n  <h1>Home</h1>\n\n\n\n\n\n  <div class="header" col-12>\n\n      SELECTED:\n\n\n\n      <span>\n\n          {{Drive.Driver?.user.firstName}} {{Drive.Driver?.user.lastName}}\n\n      </span>\n\n      <span *ngIf="Drive.Driver?.license">\n\n          ({{Drive.Driver?.license}})\n\n      </span>\n\n      <span *ngIf="Drive.Request">\n\n          <ion-icon name="arrow-dropright-circle"></ion-icon>\n\n           {{Drive.Request?.firstName}} {{Drive.Request?.lastName}} -\n\n          {{Drive.Request?.street}} {{Drive.Request?.street_num}}, {{Drive.Request?.city}}\n\n          <span class="sent" [hidden]="!confirmation"> sent </span>\n\n      </span>\n\n      <button (click)="cancelThis()" *ngIf="cancel">\n\n          Cancel\n\n      </button>\n\n      <span class="canceled" [hidden]="!canceled">Canceled </span>\n\n\n\n  </div>\n\n\n\n    <button ion-button (click)="driverModal()" class="new_driver">new Driver</button>\n\n    <button ion-button (click)="requestModal()" class="new_request">new Request</button>\n\n\n\n  <ion-row>\n\n    <div class="drivers" col-6>\n\n        <button ion-button *ngFor="let driver of drivers" (click)="selectThis(\'driver\',driver)">\n\n            <div>{{driver.user.firstName}} {{driver.user.lastName}}</div>\n\n            <div>{{driver.license}}</div>\n\n      </button>\n\n    </div>\n\n\n\n\n\n    <div class="streets" col-6>\n\n\n\n        <div class="row" *ngFor="let request of requests" (click)="selectThis(\'request\',request)">\n\n            <span style="width: 15%"> {{request.street}} </span>\n\n            <span style="width: 5%"> {{request.street_num}} </span>\n\n            <span style="width: 15%"> {{request.city}} </span>\n\n            <!--span> {{request.country}} </span-->\n\n            <span style="width: 15%"> <span *ngIf="request.zipcode">({{request.zipcode}}) </span></span>\n\n            <span style="width: 15%"> {{request.firstName}}</span>\n\n            <span style="width: 15%"> {{request.lastName}} </span>\n\n            <span style="width: 20%"> {{request.phone}} </span>\n\n        </div>\n\n\n\n    </div>\n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\home\home.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_driver__["a" /* DriverProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_driver__["a" /* DriverProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__providers_ride__["a" /* RideProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_ride__["a" /* RideProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__app_app_api__["a" /* AppApi */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__app_app_api__["a" /* AppApi */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_driver__["a" /* DriverProvider */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_ride__["a" /* RideProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_request__["a" /* RequestProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_7__app_app_api__["a" /* AppApi */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -1240,10 +1243,10 @@ var AppApi = /** @class */ (function () {
 
 var BaseUrl = /** @class */ (function () {
     function BaseUrl() {
-        this.baseUrl = 'http://vps160905.vps.ovh.ca:3000';
+        this.baseUrl = 'http://localhost:3000';
         this.header = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]({
             'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Allow-Origin': 'http://vps160905.vps.ovh.ca',
+            'Access-Control-Allow-Origin': 'http://localhost:8100',
             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
             'Access-Control-Allow-Headers': 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept,Access-Control-Allow-Credentials,Authorization'
         });
