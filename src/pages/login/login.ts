@@ -33,13 +33,15 @@ export class LoginPage {
                 console.log(responseGet);
                 if(responseGet && (Object.keys(responseGet).length !== 0)){
                     this.myProfile.user = responseGet;
-                    this.navController.setRoot(TabsPage, {opentab: 2});
-                    this.api.newProcces();
-                }else {
-                    this.errorLogin = true
-                    setTimeout(() => {
-                        this.errorLogin = false;
-                    },3000)
+                    if(this.myProfile.user.username === this.user.username){
+                        this.navController.setRoot(TabsPage, {opentab: 2});
+                        this.api.newProcces();
+                    }else {
+                        this.errorLogin = true
+                        setTimeout(() => {
+                            this.errorLogin = false;
+                        },3000)
+                    }
                 }
             },
             error => console.error(error)
