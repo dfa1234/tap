@@ -3,12 +3,12 @@ import {NextFunction,Response,Request} from "express";
 
 import {sequelize} from "./database";
 import {Driver} from "./models/driver";
-import {TaxiRequest} from "./models/request";
+import {RideRequest} from "./models/request";
 import {Ride} from "./models/ride";
 import {User} from "./models/user";
 import {Car} from "./models/car";
 
-sequelize.addModels([TaxiRequest,Driver,Ride,User,Car]);
+sequelize.addModels([RideRequest,Driver,Ride,User,Car]);
 //GENERATE DB:
 //sequelize.sync({ force: true});
 sequelize.sync({alter:true});
@@ -101,7 +101,7 @@ export const routes = {
 
     getRequest :   (req:Request, res:Response, next:NextFunction) => {
 
-        TaxiRequest.findOne({
+        RideRequest.findOne({
             where: {id: req.query.id}
         }).then(
                 request => res.json(request),
@@ -111,8 +111,8 @@ export const routes = {
 
     getRequests :   (req:Request, res:Response, next:NextFunction) => {
 
-        TaxiRequest.findAll().then(
-            (request:TaxiRequest[]) => res.json(request),
+        RideRequest.findAll().then(
+            (request:RideRequest[]) => res.json(request),
             (error:any) => res.json(error)
         )
 
@@ -121,8 +121,8 @@ export const routes = {
     setRequest :   (req:Request, res:Response, next:NextFunction) => {
 
 
-        TaxiRequest.create( req.body ).then((request) => {
-            return  TaxiRequest.findOne({
+        RideRequest.create( req.body ).then((request) => {
+            return  RideRequest.findOne({
                 where: {id: request.id}
             })
         }).then(
@@ -192,6 +192,7 @@ export const routes = {
 
         Car.create( req.body ).then((car) => {
             return  Car.findOne({
+                include: [Driver],
                 where: {license_plate: car.license_plate}
             })
         }).then(
@@ -200,21 +201,32 @@ export const routes = {
         )
     },
 
-    setCarDriver :   (req:Request, res:Response, next:NextFunction) => {
+    updateCar :   (req:Request, res:Response, next:NextFunction) => {
 
         Car.update({
-            idDriver: req.query.driver.idUser,
+            idDriver: req.body.driver.idUser,
+            license_plate: req.body.license_plate,
+            brand: req.body.brand,
+            place_number: req.body.place_number,
+            equipment: req.body.equipment,
+            hardware_version: req.body.hardware_version,
+            availability: req.body.availability,
+            location: req.body.location,
+            status: req.body.status
         }, {
-            where: {id: req.query.id}
+            where: {id: req.body.id}
         }).then(() => {
-            return Car.findOne({
-                include: [Driver],
-                where: {id: req.query.id}
-            })
-        }).then(
-            (car) => res.json(car),
-            (error:any) => res.json(error)
-        )
+            return Car.findAll({
+                include: [
+                    {model: Driver, include: [
+                            {model: User}
+                        ]}
+                ]
+            }).then(
+                (cars:Car[]) => res.json(cars),
+                (error:any) => res.json(error)
+            )
+        })
     }
 };
 

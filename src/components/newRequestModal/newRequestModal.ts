@@ -14,7 +14,6 @@ export class NewRequestModal {
               private viewCtrl: ViewController) {
   }
 
-
     errorRequest = false;
 
     request = {
@@ -25,11 +24,11 @@ export class NewRequestModal {
         street_num:null,
         city:null,
         country:null,
-        zipcode:null
+        zipcode:null,
+        notice:null
     };
 
     newRequest(form: NgForm){
-
         if(form.valid){
             this.requestProvider.setRequest$(this.request).subscribe(
                 responseGet => this.viewCtrl.dismiss(responseGet),
@@ -39,6 +38,10 @@ export class NewRequestModal {
             this.errorRequest = true;
             setTimeout(() => { this.errorRequest = false; },3000)
         }
+    }
+
+    closeModal():void{
+       this.viewCtrl.dismiss();
     }
 
 }

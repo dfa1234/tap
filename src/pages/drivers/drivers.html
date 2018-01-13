@@ -4,14 +4,16 @@
 
   <div class="drivers-content">
     <div class="row">
-      <span> license:</span>
-      <span> Name: </span>
-      <span> phone1: </span>
-      <span> phone2: </span>
-      <span> email: </span>
-      <span> category: </span>
-      <span> type: </span>
-      <span> status: </span>
+      <span> license </span>
+      <span> Name </span>
+      <span> phone1 </span>
+      <span> phone2 </span>
+      <span> email </span>
+      <span> category </span>
+      <span> type </span>
+      <span class="status"> status </span>
+      <span style="width: 7.5%"> Car </span>
+      <span class=" edit"> </span>
     </div>
 
     <div *ngFor="let driver of drivers" class="row">
@@ -22,12 +24,11 @@
       <span>{{driver.user.email}}</span>
       <span>{{driver.user.category}}</span>
       <span>{{driver.type}}</span>
-      <span *ngIf="driver.status === '1'" class="status">
-        <img src="../../assets/imgs/online_status.png">
+      <span class="status">
+        <img *ngIf="driver.status === '1'" src="../../assets/imgs/online_status.png">
+        <img *ngIf="driver.status === null || driver.status === '0'" src="../../assets/imgs/offline_status.png">
       </span>
-      <span *ngIf="!driver.status || driver.status === '0'" class="status">
-        <img src="../../assets/imgs/offline_status.png">
-      </span>
+      <span class="associate edit"><button ion-button (click)="addCarToDriverModal(driver)">associate</button></span>
       <span class="edit"><button ion-button>Edit</button></span>
     </div>
   </div>

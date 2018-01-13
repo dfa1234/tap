@@ -25687,6 +25687,156 @@ ion-navbar.toolbar {
   display: none;
 }
 
+.modal-wrapper {
+  -webkit-box-shadow: 0 0 !important;
+  box-shadow: 0 0 !important;
+}
+
+.modal-wrapper newrequestmodal {
+  left: calc(50% - (320px/2)) !important;
+  top: calc(50% - (700px/2)) !important;
+  width: 320px !important;
+  height: 650px !important;
+}
+
+.modal-wrapper newdrivermodal {
+  left: calc(50% - (320px/2)) !important;
+  top: calc(50% - (700px/2)) !important;
+  width: 320px !important;
+  height: 500px !important;
+}
+
+.modal-wrapper newcarmodal {
+  left: calc(50% - (320px/2)) !important;
+  top: calc(50% - (700px/2)) !important;
+  width: 320px !important;
+  height: 500px !important;
+}
+
+.modal-wrapper driversmodal, .modal-wrapper carsmodal {
+  left: calc(50% - (480px/2)) !important;
+  top: calc(50% - (700px/2)) !important;
+  width: 480px !important;
+  height: 500px !important;
+}
+
+carsModal .close {
+  position: fixed;
+  width: 455px;
+  padding: 5px;
+  height: 32px;
+  top: 0;
+  background-color: #fff;
+}
+
+carsModal .close ion-icon {
+  position: absolute;
+  right: 0;
+}
+
+carsModal .cars-content {
+  width: 100%;
+  min-width: 450px;
+}
+
+carsModal .cars-content .row:first-child span {
+  border-bottom: 2px solid lightgray;
+  font-size: 16.5px;
+  text-transform: uppercase;
+}
+
+carsModal .cars-content .row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+carsModal .cars-content .row span {
+  border-bottom: 1px solid lightgray;
+  padding: 8px 5px;
+  width: 20%;
+  font-size: 15px;
+  color: #696969;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
+
+carsModal .cars-content .row .edit {
+  text-align: right;
+  padding-right: 20px;
+}
+
+carsModal .cars-content .row .edit ion-icon:active {
+  color: green;
+}
+
+driversModal .close {
+  position: fixed;
+  width: 455px;
+  padding: 5px;
+  height: 32px;
+  top: 0;
+  background-color: #fff;
+}
+
+driversModal .close ion-icon {
+  position: absolute;
+  right: 0;
+}
+
+driversModal .drivers-content {
+  width: 100%;
+  min-width: 450px;
+}
+
+driversModal .drivers-content .row:first-child span {
+  border-bottom: 2px solid lightgray;
+  font-size: 16.5px;
+  text-transform: uppercase;
+}
+
+driversModal .drivers-content .row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+driversModal .drivers-content .row span {
+  border-bottom: 1px solid lightgray;
+  padding: 8px 5px;
+  width: 20%;
+  font-size: 15px;
+  color: #696969;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
+
+driversModal .drivers-content .row .status {
+  text-align: right;
+  width: 10%;
+}
+
+driversModal .drivers-content .row .status img {
+  width: 14px;
+}
+
+driversModal .drivers-content .row .edit {
+  text-align: right;
+  padding-right: 20px;
+}
+
+driversModal .drivers-content .row .edit ion-icon:active {
+  color: green;
+}
+
 newCarModal .row {
   display: block;
   width: 100%;
@@ -25694,22 +25844,57 @@ newCarModal .row {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
 }
 
-newCarModal .row span {
-  border: 1px solid lightgray;
-  padding: 5px;
-  -webkit-flex-basis: 180px;
-  -ms-flex-preferred-size: 180px;
-  flex-basis: 180px;
-  min-width: 180px;
-  max-width: 220px;
+newCarModal .row div {
+  padding: 7px 0 3px 0;
 }
 
-newCarModal .row .error {
+newCarModal .row input, newCarModal .row .item-select {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+
+newCarModal .row .item-select {
+  padding: 0;
+  height: 0;
+}
+
+newCarModal .row .item-select .item-inner, newCarModal .row .item-select .input-wrapper {
+  padding: 0;
+  border: 0;
+}
+
+newCarModal .row .item-select .item-inner div, newCarModal .row .item-select .input-wrapper div {
+  padding: 0;
+}
+
+newCarModal .row .item-select .item-inner div ion-select, newCarModal .row .item-select .input-wrapper div ion-select {
+  padding: 0 10px;
+}
+
+newCarModal .close {
+  float: right;
+  margin-top: -47px;
+}
+
+newCarModal .close .button-md {
+  background-color: #a9a9a9;
+}
+
+newCarModal .error {
   color: #ff0000;
-}
-
-newCarModal .select-md .select-icon {
-  display: none;
 }
 
 newDriverModal .row {
@@ -25719,23 +25904,57 @@ newDriverModal .row {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
 }
 
-newDriverModal .row span {
-  border: 1px solid lightgray;
-  padding: 5px;
-  -webkit-flex-basis: 180px;
-  -ms-flex-preferred-size: 180px;
-  flex-basis: 180px;
-  min-width: 180px;
-  max-width: 220px;
+newDriverModal .row div {
+  padding: 7px 0 3px 0;
 }
 
-newDriverModal .row .error_add_driver {
-  margin-top: 15px;
+newDriverModal .row input, newDriverModal .row .item-select {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+
+newDriverModal .row .item-select {
+  padding: 0;
+  height: 0;
+}
+
+newDriverModal .row .item-select .item-inner, newDriverModal .row .item-select .input-wrapper {
+  padding: 0;
+  border: 0;
+}
+
+newDriverModal .row .item-select .item-inner div, newDriverModal .row .item-select .input-wrapper div {
+  padding: 0;
+}
+
+newDriverModal .row .item-select .item-inner div ion-select, newDriverModal .row .item-select .input-wrapper div ion-select {
+  padding: 0 10px;
+}
+
+newDriverModal .close {
+  float: right;
+  margin-top: -47px;
+}
+
+newDriverModal .close .button-md {
+  background-color: #a9a9a9;
+}
+
+newDriverModal .error_add_driver {
   color: #ff0000;
-}
-
-newDriverModal .select-md .select-icon {
-  display: none;
 }
 
 newRequestModal .row {
@@ -25745,22 +25964,57 @@ newRequestModal .row {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
 }
 
-newRequestModal .row span {
-  border: 1px solid lightgray;
-  padding: 5px;
-  -webkit-flex-basis: 180px;
-  -ms-flex-preferred-size: 180px;
-  flex-basis: 180px;
-  min-width: 180px;
-  max-width: 220px;
+newRequestModal .row div {
+  padding: 7px 0 3px 0;
 }
 
-newRequestModal .row .error {
+newRequestModal .row input, newRequestModal .row .item-select {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+
+newRequestModal .row .item-select {
+  padding: 0;
+  height: 0;
+}
+
+newRequestModal .row .item-select .item-inner, newRequestModal .row .item-select .input-wrapper {
+  padding: 0;
+  border: 0;
+}
+
+newRequestModal .row .item-select .item-inner div, newRequestModal .row .item-select .input-wrapper div {
+  padding: 0;
+}
+
+newRequestModal .row .item-select .item-inner div ion-select, newRequestModal .row .item-select .input-wrapper div ion-select {
+  padding: 0 10px;
+}
+
+newRequestModal .close {
+  float: right;
+  margin-top: -47px;
+}
+
+newRequestModal .close .button-md {
+  background-color: #a9a9a9;
+}
+
+newRequestModal .error {
   color: #ff0000;
-}
-
-newRequestModal .select-md .select-icon {
-  display: none;
 }
 
 page-account .container {
@@ -25853,7 +26107,7 @@ page-car .cars-content .row {
 page-car .cars-content .row span {
   border-bottom: 1px solid lightgray;
   padding: 8px 5px;
-  width: 16%;
+  width: 12.2%;
   font-size: 15px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -25862,9 +26116,17 @@ page-car .cars-content .row span {
   text-overflow: ellipsis;
 }
 
+page-car .cars-content .row .status {
+  text-align: center;
+  width: 5%;
+}
+
+page-car .cars-content .row .status img {
+  width: 14px;
+}
+
 page-car .cars-content .row .edit {
   text-align: center;
-  width: 7.5%;
   padding: 0;
 }
 
@@ -25881,6 +26143,26 @@ page-car .cars-content .row .edit button span {
   color: #ffffff;
   font-size: 13px;
   height: 10px;
+}
+
+page-car .cars-content .row .associate {
+  text-align: left;
+}
+
+page-car .cars-content .row .associate button {
+  width: 90px;
+}
+
+page-car .cars-content .row .close {
+  position: relative;
+}
+
+page-car .cars-content .row .close .ion-md-close {
+  position: absolute;
+  right: 0;
+  top: -20px;
+  color: red;
+  font-size: 15px;
 }
 
 page-drivers .drivers-content {
@@ -25905,7 +26187,7 @@ page-drivers .drivers-content .row {
 page-drivers .drivers-content .row span {
   border-bottom: 1px solid lightgray;
   padding: 8px 5px;
-  width: 12.5%;
+  width: 11.4%;
   font-size: 15px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -25944,6 +26226,14 @@ page-drivers .drivers-content .row .edit button span {
   height: 10px;
 }
 
+page-drivers .drivers-content .row .associate {
+  text-align: left;
+}
+
+page-drivers .drivers-content .row .associate button {
+  width: 90px;
+}
+
 page-home .mycontent {
   background: #f8f8f8;
 }
@@ -25974,14 +26264,21 @@ page-home .header button {
 }
 
 page-home .new_request {
-  float: right;
+  position: relative;
+  height: 40px;
 }
 
-page-home .drivers {
+page-home .new_request button {
+  position: absolute;
+  right: 0;
+  width: 50%;
+}
+
+page-home .cars {
   width: 49%;
 }
 
-page-home .drivers button {
+page-home .cars button {
   width: 85px;
   height: 75px;
   padding: 5px;
@@ -25990,19 +26287,19 @@ page-home .drivers button {
   margin: 10px;
 }
 
-page-home .drivers button .button-inner {
+page-home .cars button .button-inner {
   display: inline-block;
   margin-top: 12px;
   text-transform: capitalize;
 }
 
-page-home .drivers button .button-inner div {
+page-home .cars button .button-inner div {
   white-space: normal;
   max-width: 75px;
   font-size: 13px;
 }
 
-page-home .drivers button .button-inner div:last-child {
+page-home .cars button .button-inner div:last-child {
   position: absolute;
   bottom: 10px;
   margin: auto;
@@ -26010,7 +26307,7 @@ page-home .drivers button .button-inner div:last-child {
   right: 0;
 }
 
-page-home .streets {
+page-home .requests {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -26023,12 +26320,12 @@ page-home .streets {
 }
 
 @media (max-width: 768px) {
-  page-home .streets {
+  page-home .requests {
     overflow: auto;
   }
 }
 
-page-home .streets .row {
+page-home .requests .row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -26037,12 +26334,12 @@ page-home .streets .row {
 }
 
 @media (max-width: 768px) {
-  page-home .streets .row {
+  page-home .requests .row {
     width: 750px;
   }
 }
 
-page-home .streets .row span {
+page-home .requests .row span {
   border-bottom: 1px solid lightgray;
   padding: 8px 5px;
   width: 12.5%;
@@ -26054,7 +26351,7 @@ page-home .streets .row span {
   text-overflow: ellipsis;
 }
 
-page-home .streets .row:active {
+page-home .requests .row:active {
   background: #b1ffa8;
 }
 

@@ -17,9 +17,13 @@
           <input type="text" name="country" [(ngModel)]="request.country"-->
           <div> Zipcode</div>
           <input type="text" name="zipcode" [(ngModel)]="request.zipcode">
+          <div> Notice</div>
+          <input type="text" name="notice" [(ngModel)]="request.notice">
           <div><button ion-button>ADD</button> </div>
-          <div class="error" [hidden]="!errorRequest">Please fill all the (*) requires fields</div>
       </div>
   </form>
+  <div class="close"><button ion-button (click)="closeModal()">CLOSE</button> </div>
+  <div class="error" [hidden]="!errorRequest">Please fill all the (*) requires fields</div>
+
 
 </ion-content>

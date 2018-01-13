@@ -20,7 +20,7 @@ page-drivers {
       span{
         border-bottom:1px solid lightgray;
         padding: 8px 5px;
-        width: 12.5%;
+        width: 11.4%;
         font-size: 15px;
         color: #696969;
         font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -56,6 +56,14 @@ page-drivers {
             font-size: 13px;
             height: 10px;
           }
+        }
+      }
+
+      .associate{
+        text-align: left;
+
+        button{
+          width: 90px;
         }
       }
     }

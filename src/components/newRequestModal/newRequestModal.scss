@@ -6,21 +6,57 @@ newRequestModal {
       font-size: 1em;
       font-family: "Roboto", "Helvetica Neue", sans-serif;
 
-      span{
-         border:1px solid lightgray;
-         padding: 5px;
-         flex-basis: 180px;
-         min-width: 180px;
-         max-width: 220px;
-      }
+     div{
+       padding: 7px 0 3px 0;
+     }
 
-     .error{
-       color: #ff0000;
+     input, .item-select {
+       display: block;
+       width: 100%;
+       padding: 6px 12px;
+       font-size: 14px;
+       line-height: 1.42857143;
+       color: #555;
+       background-color: #fff;
+       border: 1px solid #ccc;
+       border-radius: 4px;
+       -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+       box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+       -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+       transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+     }
+
+     .item-select {
+       padding: 0;
+       height: 0;
+
+       .item-inner, .input-wrapper {
+         padding: 0;
+         border: 0;
+
+         div {
+           padding: 0;
+
+           ion-select {
+             padding: 0 10px;
+           }
+         }
+       }
      }
    }
 
-  .select-md .select-icon {
-    display: none;
+  .close{
+    float: right;
+    margin-top: -47px;
+
+    .button-md {
+      background-color: #a9a9a9;
+    }
+  }
+
+  .error{
+    color: #ff0000;
   }
 
 }

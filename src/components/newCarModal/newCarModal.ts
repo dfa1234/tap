@@ -37,4 +37,8 @@ export class NewCarModal {
         }
     }
 
+    closeModal():void{
+        this.viewCtrl.dismiss();
+    }
+
 }

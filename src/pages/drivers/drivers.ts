@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NavController, ModalController} from 'ionic-angular';
 import {NewDriverModal} from "../../components/newDriverModal/newDriverModal";
 import {AppApi} from "../../app/app.api";
+import {carsModal} from "../../components/carsModal/carsModal";
 
 @Component({
   selector: 'page-drivers',
@@ -18,22 +19,32 @@ export class DriversPage {
   }
 
     drivers:any = this.api.drivers;
+    cars:any = this.api.cars;
 
 
     newDriverModal(){
         let driverModal = this.modalCtrl.create(NewDriverModal);
-        driverModal.onDidDismiss(data => {
-            if(data === null){
-
+        driverModal.onDidDismiss(responseGet => {
+            console.log(responseGet);
+            if(responseGet && responseGet.user.id){
+                this.drivers.push(responseGet);
             }else{
-                if(data && (Object.keys(data).length !== 0) && data.name !== 'SequelizeDatabaseError'){
-                    console.log(data);
-                    this.drivers.push(data);
-                }else{
-                    console.error(data);
-                }
+                console.error(responseGet);
             }
         });
         driverModal.present();
+    }
+
+    addCarToDriverModal(driver){
+        let carToDriverModal = this.modalCtrl.create(carsModal, {"driver": driver});
+        carToDriverModal.onDidDismiss(responseGet => {
+            console.log(responseGet);
+            if(responseGet && responseGet.constructor === Array && responseGet.length >= 1){
+                this.cars = responseGet;
+            }else{
+                console.error(responseGet);
+            }
+        });
+        carToDriverModal.present();
     }
 }

@@ -17,39 +17,43 @@ export class AppApi{
     }
 
     requests:any = [];
+    homeCars:any = [];
     cars:any = [];
     rides:any = [];
     drivers:any = [];
     myProfile:{user} = {user:{}};
+    //TODO merkazia:{location} = {location:null};
 
 
     newProcces(){
 
-        this.driverProvider.getDrivers$().subscribe(
+        this.carProvider.getCars$().subscribe(
             responseGet => {
-                if(responseGet.constructor === Array && responseGet.length >= 1){
-                    console.log('drivers: ',responseGet);
+                if (responseGet && responseGet.constructor === Array && responseGet.length >= 1) {
+                    console.log('homeCars: ',responseGet);
                     responseGet.forEach( (i) => {
-                        if (i.license){
-                            this.drivers.push(i)
+                        if (
+                            //TODO i.location === this.merkazia.location &&
+                            i.driver &&
+                            i.status < 1
+                        ){
+                            this.homeCars.push(i);
                         }
                     })
-                }else{
-                    console.log(responseGet);
+                } else {
+                    console.error(responseGet);
                 }
-            },
-            error => console.error(error)
-        );
+            });
 
 
         this.requestProvider.getRequests$().subscribe(
             responseGet => {
-                if (responseGet.constructor === Array && responseGet.length >= 1) {
+                if (responseGet && responseGet.constructor === Array && responseGet.length >= 1) {
                     console.log('requests: ',responseGet);
                     responseGet.forEach( (i) => {
-                        if (i.street){
+                        //TODO if (i.city === this.merkazia.location){
                             this.requests.push(i)
-                        }
+                        //}
                     })
                 } else {
                     console.error(responseGet);
@@ -58,17 +62,33 @@ export class AppApi{
 
         this.rideProvider.getRides$().subscribe(
             responseGet => {
-                if (responseGet.constructor === Array && responseGet.length >= 1) {
+                if (responseGet && responseGet.constructor === Array && responseGet.length >= 1) {
                     console.log('rides: ',responseGet);
                     this.rides = responseGet
                 } else {
                     console.error(responseGet);
                 }
-            })
+            });
+
+        this.driverProvider.getDrivers$().subscribe(
+            responseGet => {
+                if(responseGet && responseGet.constructor === Array && responseGet.length >= 1){
+                    console.log('drivers: ',responseGet);
+                    responseGet.forEach( (i) => {
+                        //if (i.status === '1'){
+                        this.drivers.push(i)
+                        //}
+                    })
+                }else{
+                    console.log(responseGet);
+                }
+            },
+            error => console.error(error)
+        );
 
         this.carProvider.getCars$().subscribe(
             responseGet => {
-                if (responseGet.constructor === Array && responseGet.length >= 1) {
+                if (responseGet && responseGet.constructor === Array && responseGet.length >= 1) {
                     console.log('cars: ',responseGet);
                     this.cars = responseGet
                 } else {

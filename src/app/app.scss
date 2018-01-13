@@ -5,3 +5,35 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.modal-wrapper{
+  box-shadow: 0 0!important;
+
+  newrequestmodal {
+    left: calc(50% - (320px/2))!important;
+    top: calc(50% - (700px/2))!important;
+    width: 320px!important;
+    height: 650px!important;
+  }
+
+  newdrivermodal {
+    left: calc(50% - (320px/2))!important;
+    top: calc(50% - (700px/2))!important;
+    width: 320px!important;
+    height: 500px!important;
+  }
+
+  newcarmodal {
+    left: calc(50% - (320px/2))!important;
+    top: calc(50% - (700px/2))!important;
+    width: 320px!important;
+    height: 500px!important;
+  }
+
+  driversmodal,carsmodal{
+    left: calc(50% - (480px/2))!important;
+    top: calc(50% - (700px/2))!important;
+    width: 480px!important;
+    height: 500px!important;
+  }
+}

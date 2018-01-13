@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {RideProvider} from "../../providers/ride";
 import {AppApi} from "../../app/app.api";
 
 @Component({
@@ -10,7 +9,6 @@ import {AppApi} from "../../app/app.api";
 export class RidePage {
 
   constructor(public navCtrl: NavController,
-              private rideProvider: RideProvider,
               private api: AppApi) {
 
   }

@@ -1,21 +1,17 @@
 <ion-content padding class="mycontent">
 
-  <h1>Home</h1>
-
 
   <div class="header" col-12>
       SELECTED:
 
       <span>
-          {{Drive.Driver?.user.firstName}} {{Drive.Driver?.user.lastName}}
+          {{Ride.Car?.driver.user.firstName}} {{Ride.Car?.driver.user.lastName}}
       </span>
-      <span *ngIf="Drive.Driver?.license">
-          ({{Drive.Driver?.license}})
-      </span>
-      <span *ngIf="Drive.Request">
+      <span> {{Ride.Car?.id}} </span>
+      <span *ngIf="Ride.Request">
           <ion-icon name="arrow-dropright-circle"></ion-icon>
-           {{Drive.Request?.firstName}} {{Drive.Request?.lastName}} -
-          {{Drive.Request?.street}} {{Drive.Request?.street_num}}, {{Drive.Request?.city}}
+           {{Ride.Request?.firstName}} {{Ride.Request?.lastName}} -
+          {{Ride.Request?.street}} {{Ride.Request?.street_num}}, {{Ride.Request?.city}}
           <span class="sent" [hidden]="!confirmation"> sent </span>
       </span>
       <button (click)="cancelThis()" *ngIf="cancel">
@@ -25,19 +21,20 @@
 
   </div>
 
-    <button ion-button (click)="driverModal()" class="new_driver">new Driver</button>
-    <button ion-button (click)="requestModal()" class="new_request">new Request</button>
+    <ion-row class="new_request">
+        <button ion-button (click)="requestModal()">new Request</button>
+    </ion-row>
 
   <ion-row>
-    <div class="drivers" col-6>
-        <button ion-button *ngFor="let driver of drivers" (click)="selectThis('driver',driver)">
-            <div>{{driver.user.firstName}} {{driver.user.lastName}}</div>
-            <div>{{driver.license}}</div>
+    <div class="cars" col-6>
+        <button ion-button *ngFor="let car of homeCars" (click)="selectThis('car',car)">
+            <div>{{car.driver.user.firstName}} {{car.driver.user.lastName}}</div>
+            <div>{{car.id}}</div>
       </button>
     </div>
 
 
-    <div class="streets" col-6>
+    <div class="requests" col-6>
 
         <div class="row" *ngFor="let request of requests" (click)="selectThis('request',request)">
             <span style="width: 15%"> {{request.street}} </span>

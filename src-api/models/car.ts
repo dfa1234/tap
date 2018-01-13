@@ -9,11 +9,7 @@ import {Driver} from "./driver";
 })
 export class Car extends Model<Car> {
 
-    @PrimaryKey
-    @Column
-    id:number;
 
-    @ForeignKey(() => Driver)
     @Column
     idDriver:number;
 
@@ -32,6 +28,15 @@ export class Car extends Model<Car> {
 
     @Column
     hardware_version: string;
+
+    @Column
+    availability:string;
+
+    @Column
+    location:string;
+
+    @Column
+    status: string;
 
     @BelongsTo(() => Driver, { foreignKey: 'idDriver'} )
     driver: Driver;

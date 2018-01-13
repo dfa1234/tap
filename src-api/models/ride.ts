@@ -6,6 +6,9 @@ import {Table, Column, Model} from 'sequelize-typescript';
 export class Ride extends Model<Ride> {
 
     @Column
+    car: number;
+
+    @Column
     driver_name: string;
 
     @Column
@@ -25,6 +28,12 @@ export class Ride extends Model<Ride> {
 
     @Column
     date: string;
+
+    @Column
+    start: string;
+
+    @Column
+    end: string;
 
     @Column
     status: string;

@@ -31,6 +31,9 @@ export class User extends Model<User> {
     @Column
     email: string;
 
+    @Column
+    tz:string;
+
     //@Unique
     @Column
     username: string;
@@ -40,7 +43,7 @@ export class User extends Model<User> {
     @Column
     password: string;
 
-    @Default('CLIENT')
+    @Default('client')
     @Column
     category: string;
 

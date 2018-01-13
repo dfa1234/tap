@@ -26,6 +26,8 @@ import {AppApi} from "./app.api";
 import {RegisterPage} from "../pages/register/register";
 import {CarProvider} from "../providers/car";
 import {NewCarModal} from "../components/newCarModal/newCarModal";
+import {driversModal} from "../components/driversModal/driversModal";
+import {carsModal} from "../components/carsModal/carsModal";
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import {NewCarModal} from "../components/newCarModal/newCarModal";
         SettingsPage,
         NewDriverModal,
         NewRequestModal,
-        NewCarModal
+        NewCarModal,
+        driversModal,
+        carsModal
     ],
     imports: [
         BrowserModule,
@@ -64,7 +68,9 @@ import {NewCarModal} from "../components/newCarModal/newCarModal";
         SettingsPage,
         NewDriverModal,
         NewRequestModal,
-        NewCarModal
+        NewCarModal,
+        driversModal,
+        carsModal
     ],
     providers: [
         StatusBar,

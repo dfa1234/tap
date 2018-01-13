@@ -1,6 +1,6 @@
 
 import {
-    Table, Column, Model, Default, BelongsTo, ForeignKey, PrimaryKey, HasMany
+    Table, Column, Model, Default, BelongsTo, ForeignKey, PrimaryKey, HasOne
 } from 'sequelize-typescript';
 import {User} from "./user";
 import {Car} from "./car";
@@ -11,12 +11,8 @@ import {Car} from "./car";
 export class Driver extends Model<Driver> {
 
     @PrimaryKey
-    @ForeignKey(() => User)
     @Column
     idUser:number;
-
-    @Column
-    tz:string;
 
     @Column
     license:string;
@@ -30,13 +26,16 @@ export class Driver extends Model<Driver> {
     type: string;
 
     @Column
+    availability:string;
+
+    @Column
     status: string;
 
 
     @BelongsTo(() => User, { foreignKey: 'idUser'} )
     user: User;
 
-    @HasMany(() => Car, { foreignKey: 'idDriver' })
-    driver: Driver;
+    @HasOne(() => Car, { foreignKey: 'idDriver' })
+    car: Car;
 
 }

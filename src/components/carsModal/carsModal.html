@@ -1,0 +1,25 @@
+<ion-content padding>
+
+    <div class="close"><ion-icon name="close" (click)="closeModal()"></ion-icon></div>
+    <div class="cars-content">
+        <div class="row">
+            <span> license:</span>
+            <span> brand: </span>
+            <span> places: </span>
+            <span> equipment: </span>
+            <span class="edit"> </span>
+        </div>
+
+        <div *ngFor="let car of cars" class="row">
+            <span>{{car.license_plate}}</span>
+            <span>{{car.brand}}</span>
+            <span>{{car.place_number}}</span>
+            <span>{{car.equipment}}</span>
+            <span class="edit">
+                <ion-icon name="checkbox-outline" (click)="driverToCarAssociate(car)"></ion-icon>
+            </span>
+        </div>
+    </div>
+
+
+</ion-content>

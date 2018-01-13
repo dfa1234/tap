@@ -20,7 +20,7 @@ export class NewDriverModal {
         license:null,
         type:'TAXI',
         user:{
-            category:'DRIVER',
+            category:'driver',
             firstName:null,
             lastName:null,
             email:null,
@@ -37,6 +37,10 @@ export class NewDriverModal {
             this.errorAddDriver = true;
             setTimeout(() => { this.errorAddDriver = false; },3000)
         }
+    }
+
+    closeModal():void{
+        this.viewCtrl.dismiss();
     }
 
 }

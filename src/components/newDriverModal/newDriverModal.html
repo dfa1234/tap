@@ -18,9 +18,10 @@
                 </ion-select>
             </ion-item>
             <div><button ion-button>ADD</button> </div>
-            <div class="error_add_driver" [hidden]="!errorAddDriver">Please fill all the (*) requires fields</div>
         </div>
     </form>
+    <div class="close"><button ion-button (click)="closeModal()">CLOSE</button> </div>
+    <div class="error_add_driver" [hidden]="!errorAddDriver">Please fill all the (*) requires fields</div>
 
 
 </ion-content>

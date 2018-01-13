@@ -3,7 +3,7 @@ import {Table, Column, Model} from 'sequelize-typescript';
 @Table({
     timestamps: true
 })
-export class TaxiRequest extends Model<TaxiRequest> {
+export class RideRequest extends Model<RideRequest> {
 
     @Column
     firstName: string;
@@ -31,6 +31,9 @@ export class TaxiRequest extends Model<TaxiRequest> {
 
     @Column
     status: string;
+
+    @Column
+    notice: string;
 
 }
 

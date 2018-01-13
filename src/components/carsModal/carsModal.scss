@@ -1,0 +1,58 @@
+carsModal {
+
+  .close {
+    position: fixed;
+    width: 455px;
+    padding: 5px;
+    height: 32px;
+    top: 0;
+    background-color: #fff;
+
+    ion-icon{
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .cars-content{
+    width: 100%;
+    min-width: 450px;
+
+    .row:first-child{
+
+      span{
+        border-bottom:2px solid lightgray;
+        font-size: 16.5px;
+        text-transform: uppercase;
+      }
+    }
+
+    .row{
+      display: flex;
+      width: 100%;
+
+      span{
+        border-bottom:1px solid lightgray;
+        padding: 8px 5px;
+        width: 20%;
+        font-size: 15px;
+        color: #696969;
+        font-family: "Roboto", "Helvetica Neue", sans-serif;
+        white-space: nowrap;
+        overflow: auto;
+        text-overflow: ellipsis;
+      }
+
+      .edit{
+        text-align: right;
+        padding-right: 20px;
+
+        ion-icon:active{
+          color: green;
+        }
+
+      }
+    }
+  }
+
+}

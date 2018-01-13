@@ -21,7 +21,7 @@ page-car {
       span{
         border-bottom:1px solid lightgray;
         padding: 8px 5px;
-        width: 16%;
+        width: 12.2%;
         font-size: 15px;
         color: #696969;
         font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -30,9 +30,17 @@ page-car {
         text-overflow: ellipsis;
       }
 
+      .status{
+        text-align: center;
+        width: 5%;
+
+        img{
+          width: 14px;
+        }
+      }
+
       .edit{
         text-align: center;
-        width: 7.5%;
         padding: 0;
 
         button{
@@ -48,6 +56,25 @@ page-car {
             font-size: 13px;
             height: 10px;
           }
+        }
+      }
+
+      .associate{
+        text-align: left;
+
+        button{
+          width: 90px;
+        }
+      }
+      .close{
+        position: relative;
+
+        .ion-md-close{
+          position: absolute;
+          right: 0;
+          top: -20px;
+          color: red;
+          font-size: 15px;
         }
       }
     }

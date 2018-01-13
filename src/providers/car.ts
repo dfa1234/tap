@@ -18,8 +18,8 @@ export class CarProvider {
         return this.http.post<any[]>(this.baseUrl.baseUrl+'/api/car',obj);
     }
 
-    setCarDriver$(obj) {
-        return this.http.post<any[]>(this.baseUrl.baseUrl+'/api/car_driver',obj);
+    updateCar$(obj) {
+        return this.http.put<any[]>(this.baseUrl.baseUrl+'/api/car',obj);
     }
 
 }

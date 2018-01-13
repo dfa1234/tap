@@ -19,8 +19,9 @@
         <div> Hardware Version </div>
           <input name="hardware_version" type="text" [(ngModel)]="car.hardware_version">
           <div><button ion-button>ADD</button> </div>
-          <div class="error" [hidden]="!errorCar">Please fill all the (*) requires fields</div>
       </div>
     </form>
+    <div class="close"><button ion-button (click)="closeModal()">CLOSE</button> </div>
+    <div class="error" [hidden]="!errorCar">Please fill all the (*) requires fields</div>
 
 </ion-content>

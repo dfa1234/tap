@@ -1,0 +1,27 @@
+<ion-content padding>
+
+    <div class="close"><ion-icon name="close" (click)="closeModal()"></ion-icon></div>
+    <div class="drivers-content">
+        <div class="row">
+            <span> license:</span>
+            <span style="width: 30%"> Name: </span>
+            <span> type: </span>
+            <span style="width: 30%"> status: </span>
+        </div>
+
+        <div *ngFor="let driver of drivers" class="row">
+            <span>{{driver.license}}</span>
+            <span style="width: 30%">{{driver.user.firstName}} {{driver.user.lastName}}</span>
+            <span>{{driver.type}}</span>
+            <span class="status">
+                <img *ngIf="driver.status === '1'" src="../../assets/imgs/online_status.png">
+                <img *ngIf="driver.status === null || driver.status === '0'" src="../../assets/imgs/offline_status.png">
+            </span>
+            <span class="edit">
+                <ion-icon name="checkbox-outline" (click)="carToDriverAssociate(driver)"></ion-icon>
+            </span>
+        </div>
+    </div>
+
+
+</ion-content>

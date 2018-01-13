@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import {ModalController} from 'ionic-angular';
-import {DriverProvider} from "../../providers/driver";
-import {RequestProvider} from "../../providers/request";
 import {RideProvider} from "../../providers/ride";
 import {NewRequestModal} from "../../components/newRequestModal/newRequestModal";
-import {NewDriverModal} from "../../components/newDriverModal/newDriverModal";
 import {AppApi} from "../../app/app.api";
+import {CarProvider} from "../../providers/car";
 
 @Component({
   selector: 'page-home',
@@ -13,57 +11,82 @@ import {AppApi} from "../../app/app.api";
 })
 export class HomePage {
 
-    constructor(public driverProvider: DriverProvider,
-                public rideProvider: RideProvider,
-                public requestProvider: RequestProvider,
+    constructor(private rideProvider: RideProvider,
+                private carProvider: CarProvider,
                 public modalCtrl: ModalController,
                 private api: AppApi) {
+        console.log('home',this.homeCars)
     }
 
-    drivers:any = this.api.drivers;
+    homeCars:any = this.api.homeCars;
     requests:any = this.api.requests;
     confirmation:number = null;
     cancel:number = null;
     canceled:number = null;
 
-    Drive = {Driver:null,Request:null};
+    Ride = {Car:null,Request:null};
 
     sendToDriver(){
 
         setTimeout(() => {
-            if(this.Drive.Driver && this.Drive.Request){
-                this.drivers.splice(this.drivers.indexOf(this.Drive.Driver),1);
-                this.requests.splice(this.requests.indexOf(this.Drive.Request),1);
+            if(this.Ride.Car && this.Ride.Request){
 
                 let address =
-                    this.Drive.Request.street+" "+
-                    this.Drive.Request.street_num+", "+
-                    this.Drive.Request.city+", "+
-                    //this.Drive.Request.country+
-                    " ("+this.Drive.Request.zipcode+")"
+                    this.Ride.Request.street+" "+
+                    this.Ride.Request.street_num+", "+
+                    this.Ride.Request.city+", "+
+                    //this.Ride.Request.country+
+                    " ("+this.Ride.Request.zipcode+")"
                 ;
                 let rideObj = {
-                    driver_name:this.Drive.Driver.user.firstName+' '+this.Drive.Driver.user.lastName,
-                    client_name:this.Drive.Request.firstName+' '+this.Drive.Request.lastName,
+                    car:this.Ride.Car.id,
+                    driver_name:this.Ride.Car.driver.user.firstName+' '+this.Ride.Car.driver.user.lastName,
+                    client_name:this.Ride.Request.firstName+' '+this.Ride.Request.lastName,
                     address_from:address,
-                    driver_phone:this.Drive.Driver.user.phone1,
-                    client_phone:this.Drive.Request.phone,
-                    date:new Date()
+                    driver_phone:this.Ride.Car.driver.user.phone1,
+                    client_phone:this.Ride.Request.phone,
+                    date:new Date(),
+                    status:'1'
                 };
 
                 this.rideProvider.setRide$(rideObj).subscribe(
+
                     responseGet => {
-                        console.log(responseGet)
+                        console.log(responseGet);
                         this.api.rides.push(responseGet);
-                        console.log(this.api.rides)
+
+                        this.Ride.Car.status = '1';
+                        console.log('test:');
+
+                        this.carProvider.updateCar$(this.Ride.Car).subscribe(
+                            responseGet => {
+                                console.log('homeCars: ',responseGet);
+                                if (responseGet && responseGet.constructor === Array && responseGet.length >= 1) {
+                                    this.requests.splice(this.requests.indexOf(this.Ride.Request),1);
+                                    this.api.cars = responseGet;
+                                    this.Ride.Car = null;
+                                    this.Ride.Request = null;
+                                    this.confirmation = null;
+                                    this.cancel = null;
+                                    this.homeCars = [];
+                                    responseGet.forEach( (i) => {
+                                        if (
+                                            //TODO i.location === this.merkazia.location &&
+                                        i.driver &&
+                                        i.status < 1
+                                        ){
+                                            this.homeCars.push(i);
+                                        }
+                                    })
+                                } else {
+                                    console.error(responseGet);
+                                }
+                            },
+                            error => console.error(error)
+                        );
                     },
                     error => console.error(error)
                 );
-
-                this.Drive.Driver = null;
-                this.Drive.Request = null;
-                this.confirmation = null;
-                this.cancel = null;
             }
         }, 2000);
 
@@ -71,14 +94,14 @@ export class HomePage {
 
 
     selectThis(type,obj){
-        if(type==='driver'){
-            this.Drive.Driver = obj
+        if(type==='car'){
+            this.Ride.Car = obj
         }else{
-            this.Drive.Request = obj
+            this.Ride.Request = obj
         }
         console.log(type,obj);
 
-        if(this.Drive.Driver && this.Drive.Request){
+        if(this.Ride.Car && this.Ride.Request){
             this.confirmation = 1;
             this.cancel = 1;
             this.sendToDriver();
@@ -86,8 +109,8 @@ export class HomePage {
     }
 
     cancelThis(){
-        this.Drive.Driver = null;
-        this.Drive.Request = null;
+        this.Ride.Car = null;
+        this.Ride.Request = null;
         this.confirmation = null;
         this.cancel = null;
         this.canceled = 1;
@@ -101,31 +124,13 @@ export class HomePage {
         let reqModal = this.modalCtrl.create(NewRequestModal);
         reqModal.onDidDismiss(responseGet => {
             console.log(responseGet);
-            if(responseGet && (Object.keys(responseGet).length !== 0) && responseGet.name !== 'SequelizeDatabaseError'){
-                this.requests.push(responseGet);
+            if(responseGet && responseGet.id){
+               this.requests.push(responseGet);
             }else{
                 console.error(responseGet);
             }
         });
         reqModal.present();
     }
-
-    driverModal(){
-        let uModal = this.modalCtrl.create(NewDriverModal);
-        uModal.onDidDismiss(data => {
-            if(data === null){
-
-            }else{
-                if(data && (Object.keys(data).length !== 0) && data.name !== 'SequelizeDatabaseError'){
-                    console.log(data);
-                    this.drivers.push(data);
-                }else{
-                    console.error(data);
-                }
-            }
-        });
-        uModal.present();
-    }
-
 
 }
