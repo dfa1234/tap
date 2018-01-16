@@ -1,6 +1,6 @@
 
 import {
-    Table, Column, Model, Default, BelongsTo, ForeignKey, HasOne
+    Table, Column, Model, Default, BelongsTo, ForeignKey, HasOne, PrimaryKey
 } from 'sequelize-typescript';
 import {User} from "./user";
 import {Car} from "./car";
@@ -11,6 +11,7 @@ import {Car} from "./car";
 export class Driver extends Model<Driver> {
 
     @ForeignKey(() => User)
+    @PrimaryKey
     @Column
     idUser:number;
 
