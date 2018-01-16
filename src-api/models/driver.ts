@@ -10,6 +10,7 @@ import {Car} from "./car";
 })
 export class Driver extends Model<Driver> {
 
+    @ForeignKey(() => User)
     @PrimaryKey
     @Column
     idUser:number;
