@@ -99,6 +99,38 @@ export const routes = {
         )
     },
 
+    updateDriver :   (req:Request, res:Response, next:NextFunction) => {
+
+        Driver.update({
+            license: req.body.license,
+            shomerShabat: req.body.shomerShabat,
+            type: req.body.type,
+            availability: req.body.availability,
+            status: req.body.status
+        }, {
+            where: {idUser: req.body.idUser}
+        }).then(() => {
+            User.update({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                address: req.body.address,
+                phone1: req.body.phone1,
+                phone2: req.body.phone2,
+                email: req.body.email,
+                category: req.body.category
+            }, {
+                where: {id: req.body.idUser}
+            }).then(() => {
+                return Driver.findAll({
+                    include: [User]
+                }).then(
+                    (drivers:Driver[]) => res.json(drivers),
+                    (error:any) => res.json(error)
+                )
+            },(error:any) => res.json(error))
+        })
+    },
+
     getRequest :   (req:Request, res:Response, next:NextFunction) => {
 
         RideRequest.findOne({
@@ -112,7 +144,7 @@ export const routes = {
     getRequests :   (req:Request, res:Response, next:NextFunction) => {
 
         RideRequest.findAll().then(
-            (request:RideRequest[]) => res.json(request),
+            (requests:RideRequest[]) => res.json(requests),
             (error:any) => res.json(error)
         )
 
@@ -165,7 +197,6 @@ export const routes = {
     getCar :   (req:Request, res:Response, next:NextFunction) => {
 
         Car.findOne({
-            include: [Driver],
             where: {idDriver: req.query.idDriver}
         }).then(
             car => res.json(car),
@@ -204,7 +235,7 @@ export const routes = {
     updateCar :   (req:Request, res:Response, next:NextFunction) => {
 
         Car.update({
-            idDriver: req.body.driver.idUser,
+            idDriver: req.body.idDriver,
             license_plate: req.body.license_plate,
             brand: req.body.brand,
             place_number: req.body.place_number,
@@ -216,16 +247,17 @@ export const routes = {
         }, {
             where: {id: req.body.id}
         }).then(() => {
-            return Car.findAll({
+            return  Car.findOne({
                 include: [
                     {model: Driver, include: [
                             {model: User}
                         ]}
-                ]
+                ],
+                where: {id: req.body.id}
             }).then(
-                (cars:Car[]) => res.json(cars),
+                car => res.json(car),
                 (error:any) => res.json(error)
-            )
+            );
         })
     }
 };

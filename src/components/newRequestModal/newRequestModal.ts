@@ -25,6 +25,7 @@ export class NewRequestModal {
         city:null,
         country:null,
         zipcode:null,
+        baggage:'0',
         notice:null
     };
 

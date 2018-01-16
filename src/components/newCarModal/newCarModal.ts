@@ -16,11 +16,15 @@ export class NewCarModal {
 
     errorCar = false;
     car = {
+        idDriver:null,
         license_plate:null,
-        brand:'hyundai',
-        place_number:5,
+        brand:"hyundai",
+        place_number:4,
         equipment:null,
-        hardware_version:null
+        hardware_version:null,
+        availability:null,
+        location:null,
+        status:"5"
     };
 
     newCar(form: NgForm){

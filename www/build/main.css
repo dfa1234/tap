@@ -25687,6 +25687,10 @@ ion-navbar.toolbar {
   display: none;
 }
 
+* {
+  overflow: -moz-scrollbars-none;
+}
+
 .modal-wrapper {
   -webkit-box-shadow: 0 0 !important;
   box-shadow: 0 0 !important;
@@ -25696,7 +25700,7 @@ ion-navbar.toolbar {
   left: calc(50% - (320px/2)) !important;
   top: calc(50% - (700px/2)) !important;
   width: 320px !important;
-  height: 650px !important;
+  height: 550px !important;
 }
 
 .modal-wrapper newdrivermodal {
@@ -25761,7 +25765,6 @@ carsModal .cars-content .row span {
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
-  overflow: auto;
   text-overflow: ellipsis;
 }
 
@@ -25815,7 +25818,6 @@ driversModal .drivers-content .row span {
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
-  overflow: auto;
   text-overflow: ellipsis;
 }
 
@@ -25968,7 +25970,7 @@ newRequestModal .row div {
   padding: 7px 0 3px 0;
 }
 
-newRequestModal .row input, newRequestModal .row .item-select {
+newRequestModal .row input, newRequestModal .row textarea, newRequestModal .row .item-select {
   display: block;
   width: 100%;
   padding: 6px 12px;
@@ -25984,6 +25986,11 @@ newRequestModal .row input, newRequestModal .row .item-select {
   transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+
+newRequestModal .row .name input, newRequestModal .row .address input {
+  width: 49%;
+  display: inline;
 }
 
 newRequestModal .row .item-select {
@@ -26007,6 +26014,7 @@ newRequestModal .row .item-select .item-inner div ion-select, newRequestModal .r
 newRequestModal .close {
   float: right;
   margin-top: -47px;
+  margin-right: 120px;
 }
 
 newRequestModal .close .button-md {
@@ -26112,7 +26120,6 @@ page-car .cars-content .row span {
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
-  overflow: auto;
   text-overflow: ellipsis;
 }
 
@@ -26153,14 +26160,7 @@ page-car .cars-content .row .associate button {
   width: 90px;
 }
 
-page-car .cars-content .row .close {
-  position: relative;
-}
-
-page-car .cars-content .row .close .ion-md-close {
-  position: absolute;
-  right: 0;
-  top: -20px;
+page-car .cars-content .row .ion-md-close {
   color: red;
   font-size: 15px;
 }
@@ -26192,7 +26192,6 @@ page-drivers .drivers-content .row span {
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
-  overflow: auto;
   text-overflow: ellipsis;
 }
 
@@ -26232,6 +26231,136 @@ page-drivers .drivers-content .row .associate {
 
 page-drivers .drivers-content .row .associate button {
   width: 90px;
+}
+
+edit-car .row {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+edit-car .row div {
+  padding: 7px 0 3px 0;
+}
+
+edit-car .row input, edit-car .row .item-select {
+  display: block;
+  width: 200px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+
+edit-car .row .item-select {
+  padding: 0;
+  height: 0;
+}
+
+edit-car .row .item-select .item-inner, edit-car .row .item-select .input-wrapper {
+  padding: 0;
+  border: 0;
+}
+
+edit-car .row .item-select .item-inner div, edit-car .row .item-select .input-wrapper div {
+  padding: 0;
+}
+
+edit-car .row .item-select .item-inner div ion-select, edit-car .row .item-select .input-wrapper div ion-select {
+  padding: 0 10px;
+  max-width: 100%;
+}
+
+edit-car .row .item-select .item-inner div ion-select .select-icon, edit-car .row .item-select .input-wrapper div ion-select .select-icon {
+  width: 16px;
+}
+
+edit-car .ion-md-close {
+  color: red;
+  font-size: 15px;
+}
+
+edit-car .error {
+  color: #ff0000;
+}
+
+edit-car .success {
+  color: #00c327;
+}
+
+edit-driver .row {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+edit-driver .row div {
+  padding: 7px 0 3px 0;
+}
+
+edit-driver .row input, edit-driver .row .item-select {
+  display: block;
+  width: 200px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+
+edit-driver .row .item-select {
+  padding: 0;
+  height: 0;
+}
+
+edit-driver .row .item-select .item-inner, edit-driver .row .item-select .input-wrapper {
+  padding: 0;
+  border: 0;
+}
+
+edit-driver .row .item-select .item-inner div, edit-driver .row .item-select .input-wrapper div {
+  padding: 0;
+}
+
+edit-driver .row .item-select .item-inner div ion-select, edit-driver .row .item-select .input-wrapper div ion-select {
+  padding: 0 10px;
+  max-width: 100%;
+}
+
+edit-driver .row .item-select .item-inner div ion-select .select-icon, edit-driver .row .item-select .input-wrapper div ion-select .select-icon {
+  width: 16px;
+}
+
+edit-driver .ion-md-close {
+  color: red;
+  font-size: 15px;
+}
+
+edit-driver .error {
+  color: #ff0000;
+}
+
+edit-driver .success {
+  color: #00c327;
 }
 
 page-home .mycontent {
@@ -26341,18 +26470,21 @@ page-home .requests .row {
 
 page-home .requests .row span {
   border-bottom: 1px solid lightgray;
-  padding: 8px 5px;
+  padding: 8px 12px;
   width: 12.5%;
   font-size: 15px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
-  overflow: auto;
   text-overflow: ellipsis;
 }
 
-page-home .requests .row:active {
-  background: #b1ffa8;
+page-home .requests .row span ion-icon {
+  padding: 0 5px;
+}
+
+page-home .requests .row span ion-icon:active {
+  color: #22c009;
 }
 
 login .panel-login {
@@ -26598,7 +26730,6 @@ page-ride .rides-content .row span {
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
-  overflow: auto;
   text-overflow: ellipsis;
 }
 

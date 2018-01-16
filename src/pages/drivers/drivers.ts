@@ -3,6 +3,7 @@ import {NavController, ModalController} from 'ionic-angular';
 import {NewDriverModal} from "../../components/newDriverModal/newDriverModal";
 import {AppApi} from "../../app/app.api";
 import {carsModal} from "../../components/carsModal/carsModal";
+import {editDriver} from "../edit-driver/edit-driver";
 
 @Component({
   selector: 'page-drivers',
@@ -46,5 +47,9 @@ export class DriversPage {
             }
         });
         carToDriverModal.present();
+    }
+
+    editDriver(driver){
+        this.navCtrl.setRoot(editDriver, {driver: driver});
     }
 }

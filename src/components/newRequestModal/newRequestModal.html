@@ -1,28 +1,35 @@
 <ion-content padding>
   <form #f="ngForm" (ngSubmit)="newRequest(f)" #form="ngForm">
       <div class="row">
-        <div> First Name</div>
-        <input type="text" name="firstName" [(ngModel)]="request.firstName">
-        <div> Last Name</div>
-          <input type="text" name="lastName" [(ngModel)]="request.lastName">
-        <div> Phone </div>
+          <div><span> First Name</span> <span style="float: right"> Last Name</span></div>
+          <div class="name">
+              <input type="text" name="firstName" [(ngModel)]="request.firstName">
+              <input type="text" name="lastName" [(ngModel)]="request.lastName" style="float: right;">
+          </div>
+          <div> Phone </div>
           <input type="text" name="phone" [(ngModel)]="request.phone">
-          <div> Street *</div>
-          <input type="text" name="street" [(ngModel)]="request.street" required>
-          <div> Street Number *</div>
-          <input type="text" name="street_num" [(ngModel)]="request.street_num" required>
-          <div> City *</div>
-          <input type="text" name="city" [(ngModel)]="request.city" required>
+          <div><span>Street *</span> <span style="float: right">Street Number *</span></div>
+          <div class="address">
+              <input type="text" name="street" [(ngModel)]="request.street" required style="width: 79%">
+              <input type="text" name="street_num" [(ngModel)]="request.street_num" required style="float: right;width: 19%">
+          </div>
+          <div><span>City *</span> <span style="float: right">Zipcode</span></div>
+          <div class="address">
+              <input type="text" name="city" [(ngModel)]="request.city" required style="width: 64%">
+              <input type="text" name="zipcode" [(ngModel)]="request.zipcode" style="float: right;width: 34%">
+          </div>
           <!--div> Country </div>
           <input type="text" name="country" [(ngModel)]="request.country"-->
-          <div> Zipcode</div>
-          <input type="text" name="zipcode" [(ngModel)]="request.zipcode">
           <div> Notice</div>
-          <input type="text" name="notice" [(ngModel)]="request.notice">
-          <div><button ion-button>ADD</button> </div>
+          <textarea name="notice" [(ngModel)]="request.notice"></textarea>
+          <div><span>Baggage</span></div>
+          <div class="address">
+              <input type="number" name="baggage" [(ngModel)]="request.baggage" style="width: 19%">
+              <button ion-button style="float: right;width: 90px;">ADD</button>
+          </div>
       </div>
   </form>
-  <div class="close"><button ion-button (click)="closeModal()">CLOSE</button> </div>
+  <div class="close"><button ion-button (click)="closeModal()">CANCEL</button> </div>
   <div class="error" [hidden]="!errorRequest">Please fill all the (*) requires fields</div>
 
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
 import {NgForm} from '@angular/forms';
-import {AuthenticationProvider} from "../../providers/Authentication";
+import {AuthenticationProvider} from "../../providers/authentication";
 import {TabsPage} from "../tabs/tabs";
 import {LoginPage} from "../login/login";
 import {AppApi} from "../../app/app.api";

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {ModalController} from 'ionic-angular';
+import {AlertController, ModalController} from 'ionic-angular';
 import {RideProvider} from "../../providers/ride";
 import {NewRequestModal} from "../../components/newRequestModal/newRequestModal";
 import {AppApi} from "../../app/app.api";
 import {CarProvider} from "../../providers/car";
+import {RequestProvider} from "../../providers/request";
 
 @Component({
   selector: 'page-home',
@@ -13,13 +14,68 @@ export class HomePage {
 
     constructor(private rideProvider: RideProvider,
                 private carProvider: CarProvider,
+                private requestProvider: RequestProvider,
                 public modalCtrl: ModalController,
+                public alertCtrl: AlertController,
                 private api: AppApi) {
-        console.log('home',this.homeCars)
+
+    }
+    cars:any = this.api.cars;
+    requestList:any = this.api.requests;
+
+
+    getCars(){
+        let myCars = [];
+        if(sessionStorage.getItem('cars')===null){
+            this.carProvider.getCars$().subscribe(
+                response => {
+                    response.forEach( (i) => {
+                        if (//TODO i.location === this.merkazia.location &&
+                        i.driver &&
+                        i.status === '5'
+                        ){
+                            myCars.push(i);
+                        }
+                    })
+                },
+                error => console.error(error)
+            )
+        }else{
+            this.cars.forEach( (i) => {
+                if (//TODO i.location === this.merkazia.location &&
+                i.driver &&
+                i.status === '5'
+                ){
+                    myCars.push(i);
+                }
+            })
+        }
+        return myCars;
     }
 
-    homeCars:any = this.api.homeCars;
-    requests:any = this.api.requests;
+    getRequests(){
+        let myRequests = [];
+        if(sessionStorage.getItem('requests')===null){
+            console.log('entred')
+            this.requestProvider.getRequests$().subscribe(
+                response => {
+                    response.forEach( (i) => {
+                        myRequests.push(i);
+                    })
+                    myRequests = response;
+                    console.log(myRequests)
+                },
+                error => console.error(error)
+            )
+        }else{
+            myRequests = this.requestList;
+        }
+        return myRequests;
+    }
+
+    homeCars = this.getCars();
+    requests = this.getRequests();
+
     confirmation:number = null;
     cancel:number = null;
     canceled:number = null;
@@ -56,31 +112,15 @@ export class HomePage {
                         this.api.rides.push(responseGet);
 
                         this.Ride.Car.status = '1';
-                        console.log('test:');
-
                         this.carProvider.updateCar$(this.Ride.Car).subscribe(
                             responseGet => {
                                 console.log('homeCars: ',responseGet);
-                                if (responseGet && responseGet.constructor === Array && responseGet.length >= 1) {
-                                    this.requests.splice(this.requests.indexOf(this.Ride.Request),1);
-                                    this.api.cars = responseGet;
-                                    this.Ride.Car = null;
-                                    this.Ride.Request = null;
-                                    this.confirmation = null;
-                                    this.cancel = null;
-                                    this.homeCars = [];
-                                    responseGet.forEach( (i) => {
-                                        if (
-                                            //TODO i.location === this.merkazia.location &&
-                                        i.driver &&
-                                        i.status < 1
-                                        ){
-                                            this.homeCars.push(i);
-                                        }
-                                    })
-                                } else {
-                                    console.error(responseGet);
-                                }
+                                this.requests.splice(this.requests.indexOf(this.Ride.Request),1);
+                                this.homeCars.splice(this.homeCars.indexOf(this.Ride.Car),1);
+                                this.Ride.Car = null;
+                                this.Ride.Request = null;
+                                this.confirmation = null;
+                                this.cancel = null;
                             },
                             error => console.error(error)
                         );
@@ -131,6 +171,16 @@ export class HomePage {
             }
         });
         reqModal.present();
+    }
+
+    requestUserModal(user) {
+        let alert = this.alertCtrl.create({
+            title: user.firstName+" "+user.lastName,
+            subTitle: user.phone,
+            message: user.notice,
+            buttons: ['Close']
+        });
+        alert.present();
     }
 
 }

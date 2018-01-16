@@ -15,7 +15,7 @@ import {HomePage} from "../pages/home/home";
 import {RidePage} from "../pages/ride/ride";
 import {SettingsPage} from "../pages/settings/settings";
 import {DriverProvider} from '../providers/driver';
-import {AuthenticationProvider} from '../providers/Authentication';
+import {AuthenticationProvider} from '../providers/authentication';
 import {LoginPage} from "../pages/login/login";
 import {BaseUrl} from "./app.url";
 import { RequestProvider } from '../providers/request';
@@ -28,6 +28,8 @@ import {CarProvider} from "../providers/car";
 import {NewCarModal} from "../components/newCarModal/newCarModal";
 import {driversModal} from "../components/driversModal/driversModal";
 import {carsModal} from "../components/carsModal/carsModal";
+import {editCar} from "../pages/edit-car/edit-car";
+import {editDriver} from "../pages/edit-driver/edit-driver";
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import {carsModal} from "../components/carsModal/carsModal";
         NewRequestModal,
         NewCarModal,
         driversModal,
-        carsModal
+        carsModal,
+        editCar,
+        editDriver
     ],
     imports: [
         BrowserModule,
@@ -70,7 +74,9 @@ import {carsModal} from "../components/carsModal/carsModal";
         NewRequestModal,
         NewCarModal,
         driversModal,
-        carsModal
+        carsModal,
+        editCar,
+        editDriver
     ],
     providers: [
         StatusBar,

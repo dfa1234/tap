@@ -18,4 +18,7 @@ export class DriverProvider {
         return this.http.post<any[]>(this.baseUrl.baseUrl+'/api/driver',obj);
     }
 
+    updateDriver$(obj) {
+        return this.http.put<any[]>(this.baseUrl.baseUrl+'/api/driver',obj);
+    }
 }

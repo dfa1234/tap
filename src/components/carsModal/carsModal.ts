@@ -21,7 +21,7 @@ export class carsModal {
     driver = this.navParam.get("driver");
 
     driverToCarAssociate(car){
-        car.driver = this.driver;
+        car.idDriver = this.driver.idUser;
         console.log(car);
         this.carProvider.updateCar$(car).subscribe(
                 responseGet => this.viewCtrl.dismiss(responseGet),

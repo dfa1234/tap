@@ -6,6 +6,10 @@
   display: none;
 }
 
+*{
+  overflow: -moz-scrollbars-none;
+}
+
 .modal-wrapper{
   box-shadow: 0 0!important;
 
@@ -13,7 +17,7 @@
     left: calc(50% - (320px/2))!important;
     top: calc(50% - (700px/2))!important;
     width: 320px!important;
-    height: 650px!important;
+    height: 550px!important;
   }
 
   newdrivermodal {

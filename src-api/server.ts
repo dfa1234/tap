@@ -56,6 +56,7 @@ app.post('/api/user', routes.setUser, routes.getUser);
 
 app.get('/api/driver', routes.getDriver);
 app.get('/api/drivers', routes.getDrivers);
+app.put('/api/driver', routes.updateDriver,routes.getDriver);
 app.post('/api/driver', routes.setDriver, routes.getDriver);
 
 app.get('/api/request', routes.getRequest);

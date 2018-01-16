@@ -26,7 +26,6 @@ page-car {
         color: #696969;
         font-family: "Roboto", "Helvetica Neue", sans-serif;
         white-space: nowrap;
-        overflow: auto;
         text-overflow: ellipsis;
       }
 
@@ -66,16 +65,10 @@ page-car {
           width: 90px;
         }
       }
-      .close{
-        position: relative;
 
-        .ion-md-close{
-          position: absolute;
-          right: 0;
-          top: -20px;
-          color: red;
-          font-size: 15px;
-        }
+      .ion-md-close{
+        color: red;
+        font-size: 15px;
       }
     }
   }

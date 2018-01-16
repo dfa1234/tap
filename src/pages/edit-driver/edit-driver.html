@@ -1,0 +1,40 @@
+<ion-content padding>
+        <div class="row">
+            <div> License *</div>
+            <input name="license" type="text" [(ngModel)]="driver.license" required>
+            <div> First Name *</div>
+            <input name="firstName" type="text" [(ngModel)]="driver.user.firstName" required>
+            <div> Last Name *</div>
+            <input name="lastName" type="text" [(ngModel)]="driver.user.lastName" required>
+            <div> Phone1 </div>
+            <input name="phone1" type="text" [readonly]="true" [(ngModel)]="driver.user.phone1">
+            <div> Phone2 </div>
+            <input name="phone2" type="text" [(ngModel)]="driver.user.phone2">
+            <div> Email </div>
+            <input name="email" type="text" [(ngModel)]="driver.user.email">
+            <div> Status </div>
+            <ion-item>
+                <ion-select name="type" [(ngModel)]="driver.status" required interface="popover">
+                    <ion-option value="1">Activated</ion-option>
+                    <ion-option value="2">Awaiting activation</ion-option>
+                </ion-select>
+            </ion-item>
+            <div> Type </div>
+            <ion-item>
+                <ion-select name="type" [(ngModel)]="driver.type" required interface="popover">
+                    <ion-option value="TAXI">TAXI</ion-option>
+                    <ion-option value="DRIVER">DRIVER</ion-option>
+                </ion-select>
+            </ion-item>
+            <div>Car</div>
+            <div *ngIf="driver.car===null"><button ion-button (click)="addCarToDriverModal()">associate</button></div>
+            <div *ngIf="driver.car">
+            <ion-icon name="close" (click)="deleteCar()"></ion-icon>
+              {{driver.car.license_plate}} {{driver.car.brand}}
+            </div>
+            <div><button ion-button (click)="saveDriver()">SAVE</button> </div>
+        </div>
+    <div class="success" [hidden]="!savedDriver">Save with success</div>
+    <div class="error" [hidden]="!errorDriver">Please fill all the (*) requires fields</div>
+
+</ion-content>

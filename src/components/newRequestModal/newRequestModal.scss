@@ -10,7 +10,7 @@ newRequestModal {
        padding: 7px 0 3px 0;
      }
 
-     input, .item-select {
+     input, textarea, .item-select {
        display: block;
        width: 100%;
        padding: 6px 12px;
@@ -25,6 +25,11 @@ newRequestModal {
        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+     }
+
+     .name input, .address input{
+       width: 49%;
+       display: inline;
      }
 
      .item-select {
@@ -49,6 +54,7 @@ newRequestModal {
   .close{
     float: right;
     margin-top: -47px;
+    margin-right:120px;
 
     .button-md {
       background-color: #a9a9a9;

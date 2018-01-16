@@ -4,6 +4,7 @@ import {NewCarModal} from "../../components/newCarModal/newCarModal";
 import {AppApi} from "../../app/app.api";
 import {driversModal} from "../../components/driversModal/driversModal";
 import {CarProvider} from "../../providers/car";
+import {editCar} from "../edit-car/edit-car";
 
 @Component({
   selector: 'page-car',
@@ -27,6 +28,7 @@ export class CarPage {
         carModal.onDidDismiss(responseGet => {
             console.log(responseGet);
             if(responseGet && responseGet.id){
+                this.api.refreshDatas("cars") ;
                 this.cars.push(responseGet);
             }else{
                 console.error(responseGet);
@@ -39,33 +41,38 @@ export class CarPage {
         let carToDriverModal = this.modalCtrl.create(driversModal, {"car": car});
         carToDriverModal.onDidDismiss(responseGet => {
             console.log(responseGet);
-            if(responseGet && responseGet.constructor === Array && responseGet.length >= 1){
-                this.cars = responseGet;
-            }else{
-                console.error(responseGet);
+            if(responseGet.id) {
+                this.api.refreshDatas("cars") ;
+                this.carProvider.getCars$().subscribe(
+                    response => {
+                        this.cars = response
+                    }
+                )
             }
+
         });
         carToDriverModal.present();
     }
 
-    updateCar(car){
+    deleteDriver(car){
+        car.idDriver = null;
         console.log(car);
         this.carProvider.updateCar$(car).subscribe(
             responseGet => {
                 console.log(responseGet);
-                if(responseGet && responseGet.constructor === Array && responseGet.length >= 1){
-                    this.cars = responseGet;
-                }else{
-                    console.error(responseGet);
-                }
+                this.api.refreshDatas("cars") ;
+                this.carProvider.getCars$().subscribe(
+                    response => {
+                        this.cars = response
+                    }
+                )
             },
             error => console.error(error)
         )
     }
 
-    deleteDriver(car){
-        car.driver.idUser = null;
-        this.updateCar(car);
+    editCar(car){
+        this.navCtrl.setRoot(editCar, {car: car});
     }
 
 }

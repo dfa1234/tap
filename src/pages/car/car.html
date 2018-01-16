@@ -26,15 +26,15 @@
           {{car.availability  | date:"H:mm"}}
       </span>
       <span class="status">
-        <img *ngIf="car.status === '1'" src="../../assets/imgs/online_status.png">
-        <img *ngIf="car.status < 1" src="../../assets/imgs/offline_status.png">
+        <img *ngIf="car.status === '5'" src="../../assets/imgs/online_status.png">
+        <img *ngIf="car.status !== '5'" src="../../assets/imgs/offline_status.png">
       </span>
       <span *ngIf="car.driver===null" class="associate edit"><button ion-button (click)="addCarToDriverModal(car)">associate</button></span>
       <span *ngIf="car.driver">
+           <ion-icon name="close" (click)="deleteDriver(car)"></ion-icon>
           {{car.driver.user.firstName}} {{car.driver.user.lastName}} - ({{car.driver.license}})
-          <div class="close"><ion-icon name="close" (click)="deleteDriver(car)"></ion-icon></div>
       </span>
-      <span class="edit" style="width:9.5%"><button ion-button>Edit</button></span>
+      <span class="edit" style="width:9.5%"><button (click)="editCar(car)" ion-button>Edit</button></span>
     </div>
   </div>
 

@@ -26,10 +26,10 @@
       <span>{{driver.type}}</span>
       <span class="status">
         <img *ngIf="driver.status === '1'" src="../../assets/imgs/online_status.png">
-        <img *ngIf="driver.status === null || driver.status === '0'" src="../../assets/imgs/offline_status.png">
+        <img *ngIf="driver.status === null || driver.status > 1" src="../../assets/imgs/offline_status.png">
       </span>
       <span class="associate edit"><button ion-button (click)="addCarToDriverModal(driver)">associate</button></span>
-      <span class="edit"><button ion-button>Edit</button></span>
+      <span class="edit"><button ion-button (click)="editDriver(driver)">Edit</button></span>
     </div>
   </div>
 

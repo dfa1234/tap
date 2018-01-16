@@ -13,7 +13,7 @@ export class driversModal {
   constructor(private carProvider: CarProvider,
               private api: AppApi,
               private viewCtrl: ViewController,
-              public navParam: NavParams,) {
+              private navParam: NavParams) {
       console.log(this.navParam.get("car"))
   }
 
@@ -22,7 +22,7 @@ export class driversModal {
 
 
     carToDriverAssociate(driver){
-        this.car.driver = driver;
+        this.car.idDriver = driver.idUser;
         console.log(driver,this.car);
             this.carProvider.updateCar$(this.car).subscribe(
                 responseGet => this.viewCtrl.dismiss(responseGet),

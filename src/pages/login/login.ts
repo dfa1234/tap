@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
-import {AuthenticationProvider} from "../../providers/Authentication";
+import {AuthenticationProvider} from "../../providers/authentication";
 import {TabsPage} from "../tabs/tabs";
 import {RegisterPage} from "../register/register";
 import {AppApi} from "../../app/app.api";
@@ -33,15 +33,16 @@ export class LoginPage {
                 console.log(responseGet);
                 if(responseGet && (Object.keys(responseGet).length !== 0)){
                     this.myProfile.user = responseGet;
-                    if(this.myProfile.user.username === this.user.username){
-                        this.navController.setRoot(TabsPage, {opentab: 2});
-                        this.api.newProcces();
-                    }else {
-                        this.errorLogin = true
-                        setTimeout(() => {
-                            this.errorLogin = false;
-                        },3000)
-                    }
+                    this.api.setProfile(responseGet);
+                    console.log(responseGet);
+                    this.navController.setRoot(TabsPage, {opentab: 2});
+                    this.api.refreshDatas('all');
+
+                }else {
+                    this.errorLogin = true
+                    setTimeout(() => {
+                        this.errorLogin = false;
+                    },3000)
                 }
             },
             error => console.error(error)

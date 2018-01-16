@@ -8,11 +8,10 @@ import {AppApi} from "../../app/app.api";
 })
 export class AccountPage {
 
-    myProfile;
+    myProfile = this.api.myProfile;
 
     constructor(public navCtrl: NavController,
               public api: AppApi) {
-      this.myProfile = this.api.myProfile;
       console.log(this.myProfile);
   }
 

@@ -1,4 +1,4 @@
-import {Table, Column, Model} from 'sequelize-typescript';
+import {Table, Column, Model, Default} from 'sequelize-typescript';
 
 @Table({
     timestamps: true
@@ -31,6 +31,10 @@ export class RideRequest extends Model<RideRequest> {
 
     @Column
     status: string;
+
+    @Default('0')
+    @Column
+    baggage: string;
 
     @Column
     notice: string;

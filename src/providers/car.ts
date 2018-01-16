@@ -10,8 +10,12 @@ export class CarProvider {
               private baseUrl: BaseUrl) {
   }
 
+    getCar$(obj) {
+      return this.http.get<any[]>(this.baseUrl.baseUrl+'/api/car', { params:obj });
+    }
+
     getCars$() {
-      return this.http.get<any[]>(this.baseUrl.baseUrl+'/api/cars');
+        return this.http.get<any[]>(this.baseUrl.baseUrl+'/api/cars');
     }
 
     setCar$(obj) {
