@@ -17,6 +17,7 @@ export class NewCarModal {
     errorCar = false;
     car = {
         idDriver:null,
+        car_license:null,
         license_plate:null,
         brand:"hyundai",
         place_number:4,

@@ -25714,22 +25714,22 @@ ion-navbar.toolbar {
   left: calc(50% - (320px/2)) !important;
   top: calc(50% - (700px/2)) !important;
   width: 320px !important;
-  height: 500px !important;
+  height: 530px !important;
 }
 
 .modal-wrapper driversmodal, .modal-wrapper carsmodal {
-  left: calc(50% - (480px/2)) !important;
+  left: calc(50% - (600px/2)) !important;
   top: calc(50% - (700px/2)) !important;
-  width: 480px !important;
+  width: 600px !important;
   height: 500px !important;
 }
 
 carsModal .close {
   position: fixed;
-  width: 455px;
+  width: 575px;
   padding: 5px;
   height: 32px;
-  top: 0;
+  top: 50px;
   background-color: #fff;
 }
 
@@ -25745,8 +25745,9 @@ carsModal .cars-content {
 
 carsModal .cars-content .row:first-child span {
   border-bottom: 2px solid lightgray;
-  font-size: 16.5px;
+  font-size: 11.5px;
   text-transform: uppercase;
+  overflow: hidden;
 }
 
 carsModal .cars-content .row {
@@ -25760,12 +25761,13 @@ carsModal .cars-content .row {
 carsModal .cars-content .row span {
   border-bottom: 1px solid lightgray;
   padding: 8px 5px;
-  width: 20%;
+  width: 16.6%;
   font-size: 15px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 carsModal .cars-content .row .edit {
@@ -25779,10 +25781,10 @@ carsModal .cars-content .row .edit ion-icon:active {
 
 driversModal .close {
   position: fixed;
-  width: 455px;
+  width: 575px;
   padding: 5px;
   height: 32px;
-  top: 0;
+  top: 50px;
   background-color: #fff;
 }
 
@@ -26115,7 +26117,7 @@ page-car .cars-content .row {
 page-car .cars-content .row span {
   border-bottom: 1px solid lightgray;
   padding: 8px 5px;
-  width: 12.2%;
+  width: 10%;
   font-size: 15px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -26188,7 +26190,7 @@ page-drivers .drivers-content .row {
 page-drivers .drivers-content .row span {
   border-bottom: 1px solid lightgray;
   padding: 8px 5px;
-  width: 11.4%;
+  width: 10.7%;
   font-size: 15px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;

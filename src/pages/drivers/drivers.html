@@ -4,6 +4,7 @@
 
   <div class="drivers-content">
     <div class="row">
+      <span style="width: 5%"> id </span>
       <span> license </span>
       <span> Name </span>
       <span> phone1 </span>
@@ -17,6 +18,7 @@
     </div>
 
     <div *ngFor="let driver of drivers" class="row">
+      <span style="width: 5%">{{driver.idUser}}</span>
       <span>{{driver.license}}</span>
       <span>{{driver.user.firstName}} {{driver.user.lastName}}</span>
       <span>{{driver.user.phone1}}</span>
@@ -28,7 +30,11 @@
         <img *ngIf="driver.status === '1'" src="../../assets/imgs/online_status.png">
         <img *ngIf="driver.status === null || driver.status > 1" src="../../assets/imgs/offline_status.png">
       </span>
-      <span class="associate edit"><button ion-button (click)="addCarToDriverModal(driver)">associate</button></span>
+      <span *ngIf="driver.car===null" class="associate edit"><button ion-button (click)="addCarToDriverModal(driver)">associate</button></span>
+      <span *ngIf="driver.car" class="associate edit">
+        <ion-icon name="close" (click)="deleteCar(driver)"></ion-icon>
+        {{driver.car.id}}
+      </span>
       <span class="edit"><button ion-button (click)="editDriver(driver)">Edit</button></span>
     </div>
   </div>

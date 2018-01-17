@@ -13,6 +13,9 @@ export class Car extends Model<Car> {
     @Column
     idDriver:number;
 
+    @Column
+    car_license: string;
+
     //@Unique
     @Column
     license_plate: string;

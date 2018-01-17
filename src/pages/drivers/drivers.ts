@@ -4,6 +4,7 @@ import {NewDriverModal} from "../../components/newDriverModal/newDriverModal";
 import {AppApi} from "../../app/app.api";
 import {carsModal} from "../../components/carsModal/carsModal";
 import {editDriver} from "../edit-driver/edit-driver";
+import {CarProvider} from "../../providers/car";
 
 @Component({
   selector: 'page-drivers',
@@ -14,12 +15,32 @@ export class DriversPage {
 
   constructor(public navCtrl: NavController,
               private api: AppApi,
+               private carProvider: CarProvider,
                public modalCtrl: ModalController,
               ) {
-
   }
 
-    drivers:any = this.api.drivers;
+  driversList:any = this.api.drivers;
+
+  getCars(){
+      console.log('car: 111sssss');
+
+      let myDrivers = [];
+      this.driversList.forEach( (i) => {
+          let car = {idDriver:i.idUser};
+          this.carProvider.getCar$(car).subscribe(
+              responseGet => {
+                  console.log('car: ',responseGet);
+                  i.car = responseGet;
+                  myDrivers.push(i)
+              },
+              error => console.error(error)
+          );
+      });
+      return myDrivers;
+  }
+
+    drivers = this.getCars();
     cars:any = this.api.cars;
 
 
@@ -40,16 +61,25 @@ export class DriversPage {
         let carToDriverModal = this.modalCtrl.create(carsModal, {"driver": driver});
         carToDriverModal.onDidDismiss(responseGet => {
             console.log(responseGet);
-            if(responseGet && responseGet.constructor === Array && responseGet.length >= 1){
-                this.cars = responseGet;
-            }else{
-                console.error(responseGet);
-            }
+            this.api.refreshDatas("drivers") ;
+            driver.car = responseGet;
         });
         carToDriverModal.present();
     }
 
     editDriver(driver){
         this.navCtrl.setRoot(editDriver, {driver: driver});
+    }
+
+    deleteCar(driver){
+        driver.car.idDriver = null;
+        this.carProvider.updateCar$(driver.car).subscribe(
+            responseGet => {
+                console.log(responseGet);
+                this.api.refreshDatas("drivers") ;
+            },
+            error => console.error(error)
+        )
+        driver.car = null;
     }
 }

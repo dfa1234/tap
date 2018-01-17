@@ -3,7 +3,8 @@
     <div class="close"><ion-icon name="close" (click)="closeModal()"></ion-icon></div>
     <div class="cars-content">
         <div class="row">
-            <span> license:</span>
+            <span> car license:</span>
+            <span> license plate:</span>
             <span> brand: </span>
             <span> places: </span>
             <span> equipment: </span>
@@ -11,6 +12,7 @@
         </div>
 
         <div *ngFor="let car of cars" class="row">
+            <span>{{car.car_license}}</span>
             <span>{{car.license_plate}}</span>
             <span>{{car.brand}}</span>
             <span>{{car.place_number}}</span>

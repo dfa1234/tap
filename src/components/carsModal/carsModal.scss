@@ -2,10 +2,10 @@ carsModal {
 
   .close {
     position: fixed;
-    width: 455px;
+    width: 575px;
     padding: 5px;
     height: 32px;
-    top: 0;
+    top: 50px;
     background-color: #fff;
 
     ion-icon{
@@ -22,8 +22,9 @@ carsModal {
 
       span{
         border-bottom:2px solid lightgray;
-        font-size: 16.5px;
+        font-size: 11.5px;
         text-transform: uppercase;
+        overflow: hidden;
       }
     }
 
@@ -34,12 +35,13 @@ carsModal {
       span{
         border-bottom:1px solid lightgray;
         padding: 8px 5px;
-        width: 20%;
+        width: 16.6%;
         font-size: 15px;
         color: #696969;
         font-family: "Roboto", "Helvetica Neue", sans-serif;
         white-space: nowrap;
         text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       .edit{

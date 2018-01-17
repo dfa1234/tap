@@ -30,7 +30,7 @@
             <div *ngIf="driver.car===null"><button ion-button (click)="addCarToDriverModal()">associate</button></div>
             <div *ngIf="driver.car">
             <ion-icon name="close" (click)="deleteCar()"></ion-icon>
-              {{driver.car.license_plate}} {{driver.car.brand}}
+              {{driver.car.id}} {{driver.car.brand}}
             </div>
             <div><button ion-button (click)="saveDriver()">SAVE</button> </div>
         </div>

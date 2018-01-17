@@ -224,7 +224,7 @@ export const routes = {
         Car.create( req.body ).then((car) => {
             return  Car.findOne({
                 include: [Driver],
-                where: {license_plate: car.license_plate}
+                where: {id: car.id}
             })
         }).then(
             (car) => res.json(car),
@@ -236,6 +236,7 @@ export const routes = {
 
         Car.update({
             idDriver: req.body.idDriver,
+            car_license: req.body.car_license,
             license_plate: req.body.license_plate,
             brand: req.body.brand,
             place_number: req.body.place_number,

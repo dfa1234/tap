@@ -41,14 +41,8 @@ export class CarPage {
         let carToDriverModal = this.modalCtrl.create(driversModal, {"car": car});
         carToDriverModal.onDidDismiss(responseGet => {
             console.log(responseGet);
-            if(responseGet.id) {
-                this.api.refreshDatas("cars") ;
-                this.carProvider.getCars$().subscribe(
-                    response => {
-                        this.cars = response
-                    }
-                )
-            }
+            this.api.refreshDatas("cars") ;
+            car = responseGet;
 
         });
         carToDriverModal.present();
@@ -61,11 +55,7 @@ export class CarPage {
             responseGet => {
                 console.log(responseGet);
                 this.api.refreshDatas("cars") ;
-                this.carProvider.getCars$().subscribe(
-                    response => {
-                        this.cars = response
-                    }
-                )
+                car = responseGet;
             },
             error => console.error(error)
         )

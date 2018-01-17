@@ -1,7 +1,9 @@
 <ion-content padding>
     <form #f="ngForm" (ngSubmit)="newCar(f)" #form="ngForm">
       <div class="row">
-        <div> License Plate *</div>
+        <div> Car License </div>
+          <input name="car_license" type="text" [(ngModel)]="car.car_license" required>
+          <div> License Plate *</div>
           <input name="license_plate" type="text" [(ngModel)]="car.license_plate" required>
         <div>Car Brand</div>
           <ion-item>

@@ -12,6 +12,8 @@
                     <ion-option value="5">Available</ion-option>
                 </ion-select>
             </ion-item>
+            <div> Car License *</div>
+            <input name="license_plate" type="text" [(ngModel)]="car.car_license" required>
             <div> License Plate *</div>
             <input name="license_plate" type="text" [(ngModel)]="car.license_plate" required>
             <div>Car Brand</div>
@@ -26,7 +28,7 @@
             <div *ngIf="car.driver===null"><button ion-button (click)="addCarToDriverModal()">associate</button></div>
             <div *ngIf="car.driver">
             <ion-icon name="close" (click)="deleteDriver(car)"></ion-icon>
-              {{car.driver.user.firstName}} {{car.driver.user.lastName}} - ({{car.driver.license}})
+                {{car.driver.idUser}} - {{car.driver.user.firstName}} {{car.driver.user.lastName}}
             </div>
             <div> Number of Places *</div>
             <input name="place_number" type="number" [(ngModel)]="car.place_number" required>
