@@ -1658,10 +1658,10 @@ var MyApp = /** @class */ (function () {
 
 var BaseUrl = /** @class */ (function () {
     function BaseUrl() {
-        this.baseUrl = 'http://localhost:3000';
+        this.baseUrl = 'http://vps160905.vps.ovh.ca';
         this.header = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]({
             'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Allow-Origin': 'http://localhost:8100',
+            'Access-Control-Allow-Origin': 'http://vps160905.vps.ovh.ca',
             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
             'Access-Control-Allow-Headers': 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept,Access-Control-Allow-Credentials,Authorization'
         });
