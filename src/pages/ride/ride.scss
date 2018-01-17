@@ -27,6 +27,7 @@ page-ride {
         font-family: "Roboto", "Helvetica Neue", sans-serif;
         white-space: nowrap;
         text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       span:last-child {

@@ -26121,6 +26121,7 @@ page-car .cars-content .row span {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 page-car .cars-content .row .status {
@@ -26193,6 +26194,7 @@ page-drivers .drivers-content .row span {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 page-drivers .drivers-content .row .status {
@@ -26400,11 +26402,13 @@ page-home .new_request {
 page-home .new_request button {
   position: absolute;
   right: 0;
-  width: 50%;
+  width: 30%;
 }
 
 page-home .cars {
-  width: 49%;
+  min-width: 60%;
+  position: absolute;
+  left: 0;
 }
 
 page-home .cars button {
@@ -26446,6 +26450,9 @@ page-home .requests {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  width: 30%;
+  position: absolute;
+  right: 15px;
 }
 
 @media (max-width: 768px) {
@@ -26460,6 +26467,7 @@ page-home .requests .row {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+  border-bottom: 1px solid lightgray;
 }
 
 @media (max-width: 768px) {
@@ -26468,23 +26476,36 @@ page-home .requests .row {
   }
 }
 
-page-home .requests .row span {
-  border-bottom: 1px solid lightgray;
-  padding: 8px 12px;
-  width: 12.5%;
-  font-size: 15px;
-  color: #696969;
-  font-family: "Roboto", "Helvetica Neue", sans-serif;
+page-home .requests .row div {
+  width: 100%;
+  padding: 8px 0;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-page-home .requests .row span ion-icon {
+page-home .requests .row div span {
+  width: 12.5%;
+  padding: 8px 12px;
+  font-size: 17px;
+  color: #696969;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+page-home .requests .row div span ion-icon {
   padding: 0 5px;
 }
 
-page-home .requests .row span ion-icon:active {
+page-home .requests .row div span ion-icon:active {
   color: #22c009;
+}
+
+page-home .requests .row div .id {
+  float: right;
+  text-align: right;
+  padding: 0;
+  margin-right: 5px;
+  width: 5%;
 }
 
 login .panel-login {
@@ -26731,6 +26752,7 @@ page-ride .rides-content .row span {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 page-ride .rides-content .row span:last-child {
