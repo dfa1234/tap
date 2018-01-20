@@ -25700,7 +25700,7 @@ ion-navbar.toolbar {
   left: calc(50% - (320px/2)) !important;
   top: calc(50% - (700px/2)) !important;
   width: 320px !important;
-  height: 550px !important;
+  height: 620px !important;
 }
 
 .modal-wrapper newdrivermodal {
@@ -26396,6 +26396,14 @@ page-home .header button {
   vertical-align: middle;
 }
 
+page-home .header .time {
+  float: right;
+}
+
+page-home .header .time date-pipe div p {
+  margin: 0;
+}
+
 page-home .new_request {
   position: relative;
   height: 40px;
@@ -26486,24 +26494,27 @@ page-home .requests .row div {
   overflow: hidden;
 }
 
-page-home .requests .row div span {
+page-home .requests .row div div, page-home .requests .row div span {
   width: 12.5%;
+  display: inline;
   padding: 8px 12px;
   font-size: 17px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
 }
 
-page-home .requests .row div span ion-icon {
+page-home .requests .row div div ion-icon, page-home .requests .row div span ion-icon {
   padding: 0 5px;
+  vertical-align: sub;
 }
 
-page-home .requests .row div span ion-icon:active {
+page-home .requests .row div div ion-icon:active, page-home .requests .row div span ion-icon:active {
   color: #22c009;
 }
 
 page-home .requests .row div .id {
-  float: right;
+  position: absolute;
+  right: 0;
   text-align: right;
   padding: 0;
   margin-right: 5px;

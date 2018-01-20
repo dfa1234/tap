@@ -30,6 +30,7 @@ import {driversModal} from "../components/driversModal/driversModal";
 import {carsModal} from "../components/carsModal/carsModal";
 import {editCar} from "../pages/edit-car/edit-car";
 import {editDriver} from "../pages/edit-driver/edit-driver";
+import {DatePipe} from "../providers/DatePipe";
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {editDriver} from "../pages/edit-driver/edit-driver";
         driversModal,
         carsModal,
         editCar,
-        editDriver
+        editDriver,
+        DatePipe
     ],
     imports: [
         BrowserModule,
@@ -76,7 +78,8 @@ import {editDriver} from "../pages/edit-driver/edit-driver";
         driversModal,
         carsModal,
         editCar,
-        editDriver
+        editDriver,
+        DatePipe
     ],
     providers: [
         StatusBar,
@@ -88,7 +91,8 @@ import {editDriver} from "../pages/edit-driver/edit-driver";
         AppApi,
         RequestProvider,
         RideProvider,
-        CarProvider
+        CarProvider,
+        DatePipe
     ]
 })
 export class AppModule {}

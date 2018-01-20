@@ -19,6 +19,7 @@
       </button>
       <span class="canceled" [hidden]="!canceled">Canceled </span>
 
+      <span class="time"> <date-pipe></date-pipe> </span>
   </div>
 
     <ion-row class="new_request">
@@ -45,12 +46,13 @@
                 <span style="width: 30%">{{request.zipcode}}</span>
             </div>
             <div>
-                <span>
+                <div>
                     <ion-icon name="person" (click)="requestUserModal(request)"></ion-icon>
-                </span>
-                <span>{{request.baggage}}  <ion-icon name="briefcase"></ion-icon> </span>
-                <span style="width: 70%">{{request.notice}} </span>
-                <span class="id">{{request.id}} </span>
+                </div>
+                <div>{{request.baggage}}  <ion-icon name="briefcase"></ion-icon> </div>
+                <div>{{request.places}}   <ion-icon name="people"></ion-icon> </div>
+                <div style="width: 70%">{{request.notice}} </div>
+                <div class="id">{{request.id}} </div>
             </div>
         </div>
 

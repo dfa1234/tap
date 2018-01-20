@@ -36,6 +36,10 @@ export class RideRequest extends Model<RideRequest> {
     @Column
     baggage: string;
 
+    @Default('0')
+    @Column
+    places: string;
+
     @Column
     notice: string;
 

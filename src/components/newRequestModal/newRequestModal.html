@@ -22,14 +22,17 @@
           <input type="text" name="country" [(ngModel)]="request.country"-->
           <div> Notice</div>
           <textarea name="notice" [(ngModel)]="request.notice"></textarea>
-          <div><span>Baggage</span></div>
+          <div><span>Baggage</span><span style="float: right">Places</span></div>
           <div class="address">
-              <input type="number" name="baggage" [(ngModel)]="request.baggage" style="width: 19%">
-              <button ion-button style="float: right;width: 90px;">ADD</button>
+              <input type="number" name="baggage" [(ngModel)]="request.baggage" style="width: 30%">
+              <input type="number" name="places" [(ngModel)]="request.places" style="float: right;width: 30%">
+          </div>
+          <div class="address">
+              <button ion-button style="float: right;width: 90px;" (click)="closeModal()">CANCEL</button>
+              <button ion-button style="float: left;width: 90px;">ADD</button>
           </div>
       </div>
   </form>
-  <div class="close"><button ion-button (click)="closeModal()">CANCEL</button> </div>
   <div class="error" [hidden]="!errorRequest">Please fill all the (*) requires fields</div>
 
 

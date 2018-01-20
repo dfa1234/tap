@@ -5,6 +5,7 @@ import {NewRequestModal} from "../../components/newRequestModal/newRequestModal"
 import {AppApi} from "../../app/app.api";
 import {CarProvider} from "../../providers/car";
 import {RequestProvider} from "../../providers/request";
+import {DatePipe} from "../../providers/DatePipe";
 
 @Component({
   selector: 'page-home',
@@ -16,10 +17,12 @@ export class HomePage {
                 private carProvider: CarProvider,
                 private requestProvider: RequestProvider,
                 public modalCtrl: ModalController,
+                public datePipe: DatePipe,
                 public alertCtrl: AlertController,
                 private api: AppApi) {
 
     }
+
     cars:any = this.api.cars;
     requestList:any = this.api.requests;
 
