@@ -1,44 +1,26 @@
-Dependencies:
-
+### Installation:
 ```bash
 yarn global add ionic nodemon
 # make sure ~/.yarn/bin/ is in your PATH (so you don't need 'sudo')
 yarn
-```
 
-if you have problems when `yarn` install maybe try:
-```bash
-python --version
-# you should have something like 2.7.*
+# if there is problem when yarn installs:
+# -> Debian/Ubuntu:
 sudo apt install build-essential
-```
-On Windows that should be fixed with: 
-
-```
+# -> Windows:
 npm install --global --production windows-build-tools
-```
 
-
----
-
-Now you need to configure your db password here:
-```
+# edit src-api/config.ts with you DB credentials
 cp src-api/config.ts.sample src-api/config.ts
-```
+# see also the commands to initialize the DB in this file
 
-Start api server with 
-```bash
-yarn start
-```
-
-
-Compile website with
-```bash
+#Compile website with
 ionic build --prod
-```
 
-Redirect node to port 80 (work on debian/ubuntu):
-```bash
+#start
+yarn start
+
+#Redirect node to port 80 (work on debian/ubuntu):
 yarn redirect-port
 ```
 
