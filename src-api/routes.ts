@@ -131,6 +131,17 @@ export const routes = {
         })
     },
 
+    deleteDriver :   (req:Request, res:Response, next:NextFunction) => {
+        Driver.destroy({
+            where: {
+                idUser: req.query.idUser
+            }
+        }).then(
+            driver => res.json(driver),
+            (error:any) => res.json(error)
+        )
+    },
+
     getRequest :   (req:Request, res:Response, next:NextFunction) => {
 
         RideRequest.findOne({
@@ -260,7 +271,18 @@ export const routes = {
                 (error:any) => res.json(error)
             );
         })
-    }
+    },
+
+    deleteCar :   (req:Request, res:Response, next:NextFunction) => {
+        Car.destroy({
+            where: {
+                id: req.query.id
+            }
+        }).then(
+            (car) => res.json(car),
+            (error:any) => res.json(error)
+        )
+    },
 };
 
 

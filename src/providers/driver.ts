@@ -21,4 +21,8 @@ export class DriverProvider {
     updateDriver$(obj) {
         return this.http.put<any[]>(this.baseUrl.baseUrl+'/api/driver',obj);
     }
+
+    deleteDriver$(obj) {
+        return this.http.delete<any[]>(this.baseUrl.baseUrl+'/api/driver', { params:obj });
+    }
 }

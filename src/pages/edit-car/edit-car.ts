@@ -3,6 +3,8 @@ import {ModalController, NavController, NavParams} from 'ionic-angular';
 import {CarProvider} from "../../providers/car";
 import {AppApi} from "../../app/app.api";
 import {driversModal} from "../../components/driversModal/driversModal";
+import {DriversPage} from "../drivers/drivers";
+import {CarPage} from "../car/car";
 
 @Component({
   selector: 'edit-car',
@@ -61,6 +63,22 @@ export class editCar {
         this.car.idDriver = null;
         this.saveCar();
         this.car.driver = null;
+    }
+
+    deleteCar(){
+        this.carProvider.deleteCar$({id:this.car.id}).subscribe(
+            responseGet => {
+                console.log(responseGet);
+                this.api.refreshDatas('cars') ;
+                this.api.refreshDatas('drivers') ;
+                this.savedCar = true;
+                setTimeout(() => {
+                    this.savedCar = false;
+                    this.navCtrl.setRoot(CarPage);
+                },2000)
+            },
+            error => console.error(error)
+        )
     }
 
 

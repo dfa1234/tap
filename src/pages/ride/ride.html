@@ -2,6 +2,7 @@
 
   <div class="rides-content">
     <div class="row">
+      <span style="width: 3%"> ID </span>
       <span> Driver Name: </span>
       <span> Driver Phone: </span>
       <span> Client name:</span>
@@ -13,6 +14,7 @@
     </div>
 
     <div *ngFor="let ride of rides" class="row">
+      <span style="width: 3%">{{ride.id}}</span>
       <span>{{ride.driver_name}}</span>
       <span>{{ride.driver_phone}}</span>
       <span>{{ride.client_name}}</span>

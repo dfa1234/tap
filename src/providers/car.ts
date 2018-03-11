@@ -26,4 +26,8 @@ export class CarProvider {
         return this.http.put<any[]>(this.baseUrl.baseUrl+'/api/car',obj);
     }
 
+    deleteCar$(obj) {
+        return this.http.delete<any[]>(this.baseUrl.baseUrl+'/api/car', { params:obj });
+    }
+
 }

@@ -58,6 +58,7 @@ app.get('/api/driver', routes.getDriver);
 app.get('/api/drivers', routes.getDrivers);
 app.put('/api/driver', routes.updateDriver,routes.getDriver);
 app.post('/api/driver', routes.setDriver, routes.getDriver);
+app.delete('/api/driver', routes.deleteDriver);
 
 app.get('/api/request', routes.getRequest);
 app.get('/api/requests', routes.getRequests);
@@ -71,6 +72,7 @@ app.get('/api/car', routes.getCar);
 app.get('/api/cars', routes.getCars);
 app.put('/api/car', routes.updateCar,routes.getCar);
 app.post('/api/car', routes.setCar,routes.getCar);
+app.delete('/api/car', routes.deleteCar);
 
 //socket:
 // io.on('connection', socket => {

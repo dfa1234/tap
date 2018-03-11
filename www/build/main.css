@@ -25724,30 +25724,50 @@ ion-navbar.toolbar {
   height: 500px !important;
 }
 
-carsModal .close {
+carsModal .top {
   position: fixed;
-  width: 575px;
+  width: 568px;
   padding: 5px;
-  height: 32px;
-  top: 50px;
+  height: 45px;
+  top: 0;
   background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  left: 0;
+  border-bottom: 2px solid lightgray;
+  right: 0;
+  margin: auto;
 }
 
-carsModal .close ion-icon {
+carsModal .top span {
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 8px 5px;
+  width: 18.4%;
+  color: #696969;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+carsModal .top span ion-icon {
   position: absolute;
-  right: 0;
+  right: 7px;
+  top: 7px;
+  color: #ff0000;
+  font-size: 1.5em;
+}
+
+carsModal .top .id {
+  width: 8%;
 }
 
 carsModal .cars-content {
   width: 100%;
   min-width: 450px;
-}
-
-carsModal .cars-content .row:first-child span {
-  border-bottom: 2px solid lightgray;
-  font-size: 11.5px;
-  text-transform: uppercase;
-  overflow: hidden;
 }
 
 carsModal .cars-content .row {
@@ -25761,7 +25781,7 @@ carsModal .cars-content .row {
 carsModal .cars-content .row span {
   border-bottom: 1px solid lightgray;
   padding: 8px 5px;
-  width: 16.6%;
+  width: 18.4%;
   font-size: 15px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -25770,38 +25790,62 @@ carsModal .cars-content .row span {
   overflow: hidden;
 }
 
-carsModal .cars-content .row .edit {
-  text-align: right;
-  padding-right: 20px;
+carsModal .cars-content .row .id {
+  width: 8%;
 }
 
-carsModal .cars-content .row .edit ion-icon:active {
-  color: green;
+carsModal .cars-content div:first-child {
+  margin-top: 25px !important;
 }
 
-driversModal .close {
+carsModal .cars-content .row:hover {
+  background: #aff3bc;
+}
+
+driversModal .top {
   position: fixed;
-  width: 575px;
+  width: 568px;
   padding: 5px;
-  height: 32px;
-  top: 50px;
+  height: 45px;
+  top: 0;
   background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  left: 0;
+  border-bottom: 2px solid lightgray;
+  right: 0;
+  margin: auto;
 }
 
-driversModal .close ion-icon {
+driversModal .top span {
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 8px 5px;
+  width: 27.5%;
+  color: #696969;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+driversModal .top span ion-icon {
   position: absolute;
-  right: 0;
+  right: 7px;
+  top: 7px;
+  color: #ff0000;
+  font-size: 1.5em;
+}
+
+driversModal .top .id {
+  width: 8%;
 }
 
 driversModal .drivers-content {
   width: 100%;
   min-width: 450px;
-}
-
-driversModal .drivers-content .row:first-child span {
-  border-bottom: 2px solid lightgray;
-  font-size: 16.5px;
-  text-transform: uppercase;
 }
 
 driversModal .drivers-content .row {
@@ -25815,30 +25859,34 @@ driversModal .drivers-content .row {
 driversModal .drivers-content .row span {
   border-bottom: 1px solid lightgray;
   padding: 8px 5px;
-  width: 20%;
+  width: 27.5%;
   font-size: 15px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+driversModal .drivers-content .row .id {
+  width: 8%;
 }
 
 driversModal .drivers-content .row .status {
-  text-align: right;
-  width: 10%;
+  text-align: center;
+  width: 15%;
 }
 
 driversModal .drivers-content .row .status img {
   width: 14px;
 }
 
-driversModal .drivers-content .row .edit {
-  text-align: right;
-  padding-right: 20px;
+driversModal .drivers-content div:first-child {
+  margin-top: 25px !important;
 }
 
-driversModal .drivers-content .row .edit ion-icon:active {
-  color: green;
+driversModal .drivers-content .row:hover {
+  background: #aff3bc;
 }
 
 newCarModal .row {
@@ -26759,7 +26807,7 @@ page-ride .rides-content .row {
 page-ride .rides-content .row span {
   border-bottom: 1px solid lightgray;
   padding: 8px 5px;
-  width: 12.5%;
+  width: 12%;
   font-size: 15px;
   color: #696969;
   font-family: "Roboto", "Helvetica Neue", sans-serif;

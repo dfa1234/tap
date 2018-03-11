@@ -4,6 +4,7 @@ import {AppApi} from "../../app/app.api";
 import {carsModal} from "../../components/carsModal/carsModal";
 import {DriverProvider} from "../../providers/driver";
 import {CarProvider} from "../../providers/car";
+import {DriversPage} from "../drivers/drivers";
 
 @Component({
   selector: 'edit-driver',
@@ -59,9 +60,10 @@ export class editDriver {
         let driverToCarModal = this.modalCtrl.create(carsModal, {"driver": this.driver});
         driverToCarModal.onDidDismiss(responseGet => {
             console.log(responseGet);
-            if(responseGet && responseGet.constructor === Array && responseGet.length >= 1){
+            if(responseGet){
                 this.savedDriver = true;
-                setTimeout(() => { this.savedDriver = false; },3000)
+                setTimeout(() => { this.savedDriver = false; },3000);
+                this.driver.car = responseGet;
                 this.api.getCars() ;
             }else{
                 console.error(responseGet);
@@ -82,6 +84,22 @@ export class editDriver {
             error => console.error(error)
         )
         this.driver.car = null;
+    }
+
+    deleteDriver(){
+        this.driverProvider.deleteDriver$({idUser:this.driver.idUser}).subscribe(
+            responseGet => {
+                console.log(responseGet);
+                this.api.refreshDatas('drivers') ;
+                this.api.refreshDatas('cars') ;
+                this.savedDriver = true;
+                setTimeout(() => {
+                    this.savedDriver = false;
+                    this.navCtrl.setRoot(DriversPage);
+                },2000)
+            },
+            error => console.error(error)
+        )
     }
 
 

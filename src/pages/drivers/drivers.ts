@@ -23,8 +23,6 @@ export class DriversPage {
   driversList:any = this.api.drivers;
 
   getCars(){
-      console.log('car: 111sssss');
-
       let myDrivers = [];
       this.driversList.forEach( (i) => {
           let car = {idDriver:i.idUser};
@@ -48,7 +46,10 @@ export class DriversPage {
         let driverModal = this.modalCtrl.create(NewDriverModal);
         driverModal.onDidDismiss(responseGet => {
             console.log(responseGet);
-            if(responseGet && responseGet.user.id){
+            if(responseGet.errors){
+                alert(responseGet.original.sqlMessage);
+            }else if(responseGet.idUser){
+                responseGet.car = null;
                 this.drivers.push(responseGet);
             }else{
                 console.error(responseGet);
@@ -61,8 +62,12 @@ export class DriversPage {
         let carToDriverModal = this.modalCtrl.create(carsModal, {"driver": driver});
         carToDriverModal.onDidDismiss(responseGet => {
             console.log(responseGet);
-            this.api.refreshDatas("drivers") ;
-            driver.car = responseGet;
+            if(responseGet){
+                driver.car = responseGet;
+                this.api.refreshDatas("drivers") ;
+                this.api.refreshDatas("cars") ;
+                this.drivers = this.getCars();
+            }
         });
         carToDriverModal.present();
     }

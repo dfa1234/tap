@@ -167,6 +167,104 @@ var RideProvider = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CarPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_newCarModal_newCarModal__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_driversModal_driversModal__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_car__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__edit_car_edit_car__ = __webpack_require__(215);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var CarPage = /** @class */ (function () {
+    function CarPage(navCtrl, api, modalCtrl, carProvider) {
+        this.navCtrl = navCtrl;
+        this.api = api;
+        this.modalCtrl = modalCtrl;
+        this.carProvider = carProvider;
+        this.cars = this.api.cars;
+    }
+    CarPage.prototype.refreshCars = function () {
+        var _this = this;
+        this.carProvider.getCars$().subscribe(function (response) {
+            _this.cars = response;
+        }, function (error) { return console.error(error); });
+    };
+    CarPage.prototype.addNewCarModal = function () {
+        var _this = this;
+        var carModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2__components_newCarModal_newCarModal__["a" /* NewCarModal */]);
+        carModal.onDidDismiss(function (responseGet) {
+            console.log(responseGet);
+            if (responseGet && responseGet.id) {
+                _this.api.refreshDatas("cars");
+                _this.cars.push(responseGet);
+            }
+            else {
+                console.error(responseGet);
+            }
+        });
+        carModal.present();
+    };
+    CarPage.prototype.addCarToDriverModal = function (car) {
+        var _this = this;
+        var carToDriverModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__components_driversModal_driversModal__["a" /* driversModal */], { "car": car });
+        carToDriverModal.onDidDismiss(function (responseGet) {
+            console.log(responseGet);
+            if (responseGet) {
+                _this.api.refreshDatas("cars");
+                _this.refreshCars();
+            }
+        });
+        carToDriverModal.present();
+    };
+    CarPage.prototype.deleteDriver = function (car) {
+        var _this = this;
+        car.idDriver = null;
+        console.log(car);
+        this.carProvider.updateCar$(car).subscribe(function (responseGet) {
+            console.log(responseGet);
+            _this.api.refreshDatas("cars");
+            _this.refreshCars();
+        }, function (error) { return console.error(error); });
+    };
+    CarPage.prototype.editCar = function (car) {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__edit_car_edit_car__["a" /* editCar */], { car: car });
+    };
+    CarPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-car',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\car\car.html"*/'<ion-content padding>\n\n\n\n  <button ion-button (click)="addNewCarModal()">new</button>\n\n\n\n  <div class="cars-content">\n\n    <div class="row">\n\n      <span style="width:5%"> id</span>\n\n      <span> car license</span>\n\n      <span> license plate</span>\n\n      <span> brand </span>\n\n      <span> place number </span>\n\n      <span> equipment </span>\n\n      <span> hardware version </span>\n\n      <span> availability </span>\n\n      <span class="status"> status </span>\n\n      <span> Driver </span>\n\n      <span style="width:9.5%"> </span>\n\n    </div>\n\n\n\n    <div *ngFor="let car of cars" class="row">\n\n      <span style="width:5%">{{car.id}}</span>\n\n      <span>{{car.car_license}}</span>\n\n      <span>{{car.license_plate}}</span>\n\n      <span>{{car.brand}}</span>\n\n      <span>{{car.place_number}}</span>\n\n      <span>{{car.equipment}}</span>\n\n      <span>{{car.hardware_version}}</span>\n\n      <span>\n\n          <!-- TODO *ngIf="car.availability date is today" -->\n\n          {{car.availability  | date:"H:mm"}}\n\n      </span>\n\n      <span class="status">\n\n        <img *ngIf="car.status === \'5\'" src="../../assets/imgs/online_status.png">\n\n        <img *ngIf="car.status !== \'5\'" src="../../assets/imgs/offline_status.png">\n\n      </span>\n\n      <span *ngIf="car.driver===null" class="associate edit"><button ion-button (click)="addCarToDriverModal(car)">associate</button></span>\n\n      <span *ngIf="car.driver">\n\n           <ion-icon name="close" (click)="deleteDriver(car)"></ion-icon>\n\n          {{car.driver.idUser}} - {{car.driver.user.firstName}} {{car.driver.user.lastName}}\n\n      </span>\n\n      <span class="edit" style="width:9.5%"><button (click)="editCar(car)" ion-button>Edit</button></span>\n\n    </div>\n\n  </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\car\car.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3__app_app_api__["a" /* AppApi */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_5__providers_car__["a" /* CarProvider */]])
+    ], CarPage);
+    return CarPage;
+}());
+
+//# sourceMappingURL=car.js.map
+
+/***/ }),
+
+/***/ 110:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return driversModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_car__ = __webpack_require__(20);
@@ -191,10 +289,24 @@ var driversModal = /** @class */ (function () {
         this.api = api;
         this.viewCtrl = viewCtrl;
         this.navParam = navParam;
-        this.drivers = this.api.drivers;
+        this.driversList = this.api.drivers;
+        this.drivers = this.getCars();
         this.car = this.navParam.get("car");
         console.log(this.navParam.get("car"));
     }
+    driversModal.prototype.getCars = function () {
+        var _this = this;
+        var myDrivers = [];
+        this.carProvider.getCars$().subscribe(function (responseGet) {
+            _this.driversList.forEach(function (i) {
+                var test = responseGet.find(function (x) { return x.idDriver === i.idUser; });
+                if (!test) {
+                    myDrivers.push(i);
+                }
+            });
+        }, function (error) { return console.error(error); });
+        return myDrivers;
+    };
     driversModal.prototype.carToDriverAssociate = function (driver) {
         var _this = this;
         this.car.idDriver = driver.idUser;
@@ -206,7 +318,7 @@ var driversModal = /** @class */ (function () {
     };
     driversModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'driversModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\driversModal\driversModal.html"*/'<ion-content padding>\n\n\n\n    <div class="close"><ion-icon name="close" (click)="closeModal()"></ion-icon></div>\n\n    <div class="drivers-content">\n\n        <div class="row">\n\n            <span> license:</span>\n\n            <span style="width: 30%"> Name: </span>\n\n            <span> type: </span>\n\n            <span style="width: 30%"> status: </span>\n\n        </div>\n\n\n\n        <div *ngFor="let driver of drivers" class="row">\n\n            <span>{{driver.license}}</span>\n\n            <span style="width: 30%">{{driver.user.firstName}} {{driver.user.lastName}}</span>\n\n            <span>{{driver.type}}</span>\n\n            <span class="status">\n\n                <img *ngIf="driver.status === \'1\'" src="../../assets/imgs/online_status.png">\n\n                <img *ngIf="driver.status === null || driver.status === \'0\'" src="../../assets/imgs/offline_status.png">\n\n            </span>\n\n            <span class="edit">\n\n                <ion-icon name="checkbox-outline" (click)="carToDriverAssociate(driver)"></ion-icon>\n\n            </span>\n\n        </div>\n\n    </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\driversModal\driversModal.html"*/
+            selector: 'driversModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\driversModal\driversModal.html"*/'<ion-content padding>\n\n\n\n    <div class="top">\n\n        <span style="width: 5%">id</span>\n\n        <span style="width: 20%;">license:</span>\n\n        <span style="width: 45%;">Name</span>\n\n        <span style="width: 15%;">type</span>\n\n        <span style="width: 15%;">status <ion-icon name="close" (click)="closeModal()"></ion-icon></span>\n\n    </div>\n\n    <div class="drivers-content">\n\n        <div *ngFor="let driver of drivers" class="row" (click)="carToDriverAssociate(driver)">\n\n            <span style="width: 5%">{{driver.idUser}}</span>\n\n            <span style="width: 20%;">{{driver.license}}</span>\n\n            <span style="width: 45%;">{{driver.user.firstName}} {{driver.user.lastName}}</span>\n\n            <span style="width: 15%;">{{driver.type}}</span>\n\n            <span class="status">\n\n                <img *ngIf="driver.status === \'1\'" src="../../assets/imgs/online_status.png">\n\n                <img *ngIf="driver.status === null || driver.status === \'0\'" src="../../assets/imgs/offline_status.png">\n\n            </span>\n\n        </div>\n\n    </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\driversModal\driversModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_car__["a" /* CarProvider */],
             __WEBPACK_IMPORTED_MODULE_2__app_app_api__["a" /* AppApi */],
@@ -220,7 +332,118 @@ var driversModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 110:
+/***/ 111:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DriversPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_newDriverModal_newDriverModal__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_carsModal_carsModal__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__edit_driver_edit_driver__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_car__ = __webpack_require__(20);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var DriversPage = /** @class */ (function () {
+    function DriversPage(navCtrl, api, carProvider, modalCtrl) {
+        this.navCtrl = navCtrl;
+        this.api = api;
+        this.carProvider = carProvider;
+        this.modalCtrl = modalCtrl;
+        this.driversList = this.api.drivers;
+        this.drivers = this.getCars();
+        this.cars = this.api.cars;
+    }
+    DriversPage.prototype.getCars = function () {
+        var _this = this;
+        var myDrivers = [];
+        this.driversList.forEach(function (i) {
+            var car = { idDriver: i.idUser };
+            _this.carProvider.getCar$(car).subscribe(function (responseGet) {
+                console.log('car: ', responseGet);
+                i.car = responseGet;
+                myDrivers.push(i);
+            }, function (error) { return console.error(error); });
+        });
+        return myDrivers;
+    };
+    DriversPage.prototype.newDriverModal = function () {
+        var _this = this;
+        var driverModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2__components_newDriverModal_newDriverModal__["a" /* NewDriverModal */]);
+        driverModal.onDidDismiss(function (responseGet) {
+            console.log(responseGet);
+            if (responseGet.errors) {
+                alert(responseGet.original.sqlMessage);
+            }
+            else if (responseGet.idUser) {
+                responseGet.car = null;
+                _this.drivers.push(responseGet);
+            }
+            else {
+                console.error(responseGet);
+            }
+        });
+        driverModal.present();
+    };
+    DriversPage.prototype.addCarToDriverModal = function (driver) {
+        var _this = this;
+        var carToDriverModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__components_carsModal_carsModal__["a" /* carsModal */], { "driver": driver });
+        carToDriverModal.onDidDismiss(function (responseGet) {
+            console.log(responseGet);
+            if (responseGet) {
+                driver.car = responseGet;
+                _this.api.refreshDatas("drivers");
+                _this.api.refreshDatas("cars");
+                _this.drivers = _this.getCars();
+            }
+        });
+        carToDriverModal.present();
+    };
+    DriversPage.prototype.editDriver = function (driver) {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__edit_driver_edit_driver__["a" /* editDriver */], { driver: driver });
+    };
+    DriversPage.prototype.deleteCar = function (driver) {
+        var _this = this;
+        driver.car.idDriver = null;
+        this.carProvider.updateCar$(driver.car).subscribe(function (responseGet) {
+            console.log(responseGet);
+            _this.api.refreshDatas("drivers");
+        }, function (error) { return console.error(error); });
+        driver.car = null;
+    };
+    DriversPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-drivers',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\drivers\drivers.html"*/'<ion-content padding>\n\n\n\n  <button ion-button (click)="newDriverModal()">new</button>\n\n\n\n  <div class="drivers-content">\n\n    <div class="row">\n\n      <span style="width: 5%"> id </span>\n\n      <span> license </span>\n\n      <span> Name </span>\n\n      <span> phone1 </span>\n\n      <span> phone2 </span>\n\n      <span> email </span>\n\n      <span> category </span>\n\n      <span> type </span>\n\n      <span class="status"> status </span>\n\n      <span style="width: 7.5%"> Car </span>\n\n      <span class=" edit"> </span>\n\n    </div>\n\n\n\n    <div *ngFor="let driver of drivers" class="row">\n\n      <span style="width: 5%">{{driver.idUser}}</span>\n\n      <span>{{driver.license}}</span>\n\n      <span>{{driver.user.firstName}} {{driver.user.lastName}}</span>\n\n      <span>{{driver.user.phone1}}</span>\n\n      <span>{{driver.user.phone2}}</span>\n\n      <span>{{driver.user.email}}</span>\n\n      <span>{{driver.user.category}}</span>\n\n      <span>{{driver.type}}</span>\n\n      <span class="status">\n\n        <img *ngIf="driver.status === \'1\'" src="../../assets/imgs/online_status.png">\n\n        <img *ngIf="driver.status === null || driver.status > 1" src="../../assets/imgs/offline_status.png">\n\n      </span>\n\n      <span *ngIf="driver.car===null" class="associate edit"><button ion-button (click)="addCarToDriverModal(driver)">associate</button></span>\n\n      <span *ngIf="driver.car" class="associate edit">\n\n        <ion-icon name="close" (click)="deleteCar(driver)"></ion-icon>\n\n        {{driver.car.id}}\n\n      </span>\n\n      <span class="edit"><button ion-button (click)="editDriver(driver)">Edit</button></span>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\drivers\drivers.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3__app_app_api__["a" /* AppApi */],
+            __WEBPACK_IMPORTED_MODULE_6__providers_car__["a" /* CarProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]])
+    ], DriversPage);
+    return DriversPage;
+}());
+
+//# sourceMappingURL=drivers.js.map
+
+/***/ }),
+
+/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -263,7 +486,7 @@ var carsModal = /** @class */ (function () {
     };
     carsModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'carsModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\carsModal\carsModal.html"*/'<ion-content padding>\n\n\n\n    <div class="close"><ion-icon name="close" (click)="closeModal()"></ion-icon></div>\n\n    <div class="cars-content">\n\n        <div class="row">\n\n            <span> car license:</span>\n\n            <span> license plate:</span>\n\n            <span> brand: </span>\n\n            <span> places: </span>\n\n            <span> equipment: </span>\n\n            <span class="edit"> </span>\n\n        </div>\n\n\n\n        <div *ngFor="let car of cars" class="row">\n\n            <span>{{car.car_license}}</span>\n\n            <span>{{car.license_plate}}</span>\n\n            <span>{{car.brand}}</span>\n\n            <span>{{car.place_number}}</span>\n\n            <span>{{car.equipment}}</span>\n\n            <span class="edit">\n\n                <ion-icon name="checkbox-outline" (click)="driverToCarAssociate(car)"></ion-icon>\n\n            </span>\n\n        </div>\n\n    </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\carsModal\carsModal.html"*/
+            selector: 'carsModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\carsModal\carsModal.html"*/'<ion-content padding>\n\n\n\n    <div class="top">\n\n        <span class="id">id</span>\n\n        <span>car license</span>\n\n        <span>license plate</span>\n\n        <span>brand</span>\n\n        <span>places</span>\n\n        <span>equipment <ion-icon name="close" (click)="closeModal()"></ion-icon></span>\n\n    </div>\n\n    <div class="cars-content">\n\n        <div *ngFor="let car of cars" class="row" (click)="driverToCarAssociate(car)">\n\n            <span class="id">{{car.id}}</span>\n\n            <span>{{car.car_license}}</span>\n\n            <span>{{car.license_plate}}</span>\n\n            <span>{{car.brand}}</span>\n\n            <span>{{car.place_number}}</span>\n\n            <span>{{car.equipment}}</span>\n\n        </div>\n\n    </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\carsModal\carsModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_car__["a" /* CarProvider */],
             __WEBPACK_IMPORTED_MODULE_1__app_app_api__["a" /* AppApi */],
@@ -277,7 +500,7 @@ var carsModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 123:
+/***/ 125:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -290,7 +513,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 123;
+webpackEmptyAsyncContext.id = 125;
 
 /***/ }),
 
@@ -424,7 +647,7 @@ var AppApi = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 165:
+/***/ 167:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -437,7 +660,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 165;
+webpackEmptyAsyncContext.id = 167;
 
 /***/ }),
 
@@ -478,6 +701,9 @@ var CarProvider = /** @class */ (function () {
     CarProvider.prototype.updateCar$ = function (obj) {
         return this.http.put(this.baseUrl.baseUrl + '/api/car', obj);
     };
+    CarProvider.prototype.deleteCar$ = function (obj) {
+        return this.http.delete(this.baseUrl.baseUrl + '/api/car', { params: obj });
+    };
     CarProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */],
@@ -490,7 +716,7 @@ var CarProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 209:
+/***/ 211:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -498,11 +724,11 @@ var CarProvider = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_ride__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_newRequestModal_newRequestModal__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_newRequestModal_newRequestModal__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_app_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_car__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_request__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_DatePipe__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_DatePipe__ = __webpack_require__(213);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -680,7 +906,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 210:
+/***/ 212:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -736,17 +962,17 @@ var NewRequestModal = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'newRequestModal',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\components\newRequestModal\newRequestModal.html"*/'<ion-content padding>\n\n  <form #f="ngForm" (ngSubmit)="newRequest(f)" #form="ngForm">\n\n      <div class="row">\n\n          <div><span> First Name</span> <span style="float: right"> Last Name</span></div>\n\n          <div class="name">\n\n              <input type="text" name="firstName" [(ngModel)]="request.firstName">\n\n              <input type="text" name="lastName" [(ngModel)]="request.lastName" style="float: right;">\n\n          </div>\n\n          <div> Phone </div>\n\n          <input type="text" name="phone" [(ngModel)]="request.phone">\n\n          <div><span>Street *</span> <span style="float: right">Street Number *</span></div>\n\n          <div class="address">\n\n              <input type="text" name="street" [(ngModel)]="request.street" required style="width: 79%">\n\n              <input type="text" name="street_num" [(ngModel)]="request.street_num" required style="float: right;width: 19%">\n\n          </div>\n\n          <div><span>City *</span> <span style="float: right">Zipcode</span></div>\n\n          <div class="address">\n\n              <input type="text" name="city" [(ngModel)]="request.city" required style="width: 64%">\n\n              <input type="text" name="zipcode" [(ngModel)]="request.zipcode" style="float: right;width: 34%">\n\n          </div>\n\n          <!--div> Country </div>\n\n          <input type="text" name="country" [(ngModel)]="request.country"-->\n\n          <div> Notice</div>\n\n          <textarea name="notice" [(ngModel)]="request.notice"></textarea>\n\n          <div><span>Baggage</span><span style="float: right">Places</span></div>\n\n          <div class="address">\n\n              <input type="number" name="baggage" [(ngModel)]="request.baggage" style="width: 30%">\n\n              <input type="number" name="places" [(ngModel)]="request.places" style="float: right;width: 30%">\n\n          </div>\n\n          <div class="address">\n\n              <button ion-button style="float: right;width: 90px;" (click)="closeModal()">CANCEL</button>\n\n              <button ion-button style="float: left;width: 90px;">ADD</button>\n\n          </div>\n\n      </div>\n\n  </form>\n\n  <div class="error" [hidden]="!errorRequest">Please fill all the (*) requires fields</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\components\newRequestModal\newRequestModal.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_request__["a" /* RequestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_request__["a" /* RequestProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_request__["a" /* RequestProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]])
     ], NewRequestModal);
     return NewRequestModal;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=newRequestModal.js.map
 
 /***/ }),
 
-/***/ 211:
+/***/ 213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -782,97 +1008,7 @@ var DatePipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 212:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CarPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_newCarModal_newCarModal__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_driversModal_driversModal__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_car__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__edit_car_edit_car__ = __webpack_require__(214);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var CarPage = /** @class */ (function () {
-    function CarPage(navCtrl, api, modalCtrl, carProvider) {
-        this.navCtrl = navCtrl;
-        this.api = api;
-        this.modalCtrl = modalCtrl;
-        this.carProvider = carProvider;
-        this.cars = this.api.cars;
-    }
-    CarPage.prototype.addNewCarModal = function () {
-        var _this = this;
-        var carModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2__components_newCarModal_newCarModal__["a" /* NewCarModal */]);
-        carModal.onDidDismiss(function (responseGet) {
-            console.log(responseGet);
-            if (responseGet && responseGet.id) {
-                _this.api.refreshDatas("cars");
-                _this.cars.push(responseGet);
-            }
-            else {
-                console.error(responseGet);
-            }
-        });
-        carModal.present();
-    };
-    CarPage.prototype.addCarToDriverModal = function (car) {
-        var _this = this;
-        var carToDriverModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__components_driversModal_driversModal__["a" /* driversModal */], { "car": car });
-        carToDriverModal.onDidDismiss(function (responseGet) {
-            console.log(responseGet);
-            _this.api.refreshDatas("cars");
-            car = responseGet;
-        });
-        carToDriverModal.present();
-    };
-    CarPage.prototype.deleteDriver = function (car) {
-        var _this = this;
-        car.idDriver = null;
-        console.log(car);
-        this.carProvider.updateCar$(car).subscribe(function (responseGet) {
-            console.log(responseGet);
-            _this.api.refreshDatas("cars");
-            car = responseGet;
-        }, function (error) { return console.error(error); });
-    };
-    CarPage.prototype.editCar = function (car) {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__edit_car_edit_car__["a" /* editCar */], { car: car });
-    };
-    CarPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-car',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\car\car.html"*/'<ion-content padding>\n\n\n\n  <button ion-button (click)="addNewCarModal()">new</button>\n\n\n\n  <div class="cars-content">\n\n    <div class="row">\n\n      <span style="width:5%"> id</span>\n\n      <span> car license</span>\n\n      <span> license plate</span>\n\n      <span> brand </span>\n\n      <span> place number </span>\n\n      <span> equipment </span>\n\n      <span> hardware version </span>\n\n      <span> availability </span>\n\n      <span class="status"> status </span>\n\n      <span> Driver </span>\n\n      <span style="width:9.5%"> </span>\n\n    </div>\n\n\n\n    <div *ngFor="let car of cars" class="row">\n\n      <span style="width:5%">{{car.id}}</span>\n\n      <span>{{car.car_license}}</span>\n\n      <span>{{car.license_plate}}</span>\n\n      <span>{{car.brand}}</span>\n\n      <span>{{car.place_number}}</span>\n\n      <span>{{car.equipment}}</span>\n\n      <span>{{car.hardware_version}}</span>\n\n      <span>\n\n          <!-- TODO *ngIf="car.availability date is today" -->\n\n          {{car.availability  | date:"H:mm"}}\n\n      </span>\n\n      <span class="status">\n\n        <img *ngIf="car.status === \'5\'" src="../../assets/imgs/online_status.png">\n\n        <img *ngIf="car.status !== \'5\'" src="../../assets/imgs/offline_status.png">\n\n      </span>\n\n      <span *ngIf="car.driver===null" class="associate edit"><button ion-button (click)="addCarToDriverModal(car)">associate</button></span>\n\n      <span *ngIf="car.driver">\n\n           <ion-icon name="close" (click)="deleteDriver(car)"></ion-icon>\n\n          {{car.driver.idUser}} - {{car.driver.user.firstName}} {{car.driver.user.lastName}}\n\n      </span>\n\n      <span class="edit" style="width:9.5%"><button (click)="editCar(car)" ion-button>Edit</button></span>\n\n    </div>\n\n  </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\car\car.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3__app_app_api__["a" /* AppApi */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_5__providers_car__["a" /* CarProvider */]])
-    ], CarPage);
-    return CarPage;
-}());
-
-//# sourceMappingURL=car.js.map
-
-/***/ }),
-
-/***/ 213:
+/***/ 214:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -937,7 +1073,7 @@ var NewCarModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 214:
+/***/ 215:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -946,7 +1082,8 @@ var NewCarModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_car__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_driversModal_driversModal__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_driversModal_driversModal__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__car_car__ = __webpack_require__(109);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -956,6 +1093,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1008,9 +1146,22 @@ var editCar = /** @class */ (function () {
         this.saveCar();
         this.car.driver = null;
     };
+    editCar.prototype.deleteCar = function () {
+        var _this = this;
+        this.carProvider.deleteCar$({ id: this.car.id }).subscribe(function (responseGet) {
+            console.log(responseGet);
+            _this.api.refreshDatas('cars');
+            _this.api.refreshDatas('drivers');
+            _this.savedCar = true;
+            setTimeout(function () {
+                _this.savedCar = false;
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__car_car__["a" /* CarPage */]);
+            }, 2000);
+        }, function (error) { return console.error(error); });
+    };
     editCar = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'edit-car',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\edit-car\edit-car.html"*/'<ion-content padding>\n\n        <div class="row">\n\n            <div> Availability </div>\n\n            <div>{{car.availability  | date:"H:mm"}}</div>\n\n            <div> Status </div>\n\n            <ion-item>\n\n                <ion-select name="status" [(ngModel)]="car.status" required interface="popover">\n\n                    <ion-option value="1">On th way</ion-option>\n\n                    <ion-option value="2">Arrived & waiting</ion-option>\n\n                    <ion-option value="3">P.O.B</ion-option>\n\n                    <ion-option value="4">Drop soon</ion-option>\n\n                    <ion-option value="5">Available</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div> Car License *</div>\n\n            <input name="license_plate" type="text" [(ngModel)]="car.car_license" required>\n\n            <div> License Plate *</div>\n\n            <input name="license_plate" type="text" [(ngModel)]="car.license_plate" required>\n\n            <div>Car Brand</div>\n\n            <ion-item>\n\n                <ion-select name="brand" [(ngModel)]="car.brand" interface="popover">\n\n                    <ion-option value="hyundai">Hyundai</ion-option>\n\n                    <ion-option value="mercedes">Mercedes</ion-option>\n\n                    <ion-option value="subaru">Subaru</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div>Driver</div>\n\n            <div *ngIf="car.driver===null"><button ion-button (click)="addCarToDriverModal()">associate</button></div>\n\n            <div *ngIf="car.driver">\n\n            <ion-icon name="close" (click)="deleteDriver(car)"></ion-icon>\n\n                {{car.driver.idUser}} - {{car.driver.user.firstName}} {{car.driver.user.lastName}}\n\n            </div>\n\n            <div> Number of Places *</div>\n\n            <input name="place_number" type="number" [(ngModel)]="car.place_number" required>\n\n            <div> Equipment </div>\n\n            <input name="equipment" type="text" [(ngModel)]="car.equipment">\n\n            <div> Location </div>\n\n            <input name="location" type="text" [readonly]="true" [(ngModel)]="car.location">\n\n            <div> Hardware Version </div>\n\n            <input name="hardware_version" type="text" [(ngModel)]="car.hardware_version">\n\n            <div><button ion-button (click)="saveCar()">SAVE</button> </div>\n\n        </div>\n\n    <div class="success" [hidden]="!savedCar">Save with success</div>\n\n    <div class="error" [hidden]="!errorCar">Please fill all the (*) requires fields</div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\edit-car\edit-car.html"*/
+            selector: 'edit-car',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\edit-car\edit-car.html"*/'<ion-content padding>\n\n        <div class="row">\n\n            <div> ID:  {{car.id}}</div>\n\n            <div> Availability - {{car.availability  | date:"H:mm"}}</div>\n\n            <div> Status </div>\n\n            <ion-item>\n\n                <ion-select name="status" [(ngModel)]="car.status" required interface="popover">\n\n                    <ion-option value="1">On th way</ion-option>\n\n                    <ion-option value="2">Arrived & waiting</ion-option>\n\n                    <ion-option value="3">P.O.B</ion-option>\n\n                    <ion-option value="4">Drop soon</ion-option>\n\n                    <ion-option value="5">Available</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div> Car License *</div>\n\n            <input name="license_plate" type="text" [(ngModel)]="car.car_license" required>\n\n            <div> License Plate *</div>\n\n            <input name="license_plate" type="text" [(ngModel)]="car.license_plate" required>\n\n            <div>Car Brand</div>\n\n            <ion-item>\n\n                <ion-select name="brand" [(ngModel)]="car.brand" interface="popover">\n\n                    <ion-option value="hyundai">Hyundai</ion-option>\n\n                    <ion-option value="mercedes">Mercedes</ion-option>\n\n                    <ion-option value="subaru">Subaru</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div>Driver</div>\n\n            <div *ngIf="car.driver===null"><button ion-button (click)="addCarToDriverModal()">associate</button></div>\n\n            <div *ngIf="car.driver">\n\n            <ion-icon name="close" (click)="deleteDriver(car)"></ion-icon>\n\n                {{car.driver.idUser}} - {{car.driver.user.firstName}} {{car.driver.user.lastName}}\n\n            </div>\n\n            <div> Number of Places *</div>\n\n            <input name="place_number" type="number" [(ngModel)]="car.place_number" required>\n\n            <div> Equipment </div>\n\n            <input name="equipment" type="text" [(ngModel)]="car.equipment">\n\n            <div> Location </div>\n\n            <input name="location" type="text" [readonly]="true" [(ngModel)]="car.location">\n\n            <div> Hardware Version </div>\n\n            <input name="hardware_version" type="text" [(ngModel)]="car.hardware_version">\n\n            <div><button ion-button (click)="saveCar()">SAVE</button> </div>\n\n            <div><button ion-button (click)="deleteCar()">DELETE</button> </div>\n\n        </div>\n\n    <div class="success" [hidden]="!savedCar">Save with success</div>\n\n    <div class="error" [hidden]="!errorCar">Please fill all the (*) requires fields</div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\edit-car\edit-car.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
@@ -1022,110 +1173,6 @@ var editCar = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=edit-car.js.map
-
-/***/ }),
-
-/***/ 215:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DriversPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_newDriverModal_newDriverModal__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_carsModal_carsModal__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__edit_driver_edit_driver__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_car__ = __webpack_require__(20);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var DriversPage = /** @class */ (function () {
-    function DriversPage(navCtrl, api, carProvider, modalCtrl) {
-        this.navCtrl = navCtrl;
-        this.api = api;
-        this.carProvider = carProvider;
-        this.modalCtrl = modalCtrl;
-        this.driversList = this.api.drivers;
-        this.drivers = this.getCars();
-        this.cars = this.api.cars;
-    }
-    DriversPage.prototype.getCars = function () {
-        var _this = this;
-        console.log('car: 111sssss');
-        var myDrivers = [];
-        this.driversList.forEach(function (i) {
-            var car = { idDriver: i.idUser };
-            _this.carProvider.getCar$(car).subscribe(function (responseGet) {
-                console.log('car: ', responseGet);
-                i.car = responseGet;
-                myDrivers.push(i);
-            }, function (error) { return console.error(error); });
-        });
-        return myDrivers;
-    };
-    DriversPage.prototype.newDriverModal = function () {
-        var _this = this;
-        var driverModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2__components_newDriverModal_newDriverModal__["a" /* NewDriverModal */]);
-        driverModal.onDidDismiss(function (responseGet) {
-            console.log(responseGet);
-            if (responseGet && responseGet.user.id) {
-                _this.drivers.push(responseGet);
-            }
-            else {
-                console.error(responseGet);
-            }
-        });
-        driverModal.present();
-    };
-    DriversPage.prototype.addCarToDriverModal = function (driver) {
-        var _this = this;
-        var carToDriverModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__components_carsModal_carsModal__["a" /* carsModal */], { "driver": driver });
-        carToDriverModal.onDidDismiss(function (responseGet) {
-            console.log(responseGet);
-            _this.api.refreshDatas("drivers");
-            driver.car = responseGet;
-        });
-        carToDriverModal.present();
-    };
-    DriversPage.prototype.editDriver = function (driver) {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__edit_driver_edit_driver__["a" /* editDriver */], { driver: driver });
-    };
-    DriversPage.prototype.deleteCar = function (driver) {
-        var _this = this;
-        driver.car.idDriver = null;
-        this.carProvider.updateCar$(driver.car).subscribe(function (responseGet) {
-            console.log(responseGet);
-            _this.api.refreshDatas("drivers");
-        }, function (error) { return console.error(error); });
-        driver.car = null;
-    };
-    DriversPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-drivers',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\drivers\drivers.html"*/'<ion-content padding>\n\n\n\n  <button ion-button (click)="newDriverModal()">new</button>\n\n\n\n  <div class="drivers-content">\n\n    <div class="row">\n\n      <span style="width: 5%"> id </span>\n\n      <span> license </span>\n\n      <span> Name </span>\n\n      <span> phone1 </span>\n\n      <span> phone2 </span>\n\n      <span> email </span>\n\n      <span> category </span>\n\n      <span> type </span>\n\n      <span class="status"> status </span>\n\n      <span style="width: 7.5%"> Car </span>\n\n      <span class=" edit"> </span>\n\n    </div>\n\n\n\n    <div *ngFor="let driver of drivers" class="row">\n\n      <span style="width: 5%">{{driver.idUser}}</span>\n\n      <span>{{driver.license}}</span>\n\n      <span>{{driver.user.firstName}} {{driver.user.lastName}}</span>\n\n      <span>{{driver.user.phone1}}</span>\n\n      <span>{{driver.user.phone2}}</span>\n\n      <span>{{driver.user.email}}</span>\n\n      <span>{{driver.user.category}}</span>\n\n      <span>{{driver.type}}</span>\n\n      <span class="status">\n\n        <img *ngIf="driver.status === \'1\'" src="../../assets/imgs/online_status.png">\n\n        <img *ngIf="driver.status === null || driver.status > 1" src="../../assets/imgs/offline_status.png">\n\n      </span>\n\n      <span *ngIf="driver.car===null" class="associate edit"><button ion-button (click)="addCarToDriverModal(driver)">associate</button></span>\n\n      <span *ngIf="driver.car" class="associate edit">\n\n        <ion-icon name="close" (click)="deleteCar(driver)"></ion-icon>\n\n        {{driver.car.id}}\n\n      </span>\n\n      <span class="edit"><button ion-button (click)="editDriver(driver)">Edit</button></span>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\drivers\drivers.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3__app_app_api__["a" /* AppApi */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_car__["a" /* CarProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]])
-    ], DriversPage);
-    return DriversPage;
-}());
-
-//# sourceMappingURL=drivers.js.map
 
 /***/ }),
 
@@ -1200,9 +1247,10 @@ var NewDriverModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_carsModal_carsModal__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_carsModal_carsModal__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_driver__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_car__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__drivers_drivers__ = __webpack_require__(111);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1212,6 +1260,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1258,9 +1307,10 @@ var editDriver = /** @class */ (function () {
         var driverToCarModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__components_carsModal_carsModal__["a" /* carsModal */], { "driver": this.driver });
         driverToCarModal.onDidDismiss(function (responseGet) {
             console.log(responseGet);
-            if (responseGet && responseGet.constructor === Array && responseGet.length >= 1) {
+            if (responseGet) {
                 _this.savedDriver = true;
                 setTimeout(function () { _this.savedDriver = false; }, 3000);
+                _this.driver.car = responseGet;
                 _this.api.getCars();
             }
             else {
@@ -1280,9 +1330,22 @@ var editDriver = /** @class */ (function () {
         }, function (error) { return console.error(error); });
         this.driver.car = null;
     };
+    editDriver.prototype.deleteDriver = function () {
+        var _this = this;
+        this.driverProvider.deleteDriver$({ idUser: this.driver.idUser }).subscribe(function (responseGet) {
+            console.log(responseGet);
+            _this.api.refreshDatas('drivers');
+            _this.api.refreshDatas('cars');
+            _this.savedDriver = true;
+            setTimeout(function () {
+                _this.savedDriver = false;
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__drivers_drivers__["a" /* DriversPage */]);
+            }, 2000);
+        }, function (error) { return console.error(error); });
+    };
     editDriver = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'edit-driver',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\edit-driver\edit-driver.html"*/'<ion-content padding>\n\n        <div class="row">\n\n            <div> License *</div>\n\n            <input name="license" type="text" [(ngModel)]="driver.license" required>\n\n            <div> First Name *</div>\n\n            <input name="firstName" type="text" [(ngModel)]="driver.user.firstName" required>\n\n            <div> Last Name *</div>\n\n            <input name="lastName" type="text" [(ngModel)]="driver.user.lastName" required>\n\n            <div> Phone1 </div>\n\n            <input name="phone1" type="text" [readonly]="true" [(ngModel)]="driver.user.phone1">\n\n            <div> Phone2 </div>\n\n            <input name="phone2" type="text" [(ngModel)]="driver.user.phone2">\n\n            <div> Email </div>\n\n            <input name="email" type="text" [(ngModel)]="driver.user.email">\n\n            <div> Status </div>\n\n            <ion-item>\n\n                <ion-select name="type" [(ngModel)]="driver.status" required interface="popover">\n\n                    <ion-option value="1">Activated</ion-option>\n\n                    <ion-option value="2">Awaiting activation</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div> Type </div>\n\n            <ion-item>\n\n                <ion-select name="type" [(ngModel)]="driver.type" required interface="popover">\n\n                    <ion-option value="TAXI">TAXI</ion-option>\n\n                    <ion-option value="DRIVER">DRIVER</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div>Car</div>\n\n            <div *ngIf="driver.car===null"><button ion-button (click)="addCarToDriverModal()">associate</button></div>\n\n            <div *ngIf="driver.car">\n\n            <ion-icon name="close" (click)="deleteCar()"></ion-icon>\n\n              {{driver.car.id}} {{driver.car.brand}}\n\n            </div>\n\n            <div><button ion-button (click)="saveDriver()">SAVE</button> </div>\n\n        </div>\n\n    <div class="success" [hidden]="!savedDriver">Save with success</div>\n\n    <div class="error" [hidden]="!errorDriver">Please fill all the (*) requires fields</div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\edit-driver\edit-driver.html"*/
+            selector: 'edit-driver',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\edit-driver\edit-driver.html"*/'<ion-content padding>\n\n        <div class="row">\n\n            <div> ID:  {{driver.idUser}}</div>\n\n            <div> License *</div>\n\n            <input name="license" type="text" [(ngModel)]="driver.license" required>\n\n            <div> First Name *</div>\n\n            <input name="firstName" type="text" [(ngModel)]="driver.user.firstName" required>\n\n            <div> Last Name *</div>\n\n            <input name="lastName" type="text" [(ngModel)]="driver.user.lastName" required>\n\n            <div> Phone1 </div>\n\n            <input name="phone1" type="text" [readonly]="true" [(ngModel)]="driver.user.phone1">\n\n            <div> Phone2 </div>\n\n            <input name="phone2" type="text" [(ngModel)]="driver.user.phone2">\n\n            <div> Email </div>\n\n            <input name="email" type="text" [(ngModel)]="driver.user.email">\n\n            <div> Status </div>\n\n            <ion-item>\n\n                <ion-select name="type" [(ngModel)]="driver.status" required interface="popover">\n\n                    <ion-option value="1">Activated</ion-option>\n\n                    <ion-option value="2">Awaiting activation</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div> Type </div>\n\n            <ion-item>\n\n                <ion-select name="type" [(ngModel)]="driver.type" required interface="popover">\n\n                    <ion-option value="TAXI">TAXI</ion-option>\n\n                    <ion-option value="DRIVER">DRIVER</ion-option>\n\n                </ion-select>\n\n            </ion-item>\n\n            <div>Car</div>\n\n            <div *ngIf="driver.car===null"><button ion-button (click)="addCarToDriverModal()">associate</button></div>\n\n            <div *ngIf="driver.car">\n\n            <ion-icon name="close" (click)="deleteCar()"></ion-icon>\n\n              {{driver.car.id}} {{driver.car.brand}}\n\n            </div>\n\n            <div><button ion-button (click)="saveDriver()">SAVE</button> </div>\n\n            <div><button ion-button (click)="deleteDriver()">DELETE</button> </div>\n\n        </div>\n\n    <div class="success" [hidden]="!savedDriver">Save with success</div>\n\n    <div class="error" [hidden]="!errorDriver">Please fill all the (*) requires fields</div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\edit-driver\edit-driver.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
@@ -1402,7 +1465,7 @@ var RidePage = /** @class */ (function () {
     }
     RidePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-ride',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\ride\ride.html"*/'<ion-content padding>\n\n\n\n  <div class="rides-content">\n\n    <div class="row">\n\n      <span> Driver Name: </span>\n\n      <span> Driver Phone: </span>\n\n      <span> Client name:</span>\n\n      <span> Client Phone: </span>\n\n      <span style="width: 18%"> Address From:</span>\n\n      <span> Address To:</span>\n\n      <span> Date: </span>\n\n      <span class="status"> Status: </span>\n\n    </div>\n\n\n\n    <div *ngFor="let ride of rides" class="row">\n\n      <span>{{ride.driver_name}}</span>\n\n      <span>{{ride.driver_phone}}</span>\n\n      <span>{{ride.client_name}}</span>\n\n      <span>{{ride.client_phone}}</span>\n\n      <span style="width: 18%">{{ride.address_from}}</span>\n\n      <span>{{ride.address_to}}</span>\n\n      <span>{{ride.date | date:"MM/dd/yyyy \'-\' H:mm"}}</span>\n\n      <span *ngIf="ride.status" class="status">\n\n        <img src="../../assets/imgs/online_status.png">\n\n      </span>\n\n      <span *ngIf="!ride.status" class="status">\n\n        <img src="../../assets/imgs/offline_status.png">\n\n      </span>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\ride\ride.html"*/
+            selector: 'page-ride',template:/*ion-inline-start:"D:\Documents\Projects\tap-master\tap\src\pages\ride\ride.html"*/'<ion-content padding>\n\n\n\n  <div class="rides-content">\n\n    <div class="row">\n\n      <span style="width: 3%"> ID </span>\n\n      <span> Driver Name: </span>\n\n      <span> Driver Phone: </span>\n\n      <span> Client name:</span>\n\n      <span> Client Phone: </span>\n\n      <span style="width: 18%"> Address From:</span>\n\n      <span> Address To:</span>\n\n      <span> Date: </span>\n\n      <span class="status"> Status: </span>\n\n    </div>\n\n\n\n    <div *ngFor="let ride of rides" class="row">\n\n      <span style="width: 3%">{{ride.id}}</span>\n\n      <span>{{ride.driver_name}}</span>\n\n      <span>{{ride.driver_phone}}</span>\n\n      <span>{{ride.client_name}}</span>\n\n      <span>{{ride.client_phone}}</span>\n\n      <span style="width: 18%">{{ride.address_from}}</span>\n\n      <span>{{ride.address_to}}</span>\n\n      <span>{{ride.date | date:"MM/dd/yyyy \'-\' H:mm"}}</span>\n\n      <span *ngIf="ride.status" class="status">\n\n        <img src="../../assets/imgs/online_status.png">\n\n      </span>\n\n      <span *ngIf="!ride.status" class="status">\n\n        <img src="../../assets/imgs/offline_status.png">\n\n      </span>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"D:\Documents\Projects\tap-master\tap\src\pages\ride\ride.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__app_app_api__["a" /* AppApi */]])
@@ -1515,13 +1578,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(286);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_account_account__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_drivers_drivers__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_car_car__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_drivers_drivers__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_car_car__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_ride_ride__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_driver__ = __webpack_require__(56);
@@ -1531,16 +1594,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_request__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_ride__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_newDriverModal_newDriverModal__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_newRequestModal_newRequestModal__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_newRequestModal_newRequestModal__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__app_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_register_register__ = __webpack_require__(221);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_car__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_newCarModal_newCarModal__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_driversModal_driversModal__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_carsModal_carsModal__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_edit_car_edit_car__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_newCarModal_newCarModal__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_driversModal_driversModal__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_carsModal_carsModal__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_edit_car_edit_car__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_edit_driver_edit_driver__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__providers_DatePipe__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__providers_DatePipe__ = __webpack_require__(213);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1662,8 +1725,8 @@ var AppModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_api__ = __webpack_require__(13);
@@ -1744,9 +1807,9 @@ var BaseUrl = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_home__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__car_car__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__drivers_drivers__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_home__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__car_car__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__drivers_drivers__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_settings__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__account_account__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ride_ride__ = __webpack_require__(220);
@@ -1871,6 +1934,9 @@ var DriverProvider = /** @class */ (function () {
     };
     DriverProvider.prototype.updateDriver$ = function (obj) {
         return this.http.put(this.baseUrl.baseUrl + '/api/driver', obj);
+    };
+    DriverProvider.prototype.deleteDriver$ = function (obj) {
+        return this.http.delete(this.baseUrl.baseUrl + '/api/driver', { params: obj });
     };
     DriverProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),

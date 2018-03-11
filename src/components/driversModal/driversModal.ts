@@ -17,7 +17,25 @@ export class driversModal {
       console.log(this.navParam.get("car"))
   }
 
-    drivers:any = this.api.drivers;
+    driversList:any = this.api.drivers;
+
+    getCars(){
+        let myDrivers = [];
+        this.carProvider.getCars$().subscribe(
+            responseGet => {
+                this.driversList.forEach( (i) => {
+                    let test = responseGet.find(x => x.idDriver === i.idUser);
+                    if (!test){
+                        myDrivers.push(i)
+                    }
+                });
+            },
+            error => console.error(error)
+        );
+        return myDrivers;
+    }
+
+    drivers = this.getCars();
     car = this.navParam.get("car")
 
 

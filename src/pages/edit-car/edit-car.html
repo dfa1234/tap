@@ -1,7 +1,7 @@
 <ion-content padding>
         <div class="row">
-            <div> Availability </div>
-            <div>{{car.availability  | date:"H:mm"}}</div>
+            <div> ID:  {{car.id}}</div>
+            <div> Availability - {{car.availability  | date:"H:mm"}}</div>
             <div> Status </div>
             <ion-item>
                 <ion-select name="status" [(ngModel)]="car.status" required interface="popover">
@@ -39,6 +39,7 @@
             <div> Hardware Version </div>
             <input name="hardware_version" type="text" [(ngModel)]="car.hardware_version">
             <div><button ion-button (click)="saveCar()">SAVE</button> </div>
+            <div><button ion-button (click)="deleteCar()">DELETE</button> </div>
         </div>
     <div class="success" [hidden]="!savedCar">Save with success</div>
     <div class="error" [hidden]="!errorCar">Please fill all the (*) requires fields</div>

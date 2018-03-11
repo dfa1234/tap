@@ -1,16 +1,43 @@
 carsModal {
 
-  .close {
+  .top{
     position: fixed;
-    width: 575px;
+    width: 568px;
     padding: 5px;
-    height: 32px;
-    top: 50px;
+    height: 45px;
+    top: 0;
     background-color: #fff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    left: 0;
+    border-bottom: 2px solid lightgray;
+    right: 0;
+    margin: auto;
 
-    ion-icon{
-      position: absolute;
-      right: 0;
+    span{
+      font-size: 13px;
+      text-transform: uppercase;
+      padding: 8px 5px;
+      width: 18.4%;
+      color: #696969;
+      font-family: "Roboto", "Helvetica Neue", sans-serif;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      ion-icon{
+        position: absolute;
+        right: 7px;
+        top: 7px;
+        color: #ff0000;
+        font-size: 1.5em;
+      }
+    }
+
+    .id{
+      width: 8%;
     }
   }
 
@@ -18,15 +45,7 @@ carsModal {
     width: 100%;
     min-width: 450px;
 
-    .row:first-child{
 
-      span{
-        border-bottom:2px solid lightgray;
-        font-size: 11.5px;
-        text-transform: uppercase;
-        overflow: hidden;
-      }
-    }
 
     .row{
       display: flex;
@@ -35,7 +54,7 @@ carsModal {
       span{
         border-bottom:1px solid lightgray;
         padding: 8px 5px;
-        width: 16.6%;
+        width: 18.4%;
         font-size: 15px;
         color: #696969;
         font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -44,15 +63,17 @@ carsModal {
         overflow: hidden;
       }
 
-      .edit{
-        text-align: right;
-        padding-right: 20px;
-
-        ion-icon:active{
-          color: green;
-        }
-
+      .id{
+        width: 8%;
       }
+    }
+
+    div:first-child{
+      margin-top: 25px!important;
+    }
+
+    .row:hover{
+      background: #aff3bc;
     }
   }
 

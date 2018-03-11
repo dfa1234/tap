@@ -21,6 +21,16 @@ export class CarPage {
 
     }
 
+
+    refreshCars(){
+        this.carProvider.getCars$().subscribe(
+            response => {
+                this.cars = response;
+            },
+            error => console.error(error)
+        );
+    }
+
     cars:any = this.api.cars;
 
     addNewCarModal(){
@@ -41,8 +51,10 @@ export class CarPage {
         let carToDriverModal = this.modalCtrl.create(driversModal, {"car": car});
         carToDriverModal.onDidDismiss(responseGet => {
             console.log(responseGet);
-            this.api.refreshDatas("cars") ;
-            car = responseGet;
+            if(responseGet){
+                this.api.refreshDatas("cars") ;
+                this.refreshCars();
+            }
 
         });
         carToDriverModal.present();
@@ -55,7 +67,7 @@ export class CarPage {
             responseGet => {
                 console.log(responseGet);
                 this.api.refreshDatas("cars") ;
-                car = responseGet;
+                this.refreshCars();
             },
             error => console.error(error)
         )

@@ -1,5 +1,6 @@
 <ion-content padding>
         <div class="row">
+            <div> ID:  {{driver.idUser}}</div>
             <div> License *</div>
             <input name="license" type="text" [(ngModel)]="driver.license" required>
             <div> First Name *</div>
@@ -33,6 +34,7 @@
               {{driver.car.id}} {{driver.car.brand}}
             </div>
             <div><button ion-button (click)="saveDriver()">SAVE</button> </div>
+            <div><button ion-button (click)="deleteDriver()">DELETE</button> </div>
         </div>
     <div class="success" [hidden]="!savedDriver">Save with success</div>
     <div class="error" [hidden]="!errorDriver">Please fill all the (*) requires fields</div>
