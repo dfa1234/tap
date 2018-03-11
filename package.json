@@ -5,8 +5,9 @@
   "version": "0.0.1",
   "scripts": {
     "tsnode": "nodemon -I --exec ./node_modules/.bin/ts-node --project ./src-api -- ./src-api/server.ts",
-    "start": "mkdir -p ../logs && pm2 start --interpreter ./node_modules/.bin/ts-node --project ./src-api -- ./src-api/server.ts -l ../logs/node-out.log",
-    "stop": "pm2 stop server",
+    "start":"yarn tsnode",
+    "start-pm2": "mkdir -p ../logs && ./node_modules/.bin/pm2 start --interpreter ./node_modules/.bin/ts-node --project ./src-api -- ./src-api/server.ts -l ../logs/node-out.log",
+    "stop-pm2": "./node_modules/.bin/pm2 stop server",
     "logs": "tail -f -n 100 ../logs/node-out*.log",
     "restart": "yarn stop && yarn start && yarn logs",
     "clean": "ionic-app-scripts clean",
